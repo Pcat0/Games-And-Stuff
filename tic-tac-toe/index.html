@@ -2,13 +2,13 @@
 <html>
   <head>
     <style>
-      div.menu2p {
+      span.menu2p {
         display:none;
       }
-      div.menuMain {
+      span.menuMain {
         display:inline;
       }
-      div.gameBoard {
+      span.gameBoard {
         display:none;
       }
       button.square {
@@ -25,21 +25,21 @@
     </style>
   </head>
   <body>
-    <div id="menuMain" class="menuMain">
+    <span id="menuMain" class="menuMain">
        <h1>Tic Tac Toe</h1>
        <button class="menu" id="1p">Single Player</button><br/>
        <button class="menu"  onclick="getElementById('menuMain').style.display = 'none'; getElementById('menu2p').style.display = 'inline'" id="2p">Multiplayer</button>
-    </div>
-    <div id="menu2p" class="menu2p">
+    </span>
+    <span id="menu2p" class="menu2p">
       <h1>Multiplayer</h1>
       <button class="menu" onclick="getElementById('menu2p').style.display = 'none'; getElementById('gameBoard').style.display = 'inline';tictactoe.setGameMode(2)" id="local">Local</button><br/>
       <button class="menu" id="online">Online</button>
-    </div>
-    <div id="gameBoard" class="gameBoard">
+    </span>
+    <span id="gameBoard" class="gameBoard">
       <button class="square" onclick="tictactoe.play(1,1);" id="tic1"></button><button class="square" onclick="tictactoe.play(2,1);" id="tic2"></button><button class="square" onclick="tictactoe.play(3,1);" id="tic3"></button><br/>
       <button class="square" onclick="tictactoe.play(1,2);" id="tic4"></button><button class="square" onclick="tictactoe.play(2,2);" id="tic5"></button><button class="square" onclick="tictactoe.play(3,2);" id="tic6"></button><br/>
       <button class="square" onclick="tictactoe.play(1,3);" id="tic7"></button><button class="square" onclick="tictactoe.play(2,3);" id="tic8"></button><button onclick="tictactoe.play(3,3);" class="square" id="tic9"></button>
-    </div>
+    </span>
     <script src="tic-tac-toe.js"></script>
   </body>
 </html>
