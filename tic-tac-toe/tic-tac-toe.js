@@ -51,10 +51,11 @@ var TicTacToe = function() {
       if (t == -3) {
         return "-1";
       }
-      console.log(t);
+      //console.log(t);
+      //console.log("");
+      //console.log(y);
       t = 0;
-      console.log("");
-      console.log(y);
+      x = 1;
       y++;
     }
     y = 1;
@@ -71,6 +72,7 @@ var TicTacToe = function() {
         return "-1";
       }
       t = 0;
+      y = 1;
       x++;
       
     }
