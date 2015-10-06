@@ -54,7 +54,7 @@ var TicTacToe = function() {
       console.log(t);
       t = 0;
       console.log("");
-      //console.log(y);
+      console.log(y);
       y++;
     }
     y = 1;
