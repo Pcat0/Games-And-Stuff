@@ -76,6 +76,10 @@ var TicTacToe = function() {
       x++;
       
     }
+    if (this.get(1,1) + this.get(2,2) + this.get(3,3) == 3) {return "1";}
+    if (this.get(1,1) + this.get(2,2) + this.get(3,3) == -3) {return "-1";}
+    if (this.get(1,3) + this.get(2,2) + this.get(3,1) == 3) {return "1";}
+    if (this.get(1,3) + this.get(2,2) + this.get(3,1) == -3) {return "-1";}
    return 0;
   }
   /*
