@@ -17,8 +17,8 @@ var TicTacToe = function() {
     return (this.gameMode = m);
   };
   this.play = function(x, y) {
-    if (this.gameMode == 2 || (this.gameMode == 1 && (this.turn % 2 === 0))&& this.get(x,y) === 0) {
-      this.set(x, y, (this.turn % 2 === 0) ? 1 : -1));
+    if ((this.gameMode == 2 || (this.gameMode == 1 && (this.turn % 2 === 0))) && this.get(x,y) === 0) {
+      this.set(x, y, ((this.turn % 2 === 0) ? 1 : -1));
       this.turn++;
       win = this.win();
       if (win == 1) {
