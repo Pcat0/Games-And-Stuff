@@ -27,8 +27,8 @@
   <body>
     <span id="menuMain" class="menuMain">
        <h1>Tic Tac Toe</h1>
-       <button class="menu" id="1p">Single Player</button><br/>
-       <button class="menu"  onclick="getElementById('menuMain').style.display = 'none'; getElementById('menu2p').style.display = 'inline'" id="2p">Multiplayer</button>
+       <button class="menu" onclick="getElementById('menuMain').style.display = 'none'; getElementById('gameBoard').style.display = 'inline';tictactoe.setGameMode(1)" id="1p">Single Player</button><br/>
+       <button class="menu" onclick="getElementById('menuMain').style.display = 'none'; getElementById('menu2p').style.display = 'inline'" id="2p">Multiplayer</button>
     </span>
     <span id="menu2p" class="menu2p">
       <h1>Multiplayer</h1>
