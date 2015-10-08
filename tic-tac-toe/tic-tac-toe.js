@@ -84,10 +84,10 @@ var TicTacToe = function() {
   }
   this.AI = function(miss){
     this.test = function() {
-      console.log("vjhvjvjhvh")
-    }
+      console.log("vjhvjvjhvh");
+    };
     return this;
-  }
+  };
   return this;
 };
 
