@@ -17,15 +17,16 @@ var TicTacToe = function() {
     return (this.gameMode = m);
   };
   this.play = function(x, y) {
-    if (this.gameMode == 2 && this.get(x,y) === 0) {
-      this.set(x, y, ((this.turn % 2 === 0) ? 1 : -1));
+    if (this.gameMode == 2 || (this.gameMode == 1 && (this.turn % 2 === 0))&& this.get(x,y) === 0) {
+      this.set(x, y, (this.turn % 2 === 0) ? 1 : -1));
       this.turn++;
       win = this.win();
-    }
-    if (win == 1) {
-      console.log("blue won");
-    }else if(win == -1){
-      console.log("red won")
+      if (win == 1) {
+        console.log("blue won");
+      }else if(win == -1){
+        console.log("red won")
+      }
+      this.AI();
     }
   };
   this.set = function(x, y, z) {
@@ -81,7 +82,13 @@ var TicTacToe = function() {
     if (this.get(1,3) + this.get(2,2) + this.get(3,1) == 3) {return "1";}
     if (this.get(1,3) + this.get(2,2) + this.get(3,1) == -3) {return "-1";}
    return 0;
-  }
+  };
+  this.AI(){
+    var x = Math.floor((Math.random() * 3) + 1);
+    var y = Math.floor((Math.random() * 3) + 1);
+    while (this.get(x, y) != 0) {x = Math.floor((Math.random() * 3) + 1); y = Math.floor((Math.random() * 3) + 1);}
+    this.set(x, y, (this.turn % 2 === 0) ? 1 : -1));
+  };
   return this;
 };
 
