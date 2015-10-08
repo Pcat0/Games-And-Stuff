@@ -36,7 +36,7 @@ var TicTacToe = function() {
   this.get = function(x, y) {
     return this.board[y - 1][x - 1];
   };
-   this.win = function() {
+  this.win = function() {
     var y = 1;
     var x = 1;
     var t = 0;
@@ -82,49 +82,13 @@ var TicTacToe = function() {
     if (this.get(1,3) + this.get(2,2) + this.get(3,1) == -3) {return "-1";}
    return 0;
   }
-  /*
-    var win = function(array) {
-      var result = [];
-      for (var ii = 0; ii < array.length; ii++) {
-        result[ii] = array.slice(0, ii + 1).reduce(function(p, ii) {
-          return p + ii;
-        });
-      }
-      return result[result.length - 1] == 3 ? 1 : result[result.length - 1] == -3 ? -1 : 0;
-    };
-    var combos = this.board.map(function(ee) {
-      return ee;
-    });
-    combos.concat(this.board.map(function(ee, ii, aa) {
-      return aa.map(function(ee, jj, aa) {
-        return aa[jj][ii];
-      });
-    }));
-    combos.push(this.board.map(function(ee, ii, aa) {
-      return aa[ii][ii];
-    }));
-    combos.push(this.board.map(function(ee, ii, aa) {
-      return aa.map(function(ee, jj, aa) {
-        return aa[jj][ii];
-      });
-    }).map(function(ee, ii, aa) {
-      return aa[ii][ii];
-    }));
-    
-    var result = combos.map(function(ee) {
-      return win(ee);
-    });
-    
-    var ii = 0;
-    while (ii < result.length) {
-      if ([3, -3].indexOf(result[ii]) != -1) {
-        return result[ii];
-      }
-    }
-    return 0;
-  };
-  */
+  
   return this;
 };
-
+this.AI = function(miss){
+  this.test = function() {
+    console.log("vjhvjvjhvh")
+  }
+  return this;
+}
 var tictactoe = new TicTacToe();
