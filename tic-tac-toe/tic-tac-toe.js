@@ -82,13 +82,13 @@ var TicTacToe = function() {
     if (this.get(1,3) + this.get(2,2) + this.get(3,1) == -3) {return "-1";}
    return 0;
   }
-  
-  return this;
-};
-this.AI = function(miss){
-  this.test = function() {
-    console.log("vjhvjvjhvh")
+  this.AI = function(miss){
+    this.test = function() {
+      console.log("vjhvjvjhvh")
+    }
+    return this;
   }
   return this;
-}
+};
+
 var tictactoe = new TicTacToe();
