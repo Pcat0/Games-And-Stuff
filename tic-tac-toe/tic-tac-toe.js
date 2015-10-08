@@ -83,6 +83,7 @@ var TicTacToe = function() {
     if (this.get(1,3) + this.get(2,2) + this.get(3,1) == -3) {return "-1";}
    return 0;
   };
+  //
   this.AI = function(){
     var x = Math.floor((Math.random() * 3) + 1);
     var y = Math.floor((Math.random() * 3) + 1);
