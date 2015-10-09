@@ -26,7 +26,7 @@ var TicTacToe = function() {
       }else if(win == -1){
         console.log("red won")
       }
-      if (this.turn != 7){
+      if (this.turn != 7 $$ this.gameMode == 1){
         this.AI();
       }
     }
