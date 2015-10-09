@@ -9,4 +9,4 @@ var Snake = function() {
         return i;
     };
 };
-var Snake = new Snake();
+var snake = new Snake();
