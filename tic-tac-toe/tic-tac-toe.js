@@ -91,6 +91,7 @@ var TicTacToe = function() {
     var y = Math.floor((Math.random() * 3) + 1);
     while (this.get(x, y) != 0) {x = Math.floor((Math.random() * 3) + 1); y = Math.floor((Math.random() * 3) + 1);}
     this.set(x, y, ((this.turn % 2 === 0) ? 1 : -1));
+    this.turn++;
   };
   return this;
 };
