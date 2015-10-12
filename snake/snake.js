@@ -1,8 +1,8 @@
 var Snake = function() {
     this.snakeBody = [];
-    this.moveArray = function(array) {
+    this.iterateArray = function(array) {
         var i = array.length;
-        while (i <= 0) {
+        while (i >= 0) {
             i = i - 1;
             array[i + 1] = array[i];
         }
