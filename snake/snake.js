@@ -6,7 +6,7 @@ var Snake = function() {
             i = i - 1;
             array[i + 1] = array[i];
         }
-        return i;
+        return array;
     };
 };
 var snake = new Snake();
