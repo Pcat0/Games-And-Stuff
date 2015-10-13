@@ -20,7 +20,7 @@ var Snake = function() {
             case 2:
                 newBody[1] = newBody[1]+1;
                 break;
-            case 3
+            case 3:
                 newBody[0] = newBody[0]-1;
                 break;
         }
