@@ -13,7 +13,8 @@ var Snake = function(left,right,up,down) {
     this.move = function(){
         var newBody = this.snakeBody[0];
         /*switch (snake.direction) {
-        */    case 0:
+            case 0:
+        */
                 newBody[1] = newBody[1]-1;
         /*        break;
             case 1:
