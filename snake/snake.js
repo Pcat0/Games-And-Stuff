@@ -12,8 +12,8 @@ var Snake = function(left,right,up,down) {
     };
     this.move = function(){
         var newBody = []
-        newBody[0] = this.snakeBody[0[0]];
-        newBody[1] = this.snakeBody[0[1]];
+        newBody[0] = this.snakeBody[0][0];
+        newBody[1] = this.snakeBody[0][1];
         /*switch (snake.direction) {
             case 0:
         */
