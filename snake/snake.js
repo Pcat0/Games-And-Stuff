@@ -1,3 +1,4 @@
+//
 var Snake = function() {
     var c = document.getElementById("gameBoard");
     var ctx = c.getContext("2d");
