@@ -7,26 +7,24 @@ var Snake = function() {
         e = e || event; // to deal with IE
         map[e.keyCode] = e.type == 'keydown';
         alert(e.keyCode);
-        
-        
     };
     this.move = function(){
-        var newBody = this.snakeBody[0]
+        var newBody = this.snakeBody[0];
         switch (direction) {
             case 0:
-                newBody = [newBody[0],newBody[1]-1]
+                newBody[1] = newBody[1]-1;
                 break;
             case 1:
-                newBody = [newBody[0]+1,newBody[1]]
+                newBody[0] = newBody[0]+1;
                 break;
             case 2:
-                newBody = [newBody[0],newBody[1]+1]
+                newBody[1] = newBody[1]+1;
                 break;
             case 3
-                newBody = [newBody[0]-1,newBody[1]]
+                newBody[0] = newBody[0]-1;
                 break;
         }
-        return this.snakeBody.unshift(newbody);
+        return this.snakeBody.unshift(newBody);
     }
     return this;
 };
