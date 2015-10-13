@@ -1,5 +1,5 @@
 //
-var Snake = function() {
+var Snake = function(left,right,up,down) {
     var c = document.getElementById("gameBoard");
     var ctx = c.getContext("2d");
     this.snakeBody = [[5,5]];//x,y
@@ -12,10 +12,10 @@ var Snake = function() {
     };
     this.move = function(){
         var newBody = this.snakeBody[0];
-        switch (snake.direction) {
-            case 0:
+        /*switch (snake.direction) {
+        */    case 0:
                 newBody[1] = newBody[1]-1;
-                break;
+        /*        break;
             case 1:
                 newBody[0] = newBody[0]+1;
                 break;
@@ -26,6 +26,7 @@ var Snake = function() {
                 newBody[0] = newBody[0]-1;
                 break;
         }
+        */
         return this.snakeBody.unshift(newBody);
     }
     return this;
