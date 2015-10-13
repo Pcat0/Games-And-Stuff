@@ -14,11 +14,10 @@ var Snake = function(left,right,up,down) {
         var newBody = []
         newBody[0] = this.snakeBody[0][0];
         newBody[1] = this.snakeBody[0][1];
-        /*switch (snake.direction) {
+        switch (snake.direction) {
             case 0:
-        */
                 newBody[1] = newBody[1]-1;
-        /*        break;
+                break;
             case 1:
                 newBody[0] = newBody[0]+1;
                 break;
@@ -29,7 +28,7 @@ var Snake = function(left,right,up,down) {
                 newBody[0] = newBody[0]-1;
                 break;
         }
-        */
+        
         return this.snakeBody.unshift(newBody);
     }
     return this;
