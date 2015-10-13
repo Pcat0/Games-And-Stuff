@@ -11,7 +11,7 @@ var Snake = function() {
         
         
     };
-    this.move(){
+    this.move = function(){
         this.snakeBody.unshift(this.snakeBody[0[this.facing]]+this.direction);
     }
     return this;
