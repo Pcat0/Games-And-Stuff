@@ -9,19 +9,19 @@ var Snake = function(up,right,down,left) {
         e = e || event; // to deal with IE
         map[e.keyCode] = e.type == 'keydown';
         alert(e.keyCode);
-        /*if map[up] {
+        if map[38] {
             this.direction = 0;
         }
-        if map[right] {
+        if map[39] {
             this.direction = 1;
         }
-        if map[down] {
+        if map[40] {
             this.direction = 2;
         }
-        if map[left] {
+        if map[37] {
             this.direction = 3;
         }
-        */
+        
     };
     this.move = function(){
         var newBody = []
