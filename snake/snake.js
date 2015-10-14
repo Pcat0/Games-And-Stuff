@@ -42,7 +42,7 @@ var Snake = function(up,right,down,left) {
                 break;
         }
         ctx.fillStyle = "#FF0000";
-        ctx.fillRect((newBody[0] * 5),(newBody[0] * 5),(newBody[0] * 5 + 5),(newBody[0]() * 5 + 5));
+        ctx.fillRect((newBody[0] * 5),(newBody[1] * 5),(newBody[0] * 5 + 5),(newBody[1] * 5 + 5));
         return this.snakeBody.unshift(newBody);
     };
     return this;
