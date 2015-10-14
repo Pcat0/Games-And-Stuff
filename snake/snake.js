@@ -8,7 +8,7 @@ var Snake = function(up,right,down,left) {
         var map = 0;
         e = e || event; // to deal with IE
         map[e.keyCode] = e.type == 'keydown';
-        alert(e.keyCode);
+        console.log(e.keyCode);
         if (map[up]) {
             this.direction = 0;
         }
@@ -42,7 +42,7 @@ var Snake = function(up,right,down,left) {
                 break;
         }
         ctx.fillStyle = "#FF0000";
-        ctx.fillRect((newBody[0] * 5),(newBody[1] * 5),(newBody[0] * 5 + 5),(newBody[1] * 5 + 5));
+        ctx.fillRect((newBody[0] * 5),(newBody[1] * 5),20,20);
         return this.snakeBody.unshift(newBody);
     };
     return this;
