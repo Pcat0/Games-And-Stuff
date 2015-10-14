@@ -10,16 +10,19 @@ var Snake = function(up,right,down,left) {
         map[e.keyCode] = e.type == 'keydown';
         console.log(map);
         if (map[up]) {
+            console.log("1");
             this.direction = 0;
         }
         if (map[right]) {
+            console.log("2");
             this.direction = 1;
         }
         if (map[40]) {
-            console.log("test");
+            console.log("3");
             this.direction = 2;
         }
         if (map[left]) {
+            console.log("4");
             this.direction = 3;
         }
         
