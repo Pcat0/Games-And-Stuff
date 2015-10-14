@@ -1,32 +1,10 @@
-//
-var Snake = function(up,right,down,left) {
+
+var Snake = function() {
     var c = document.getElementById("gameBoard");
     var ctx = c.getContext("2d");
     this.snakeBody = [[5,5]];//x,y
     this.direction = 0;//0=up 1=right 2=down 3=left
-    onkeydown = onkeyup = function(e){
-        var map = [];
-        e = e || event; // to deal with IE
-        map[e.keyCode] = e.type == 'keydown';
-        console.log(map);
-        if (map[up]) {
-            console.log("1");
-            return this.direction = 0;
-        }
-        if (map[right]) {
-            console.log("2");
-            return this.direction = 1;
-        }
-        if (map[down]) {
-            console.log("3");
-            return this.direction = 2;
-        }
-        if (map[left]) {
-            console.log("4");
-            return this.direction = 3;
-        }
-        
-    };
+    
     this.move = function(){
         var newBody = [];
         newBody[0] = this.snakeBody[0][0];
@@ -51,4 +29,28 @@ var Snake = function(up,right,down,left) {
     };
     return this;
 };
-var snake = new Snake(38,39,40,37);
+var snake = new Snake();
+onkeydown = onkeyup = function(e){
+        var map = [];
+        e = e || event; // to deal with IE
+        map[e.keyCode] = e.type == 'keydown';
+        console.log(map);
+        if (map[38]) {
+            console.log("1");
+            snake.direction = 0;
+        }
+        if (map[39]) {
+            console.log("2");
+            snake.direction = 1;
+        }
+        if (map[40]) {
+            console.log("3");
+            snake.direction = 2;
+        }
+        if (map[37]) {
+            console.log("4");
+            snake.direction = 3;
+        }
+        
+    };
+
