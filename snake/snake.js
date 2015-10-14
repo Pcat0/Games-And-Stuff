@@ -53,5 +53,5 @@ onkeydown = onkeyup = function(e){
         }
         
     };
-    main = setInterval(function(){snake.move()},40);
+    main = setInterval(function(){snake.move()},120);
 
