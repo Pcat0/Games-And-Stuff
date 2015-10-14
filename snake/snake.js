@@ -1,9 +1,5 @@
 //
 var Snake = function(up,right,down,left) {
-    this.up = up;
-    this.right = right;
-    this.down = down;
-    this.left = left;
     var c = document.getElementById("gameBoard");
     var ctx = c.getContext("2d");
     this.snakeBody = [[5,5]];//x,y
@@ -13,16 +9,16 @@ var Snake = function(up,right,down,left) {
         e = e || event; // to deal with IE
         map[e.keyCode] = e.type == 'keydown';
         alert(e.keyCode);
-        if map[this.up] {
+        if map[up] {
             this.direction = 0;
         }
-        if map[this.right] {
+        if map[right] {
             this.direction = 1;
         }
-        if map[this.down] {
+        if map[down] {
             this.direction = 2;
         }
-        if map[this.left] {
+        if map[left] {
             this.direction = 3;
         }
     };
