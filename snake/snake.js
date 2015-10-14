@@ -24,7 +24,7 @@ var Snake = function() {
                 break;
         }
         ctx.fillStyle = "#FF0000";
-        ctx.fillRect((newBody[0] * 5),(newBody[1] * 5),20,20);
+        ctx.fillRect((newBody[0] * 20),(newBody[1] * 20),20,20);
         return this.snakeBody.unshift(newBody);
     };
     return this;
