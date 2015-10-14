@@ -11,19 +11,19 @@ var Snake = function(up,right,down,left) {
         console.log(map);
         if (map[up]) {
             console.log("1");
-            this.direction = 0;
+            return this.direction = 0;
         }
         if (map[right]) {
             console.log("2");
-            this.direction = 1;
+            return this.direction = 1;
         }
-        if (map[40]) {
+        if (map[down]) {
             console.log("3");
-            this.direction = 2;
+            return this.direction = 2;
         }
         if (map[left]) {
             console.log("4");
-            this.direction = 3;
+            return this.direction = 3;
         }
         
     };
