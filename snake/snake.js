@@ -3,7 +3,7 @@ var Snake = function() {
     var c = document.getElementById("gameBoard");
     var ctx = c.getContext("2d");
     this.snakeBody = [[5,5]];//x,y
-    this.direction = 0;//0=up 1=right 2=down 3=left
+    this.direction = 1;//0=up 1=right 2=down 3=left
     
     this.move = function(){
         var newBody = [];
@@ -53,5 +53,5 @@ onkeydown = onkeyup = function(e){
         }
         
     };
-    main = setInterval(function(){snake.move()},10);
+    main = setInterval(function(){snake.move()},40);
 
