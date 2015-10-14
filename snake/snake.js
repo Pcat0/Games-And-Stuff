@@ -4,7 +4,7 @@ var Snake = function() {
     var ctx = c.getContext("2d");
     this.snakeBody = [[5,5]];//x,y
     this.direction = 1;//0=up 1=right 2=down 3=left
-    
+    this.length = 5;
     this.move = function(){
         var newBody = [];
         newBody[0] = this.snakeBody[0][0];
@@ -25,7 +25,11 @@ var Snake = function() {
         }
         ctx.fillStyle = "#FF0000";
         ctx.fillRect((newBody[0] * 20),(newBody[1] * 20),20,20);
-        return this.snakeBody.unshift(newBody);
+        this.snakeBody.unshift(newBody);
+        if (this.snakeBody.length > this.length){
+            ctx.clearRect((newBody[this.snakeBody.length - 1] * 20),(newBody[this.snakeBody.length - 1] * 20),20,20);
+            this.snakeBody.pop()
+        }
     };
     return this;
 };
