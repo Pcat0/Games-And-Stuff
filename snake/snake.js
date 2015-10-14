@@ -9,16 +9,16 @@ var Snake = function(up,right,down,left) {
         e = e || event; // to deal with IE
         map[e.keyCode] = e.type == 'keydown';
         alert(e.keyCode);
-        if map[38] {
+        if (map[up]) {
             this.direction = 0;
         }
-        if map[39] {
+        if (map[right]) {
             this.direction = 1;
         }
-        if map[40] {
+        if (map[down]) {
             this.direction = 2;
         }
-        if map[37] {
+        if (map[left]) {
             this.direction = 3;
         }
         
