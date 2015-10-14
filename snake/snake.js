@@ -9,7 +9,7 @@ var Snake = function(up,right,down,left) {
         e = e || event; // to deal with IE
         map[e.keyCode] = e.type == 'keydown';
         alert(e.keyCode);
-        if map[up] {
+        /*if map[up] {
             this.direction = 0;
         }
         if map[right] {
@@ -20,7 +20,7 @@ var Snake = function(up,right,down,left) {
         }
         if map[left] {
             this.direction = 3;
-        }
+        */}
     };
     this.move = function(){
         var newBody = []
