@@ -20,7 +20,8 @@ var Snake = function(up,right,down,left) {
         }
         if map[left] {
             this.direction = 3;
-        */}
+        }
+        */
     };
     this.move = function(){
         var newBody = []
