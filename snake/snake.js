@@ -1,5 +1,9 @@
 //
 var Snake = function(up,right,down,left) {
+    this.up = up;
+    this.right = right;
+    this.down = down;
+    this.left = left;
     var c = document.getElementById("gameBoard");
     var ctx = c.getContext("2d");
     this.snakeBody = [[5,5]];//x,y
