@@ -5,17 +5,18 @@ var Snake = function(up,right,down,left) {
     this.snakeBody = [[5,5]];//x,y
     this.direction = 0;//0=up 1=right 2=down 3=left
     onkeydown = onkeyup = function(e){
-        var map = 0;
+        var map = [];
         e = e || event; // to deal with IE
         map[e.keyCode] = e.type == 'keydown';
-        console.log(e.keyCode);
+        console.log(map);
         if (map[up]) {
             this.direction = 0;
         }
         if (map[right]) {
             this.direction = 1;
         }
-        if (map[down]) {
+        if (map[40]) {
+            console.log("test");
             this.direction = 2;
         }
         if (map[left]) {
@@ -24,7 +25,7 @@ var Snake = function(up,right,down,left) {
         
     };
     this.move = function(){
-        var newBody = []
+        var newBody = [];
         newBody[0] = this.snakeBody[0][0];
         newBody[1] = this.snakeBody[0][1];
         switch (snake.direction) {
