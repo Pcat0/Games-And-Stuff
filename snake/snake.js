@@ -1,5 +1,5 @@
 
-var Snake = function() {
+var Snake = function(up) {
     var c = document.getElementById("gameBoard");
     var ctx = c.getContext("2d");
     this.snakeBody = [[5,5]];//x,y
@@ -39,7 +39,7 @@ onkeydown = onkeyup = function(e){
         e = e || event; // to deal with IE
         map[e.keyCode] = e.type == 'keydown';
         console.log(map);
-        if (map[38]) {
+        if (map[up]) {
             console.log("1");
             snake.direction = 0;
         }
@@ -57,5 +57,5 @@ onkeydown = onkeyup = function(e){
         }
         
     };
-    main = setInterval(function(){snake.move()},120);
+    main = setInterval(function(){snake.move(38)},120);
 
