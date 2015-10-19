@@ -27,7 +27,7 @@ var Snake = function() {
         ctx.fillRect((newBody[0] * 20),(newBody[1] * 20),20,20);
         this.snakeBody.unshift(newBody);
         if (this.snakeBody.length > this.length){
-            ctx.clearRect((this.snakeBody[this.snakeBody.length - 1] * 20),(this.snakeBody[this.snakeBody.length - 1] * 20),100,100);
+            ctx.clearRect((this.snakeBody[this.snakeBody.length - 1][0] * 20),(this.snakeBody[this.snakeBody.length - 1][1] * 20),100,100);
             this.snakeBody.pop()
         }
     };
