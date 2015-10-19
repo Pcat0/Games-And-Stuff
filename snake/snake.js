@@ -33,6 +33,10 @@ var Snake = function() {
     };
     return this;
 };
+var food = function() {
+    this.coordinate = [Math.floor((Math.random() * 1000) + 1), Math.floor((Math.random() * 1000) + 1)];
+    
+}
 var snake = new Snake();
 onkeydown = onkeyup = function(e){
         var map = [];
@@ -57,5 +61,5 @@ onkeydown = onkeyup = function(e){
         }
         
     };
-    main = setInterval(function(){snake.move()},120);
+main = setInterval(function(){snake.move()},120);
 
