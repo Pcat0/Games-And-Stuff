@@ -1,7 +1,8 @@
+var c = document.getElementById("gameBoard");
+var ctx = c.getContext("2d");
 
 var Snake = function() {
-    var c = document.getElementById("gameBoard");
-    var ctx = c.getContext("2d");
+    
     this.snakeBody = [[5,5]];//x,y
     this.direction = 1;//0=up 1=right 2=down 3=left
     this.length = 5;
@@ -33,10 +34,12 @@ var Snake = function() {
     };
     return this;
 };
-var food = function() {
+var Food = function() {
     this.coordinate = [Math.floor((Math.random() * 1000) + 1), Math.floor((Math.random() * 1000) + 1)];
-    
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(this.coordinate[0],this.coordinate[1],20,20);
 }
+var food = new Food();
 var snake = new Snake();
 onkeydown = onkeyup = function(e){
         var map = [];
