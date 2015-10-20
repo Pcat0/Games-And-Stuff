@@ -32,12 +32,18 @@ var Snake = function() {
             this.snakeBody.pop()
         }
     };
+    this.start = function() {
+        main = setInterval(function(){snake.move()},120);
+    };
+    this.stop = function() {
+        clearInterval(main);
+    };
     return this;
 };
 var Food = function() {
-    this.coordinate = [Math.floor((Math.random() * 1000) + 1), Math.floor((Math.random() * 1000) + 1)];
-    ctx.fillStyle = "#FF0000";
-    ctx.fillRect(this.coordinate[0],this.coordinate[1],20,20);
+    this.coordinate = [Math.floor((Math.random() * 50) + 1), Math.floor((Math.random() * 50) + 1)];
+    ctx.fillStyle = "#FFFF00";
+    ctx.fillRect(this.coordinate[0] * 20,this.coordinate[1] * 20,20,20);
 }
 var food = new Food();
 var snake = new Snake();
@@ -64,5 +70,4 @@ onkeydown = onkeyup = function(e){
         }
         
     };
-main = setInterval(function(){snake.move()},120);
 
