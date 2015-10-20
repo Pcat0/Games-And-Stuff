@@ -28,13 +28,13 @@ var Snake = function() {
         this.snakeBody.unshift(newBody);
         if (this.snakeBody.length > this.length){
             ctx.clearRect((this.snakeBody[this.snakeBody.length - 1][0] * 20),(this.snakeBody[this.snakeBody.length - 1][1] * 20),20,20);
-            board[(this.snakeBody[this.snakeBody.length - 1][0]][this.snakeBody[this.snakeBody.length - 1][1]] = 0;
+            board[this.snakeBody[this.snakeBody.length - 1][0]][this.snakeBody[this.snakeBody.length - 1][1]] = 0;
             this.snakeBody.pop();
         }
-        if (board[(newBody[0]][newBody[1]] == 1) {
-            console.log("die")
+        if (board[newBody[0]][newBody[1]] == 1) {
+            console.log("die");
         }
-        board[(newBody[0]][newBody[1]] = 1;
+        board[newBody[0]][newBody[1]] = 1;
     };
     this.start = function() {
         return main = setInterval(function(){snake.move()},120);
