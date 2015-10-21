@@ -1,6 +1,7 @@
 var c = document.getElementById("gameBoard");
 var ctx = c.getContext("2d");
 var board = [];
+while (i <= 50) {board[i] = []; i++;}
 var Snake = function() {
     this.snakeBody = [[5,5]];//x,y
     this.direction = 1;//0=up 1=right 2=down 3=left
