@@ -4,7 +4,7 @@ var board = [];
 var i = 1;
 while (i <= 50) {board[i] = []; i++;}
 var Snake = function() {
-    this.snakeBody = [[5,5]];//x,y
+    this.snakeBody = [[20,20]];//x,y
     this.direction = 1;//0=up 1=right 2=down 3=left
     this.length = 5;
     this.move = function(){
@@ -33,8 +33,9 @@ var Snake = function() {
             board[this.snakeBody[this.snakeBody.length - 1][0]][this.snakeBody[this.snakeBody.length - 1][1]] = 0;
             this.snakeBody.pop();
         }
-        if (board[newBody[0]][newBody[1]] == 1) {
+        if ((board[newBody[0]][newBody[1]] == 1)) {
             console.log("die");
+            this.stop();
         }
         board[newBody[0]][newBody[1]] = 1;
     };
