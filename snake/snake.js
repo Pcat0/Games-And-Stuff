@@ -33,9 +33,13 @@ var Snake = function() {
             board[this.snakeBody[this.snakeBody.length - 1][0]][this.snakeBody[this.snakeBody.length - 1][1]] = 0;
             this.snakeBody.pop();
         }
-        if ((board[newBody[0]][newBody[1]] == 1)) {
+        if ((board[newBody[0]][newBody[1]] == 1)||(newBody[0] < 0)||(newBody[1] < 0)||(newBody[0] > 50)||(newBody[1] < 50)) {
             console.log("die");
             this.stop();
+        }
+        if(board[newBody[0]][newBody[1]] == 2) {
+            this.length = this.length + 5;
+            new Food();
         }
         board[newBody[0]][newBody[1]] = 1;
     };
@@ -51,6 +55,7 @@ var Food = function() {
     this.coordinate = [Math.floor((Math.random() * 50) + 1), Math.floor((Math.random() * 50) + 1)];
     ctx.fillStyle = "#FFFF00";
     ctx.fillRect(this.coordinate[0] * 20,this.coordinate[1] * 20,20,20);
+    board[this.coordinate[0]][this.coordinate[1]] = 2;
 };
 var food = new Food();
 var snake = new Snake();
