@@ -57,7 +57,7 @@ var Food = function() {
     ctx.fillRect(this.coordinate[0] * 20,this.coordinate[1] * 20,20,20);
     board[this.coordinate[0]][this.coordinate[1]] = 2;
 };
-var food = new Food();
+new Food();
 var snake = new Snake();
 onkeydown = onkeyup = function(e){
     var map = [];
