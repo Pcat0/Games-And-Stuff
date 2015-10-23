@@ -29,6 +29,7 @@ var Snake = function() {
                 newBody[0] = newBody[0]-1;
                 break;
         }
+        if ((newBody[0] < 0)||(newBody[1] < 0)) {this.stop()}
         ctx.fillStyle = "#FF0000";
         ctx.fillRect((newBody[0] * 20),(newBody[1] * 20),20,20);
         this.snakeBody.unshift(newBody);
@@ -37,7 +38,7 @@ var Snake = function() {
             board[this.snakeBody[this.snakeBody.length - 1][0]][this.snakeBody[this.snakeBody.length - 1][1]] = 0;
             this.snakeBody.pop();
         }
-        if ((board[newBody[0]][newBody[1]] == 1)||(newBody[0] < 0)||(newBody[1] < 0)) {
+        if (board[newBody[0]][newBody[1]] == 1) {
             console.log("die");
             this.stop();
         }
