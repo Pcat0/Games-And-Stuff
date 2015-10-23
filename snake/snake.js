@@ -49,12 +49,6 @@ var Snake = function(Xstart, Ystart) {
         }
         board[newBody[0]][newBody[1]] = 1;
     };
-    this.start = function() {
-        return main = setInterval(function(){this.move()},120);
-    };
-    this.stop = function() {
-        return clearInterval(main);
-    };
     return this;
 };
 var Food = function() {
@@ -62,6 +56,12 @@ var Food = function() {
     ctx.fillStyle = "#FFFF00";
     ctx.fillRect(this.coordinate[0] * 20,this.coordinate[1] * 20,20,20);
     board[this.coordinate[0]][this.coordinate[1]] = 2;
+};
+this.start = function(snakeName) {
+   return snakeName.main = setInterval(function(){snakeName.move()},120);
+};
+this.stop = function(snakeName) {
+    return clearInterval(snakeName.main);
 };
 new Food();
 var snake = new Snake(1,1);
