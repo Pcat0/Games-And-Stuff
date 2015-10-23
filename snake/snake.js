@@ -2,6 +2,7 @@ var c = document.getElementById("gameBoard");
 var ctx = c.getContext("2d");
 var board = [];
 var i = 0;
+var playerNum = 1;
 var sizeX = 1000;
 var sizeY = 580;
 sizeX = sizeX - 20;
@@ -85,5 +86,6 @@ onkeydown = onkeyup = function(e){
         console.log("4");
         snake.direction = 3;
     }
+    //if (map[] && playerNum == 2) {}
 };
 
