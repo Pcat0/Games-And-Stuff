@@ -4,6 +4,8 @@ var board = [];
 var i = 0;
 var sizeX = 1000;
 var sizeY = 580;
+sizeX = sizeX - 20;
+sizeY = sizeY - 20;
 while (i <= (sizeX/20)) {board[i] = []; i++;}
 var Snake = function() {
     this.snakeBody = [[1,1]];//x,y
@@ -35,7 +37,7 @@ var Snake = function() {
             board[this.snakeBody[this.snakeBody.length - 1][0]][this.snakeBody[this.snakeBody.length - 1][1]] = 0;
             this.snakeBody.pop();
         }
-        if (board[newBody[0]][newBody[1]] == 1) {
+        if (board[newBody[0]][newBody[1]] == 1)||(newBody[0] < 0)||(newBody[1] < 0) {
             console.log("die");
             this.stop();
         }
