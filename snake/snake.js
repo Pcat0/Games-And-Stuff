@@ -29,7 +29,7 @@ var Snake = function() {
                 newBody[0] = newBody[0]-1;
                 break;
         }
-        if ((newBody[0] < 0)||(newBody[1] < 0)||(newBody[0] > (sizeY/20))||(newBody[1] > (sizeX/20))) {this.stop()}
+        if ((newBody[0] < 0)||(newBody[1] < 0)||(newBody[0] > (sizeX/20))||(newBody[1] > (sizeY/20))) {this.stop()}
         ctx.fillStyle = "#FF0000";
         ctx.fillRect((newBody[0] * 20),(newBody[1] * 20),20,20);
         this.snakeBody.unshift(newBody);
