@@ -23,8 +23,10 @@ var TicTacToe = function() {
       win = this.win();
       if (win == 1) {
         console.log("blue won");
+        alert("blue won");
       }else if(win == -1){
-        console.log("red won")
+        console.log("red won");
+        alert("red won");
       }
       if (this.turn != 7 && this.gameMode == 1){
         this.AI();
