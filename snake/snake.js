@@ -50,7 +50,7 @@ var Snake = function(Xstart, Ystart) {
         board[newBody[0]][newBody[1]] = 1;
     };
     this.start = function() {
-        return main = setInterval(function(){snake.move()},120);
+        return main = setInterval(function(){this.move()},120);
     };
     this.stop = function() {
         return clearInterval(main);
