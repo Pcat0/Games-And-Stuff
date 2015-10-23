@@ -73,10 +73,10 @@ onkeydown = onkeyup = function(e){
     e = e || event; // to deal with IE
     map[e.keyCode] = e.type == 'keydown';
     console.log(map);
-    if (map[38] {snake.direction = 0;}
-    if (map[39] {snake.direction = 1;}
-    if (map[40] {snake.direction = 2;}
-    if (map[37] {snake.direction = 3;}
+    if (map[38]) {snake.direction = 0;}
+    if (map[39]) {snake.direction = 1;}
+    if (map[40]) {snake.direction = 2;}
+    if (map[37]) {snake.direction = 3;}
     if (map[87] && (playerNum == 2)) {snake2.direction = 0;}
     if (map[68] && (playerNum == 2)) {snake2.direction = 1;}
     if (map[83] && (playerNum == 2)) {snake2.direction = 2;}
