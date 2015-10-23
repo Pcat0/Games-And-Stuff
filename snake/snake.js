@@ -37,7 +37,7 @@ var Snake = function() {
             board[this.snakeBody[this.snakeBody.length - 1][0]][this.snakeBody[this.snakeBody.length - 1][1]] = 0;
             this.snakeBody.pop();
         }
-        if (board[newBody[0]][newBody[1]] == 1)||(newBody[0] < 0)||(newBody[1] < 0) {
+        if ((board[newBody[0]][newBody[1]] == 1)||(newBody[0] < 0)||(newBody[1] < 0)) {
             console.log("die");
             this.stop();
         }
