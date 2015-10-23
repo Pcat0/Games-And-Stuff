@@ -54,7 +54,7 @@ var Snake = function() {
     return this;
 };
 var Food = function() {
-    this.coordinate = [Math.floor((Math.random() * (sizeX/20)) + 1), Math.floor((Math.random() * (sizeY/20))) + 1)];
+    this.coordinate = [Math.floor((Math.random() * (sizeX/20)) + 1), Math.floor((Math.random() * (sizeY/20)) + 1)];
     ctx.fillStyle = "#FFFF00";
     ctx.fillRect(this.coordinate[0] * 20,this.coordinate[1] * 20,20,20);
     board[this.coordinate[0]][this.coordinate[1]] = 2;
