@@ -77,7 +77,7 @@ onkeydown = onkeyup = function(e){
     if (map[39] && (snake2.direction =! 3)) {snake.direction = 1;}
     if (map[40] && (snake2.direction =! 0)) {snake.direction = 2;}
     if (map[37] && (snake2.direction =! 1)) {snake.direction = 3;}
-    if (map[87] && (playerNum == 2) && (snake2.direction =! 2))) {snake2.direction = 0;}
+    if (map[87] && (playerNum == 2) && (snake2.direction =! 2)) {snake2.direction = 0;}
     if (map[68] && (playerNum == 2) && (snake2.direction =! 3)) {snake2.direction = 1;}
     if (map[83] && (playerNum == 2) && (snake2.direction =! 0)) {snake2.direction = 2;}
     if (map[65] && (playerNum == 2) && (snake2.direction =! 1)) {snake2.direction = 3;}
