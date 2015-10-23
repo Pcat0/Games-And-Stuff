@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head></head>
 <body>
-  what a cookie?
-  <button onclick="if (document.cookie != 'cookie'){document.cookie = 'cookie';alert('you took a cookie');}else{alert('you already had a cookie');}">Take one Cookie</button>
+  Want a cookie?
+  <button onclick="if (document.cookie != 'cookie'){document.cookie = 'cookie';alert('You took a cookie');}else{alert('You already had a cookie, eat it first.');}">Take a Cookie.</button>
+  <button onclick="if (document.cookie != 'cookie'){alert('You need a cookie before you eat it.');}else{document.cookie = 'noCookie';alert('You ate your cookie.');">Eat you cookie.</button>
 </body>
