@@ -57,10 +57,10 @@ var Food = function() {
     ctx.fillRect(this.coordinate[0] * 20,this.coordinate[1] * 20,20,20);
     board[this.coordinate[0]][this.coordinate[1]] = 2;
 };
-this.start = function(snakeName) {
+start = function(snakeName) {
    return snakeName.main = setInterval(function(){snakeName.move()},120);
 };
-this.stop = function(snakeName) {
+stop = function(snakeName) {
     return clearInterval(snakeName.main);
 };
 new Food();
