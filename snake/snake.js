@@ -2,7 +2,9 @@ var c = document.getElementById("gameBoard");
 var ctx = c.getContext("2d");
 var board = [];
 var i = 0;
-while (i <= 50) {board[i] = []; i++;}
+var sizeX = 1000;
+var sizeY = 580;
+while (i <= (sizeX/20)) {board[i] = []; i++;}
 var Snake = function() {
     this.snakeBody = [[1,1]];//x,y
     this.direction = 1;//0=up 1=right 2=down 3=left
@@ -52,7 +54,7 @@ var Snake = function() {
     return this;
 };
 var Food = function() {
-    this.coordinate = [Math.floor((Math.random() * 50) + 1), Math.floor((Math.random() * 50) + 1)];
+    this.coordinate = [Math.floor((Math.random() * (sizeX/20)) + 1), Math.floor((Math.random() * (sizeY/20))) + 1)];
     ctx.fillStyle = "#FFFF00";
     ctx.fillRect(this.coordinate[0] * 20,this.coordinate[1] * 20,20,20);
     board[this.coordinate[0]][this.coordinate[1]] = 2;
