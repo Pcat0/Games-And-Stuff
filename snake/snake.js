@@ -5,7 +5,7 @@ var i = 0;
 var playerNum = 2;
 var sizeX = 1000;
 var sizeY = 580;
-var snake;//
+var snake;
 var snake2;
 sizeX = sizeX - 20;
 sizeY = sizeY - 20;
