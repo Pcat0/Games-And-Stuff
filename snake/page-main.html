@@ -8,11 +8,19 @@
         border-width: 5px;
         width: 1000px;
       }
+      div.menu {
+        position: relative;
+        top: 120px;
+        right: 0;
+        width: 300px;
+        height: 200px;
+      }
     </style>
   </head>
   <body>
     <div class="gameBoard">
       <canvas id="gameBoard" width="1000px" height="580px"></canvas>
+      <div class="menu" id="menu1"></div>
       <script src="snake.js"></script>
     </div>
     <button onclick="start(snake);start(snake2)">Start two player game.</button>
