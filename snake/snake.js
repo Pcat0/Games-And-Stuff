@@ -9,7 +9,7 @@ var snake;
 var snake2;
 sizeX = sizeX - 20;
 sizeY = sizeY - 20;
-while (i <= (sizeX/20)) {board[i] = []; i++;}
+
 var Snake = function(Xstart, Ystart) {
     this.snakeBody = [[Xstart, Ystart]];//x,y
     this.direction = 1;//0=up 1=right 2=down 3=left
@@ -66,6 +66,8 @@ stop = function(snakeName) {
     return clearInterval(snakeName.main);
 };
 reset = function() {
+    board = [];
+    while (i <= (sizeX/20)) {board[i] = []; i++;}
     ctx.clearRect(0, 0, c.width, c.height);
     new Food();
     snake = new Snake(1,1);
@@ -78,13 +80,13 @@ onkeydown = onkeyup = function(e){
     e = e || event; // to deal with IE
     map[e.keyCode] = e.type == 'keydown';
     console.log(map);
-    if (map[38]) {snake.direction = 0;}
-    if (map[39]) {snake.direction = 1;}
-    if (map[40]) {snake.direction = 2;}
-    if (map[37]) {snake.direction = 3;}
-    if (map[87] && (playerNum == 2)) {snake2.direction = 0;}
-    if (map[68] && (playerNum == 2)) {snake2.direction = 1;}
-    if (map[83] && (playerNum == 2)) {snake2.direction = 2;}
-    if (map[65] && (playerNum == 2)) {snake2.direction = 3;}
+    if (map[38] && (snake.direction != 2)) {snake.direction = 0;}
+    if (map[39] && (snake.direction != 3)) {snake.direction = 1;}
+    if (map[40] && (snake.direction != 0)) {snake.direction = 2;}
+    if (map[37] && (snake.direction != 1)) {snake.direction = 3;}
+    if (map[87] && (playerNum == 2) && (snake2.direction != 2)) {snake2.direction = 0;}
+    if (map[68] && (playerNum == 2) && (snake2.direction != 3)) {snake2.direction = 1;}
+    if (map[83] && (playerNum == 2) && (snake2.direction != 0)) {snake2.direction = 2;}
+    if (map[65] && (playerNum == 2) && (snake2.direction != 1)) {snake2.direction = 3;}
 };
 
