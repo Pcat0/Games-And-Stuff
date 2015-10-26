@@ -5,6 +5,8 @@ var i = 0;
 var playerNum = 2;
 var sizeX = 1000;
 var sizeY = 580;
+var snake;
+var snake2;
 sizeX = sizeX - 20;
 sizeY = sizeY - 20;
 while (i <= (sizeX/20)) {board[i] = []; i++;}
@@ -66,9 +68,9 @@ stop = function(snakeName) {
 reset = function() {
     ctx.clearRect(0, 0, c.width, c.height);
     new Food();
-    var snake = new Snake(1,1);
+    snake = new Snake(1,1);
     if (playerNum == 2) {
-        var snake2 = new Snake(1,(sizeY/ 20 - 1));
+        snake2 = new Snake(1,(sizeY/ 20 - 1));
     }
 }
 onkeydown = onkeyup = function(e){
