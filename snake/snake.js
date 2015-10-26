@@ -63,10 +63,13 @@ start = function(snakeName) {
 stop = function(snakeName) {
     return clearInterval(snakeName.main);
 };
-new Food();
-var snake = new Snake(1,1);
-if (playerNum == 2) {
-    var snake2 = new Snake(1,(sizeY/ 20 - 1));
+reset = function() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    new Food();
+    var snake = new Snake(1,1);
+    if (playerNum == 2) {
+        var snake2 = new Snake(1,(sizeY/ 20 - 1));
+    }
 }
 onkeydown = onkeyup = function(e){
     var map = [];
