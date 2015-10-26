@@ -66,7 +66,7 @@ stop = function(snakeName) {
 new Food();
 var snake = new Snake(1,1);
 if (playerNum == 2) {
-    var snake2 = new Snake(10,1);
+    var snake2 = new Snake(1,(sizeY/ 20 - 1));
 }
 onkeydown = onkeyup = function(e){
     var map = [];
