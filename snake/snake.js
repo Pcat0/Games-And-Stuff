@@ -70,6 +70,7 @@ reset = function() {
     snake = null;
     snake2 = null;
     board = [];
+    i = 0;
     while (i <= (sizeX/20)) {board[i] = []; i++;}
     ctx.clearRect(0, 0, c.width, c.height);
     new Food();
