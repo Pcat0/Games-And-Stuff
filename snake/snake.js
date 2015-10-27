@@ -53,7 +53,7 @@ var Snake = function(Xstart, Ystart, color) {
     };
     return this;
 };
-var gameStop = function(loser){
+gameStop = function(loser){
     if (playerNum == 2) {
         stop(snake);
         stop(snake2);
@@ -64,19 +64,19 @@ var gameStop = function(loser){
         }
     }
 };
-var Food = function() {
+Food = function() {
     this.coordinate = [Math.floor((Math.random() * (sizeX/20)) + 1), Math.floor((Math.random() * (sizeY/20)) + 1)];
     ctx.fillStyle = "#FFFF00";
     ctx.fillRect(this.coordinate[0] * 20,this.coordinate[1] * 20,20,20);
     board[this.coordinate[0]][this.coordinate[1]] = 2;
 };
-var start = function(snakeName) {
+start = function(snakeName) {
    return snakeName.main = setInterval(function(){snakeName.move()},120);
 };
-var stop = function(snakeName) {
+stop = function(snakeName) {
     return clearInterval(snakeName.main);
 };
-var reset = function() {
+reset = function() {
     snake = null;
     snake2 = null;
     board = [];
