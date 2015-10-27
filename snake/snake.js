@@ -44,7 +44,6 @@ var Snake = function(Xstart, Ystart, color) {
         }
         if (board[newBody[0]][newBody[1]] == 1) {
             console.log("die");
-            stop(this);
         }
         if(board[newBody[0]][newBody[1]] == 2) {
             this.length = this.length + 5;
@@ -54,19 +53,30 @@ var Snake = function(Xstart, Ystart, color) {
     };
     return this;
 };
+var gameStop = function(loser){
+    if (playerNum == 2) {
+        stop(snake);
+        stop(snake2);
+        if (loser == snake) {
+            alert("player 2 won");
+        }eles{
+            alert("player 1 won");
+        }
+    }
+};
 var Food = function() {
     this.coordinate = [Math.floor((Math.random() * (sizeX/20)) + 1), Math.floor((Math.random() * (sizeY/20)) + 1)];
     ctx.fillStyle = "#FFFF00";
     ctx.fillRect(this.coordinate[0] * 20,this.coordinate[1] * 20,20,20);
     board[this.coordinate[0]][this.coordinate[1]] = 2;
 };
-start = function(snakeName) {
+var start = function(snakeName) {
    return snakeName.main = setInterval(function(){snakeName.move()},120);
 };
-stop = function(snakeName) {
+var stop = function(snakeName) {
     return clearInterval(snakeName.main);
 };
-reset = function() {
+var reset = function() {
     snake = null;
     snake2 = null;
     board = [];
@@ -79,7 +89,7 @@ reset = function() {
         snake2 = new Snake(1, (sizeY/ 20 - 1), '#'+Math.floor(Math.random()*16777215).toString(16));
     }
 }
-onkeydown = onkeyup = function(e){
+var onkeydown = onkeyup = function(e){
     var map = [];
     e = e || event; // to deal with IE
     map[e.keyCode] = e.type == 'keydown';
