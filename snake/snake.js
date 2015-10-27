@@ -59,7 +59,7 @@ var gameStop = function(loser){
         stop(snake2);
         if (loser == snake) {
             alert("player 2 won");
-        }eles{
+        }else{
             alert("player 1 won");
         }
     }
