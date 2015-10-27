@@ -10,7 +10,7 @@ var snake2;
 sizeX = sizeX - 20;
 sizeY = sizeY - 20;
 
-var Snake = function(Xstart, Ystart) {
+var Snake = function(Xstart, Ystart, color) {
     this.snakeBody = [[Xstart, Ystart]];//x,y
     this.direction = 1;//0=up 1=right 2=down 3=left
     this.length = 5;
@@ -33,7 +33,7 @@ var Snake = function(Xstart, Ystart) {
                 break;
         }
         if ((newBody[0] < 0)||(newBody[1] < 0)||(newBody[0] > (sizeX/20))||(newBody[1] > (sizeY/20))) {stop(this)}
-        ctx.fillStyle = "#FF0000";
+        ctx.fillStyle = color;
         ctx.fillRect((newBody[0] * 20),(newBody[1] * 20),20,20);
         this.snakeBody.unshift(newBody);
         if (this.snakeBody.length > this.length){
@@ -70,9 +70,9 @@ reset = function() {
     while (i <= (sizeX/20)) {board[i] = []; i++;}
     ctx.clearRect(0, 0, c.width, c.height);
     new Food();
-    snake = new Snake(1,1);
+    snake = new Snake(1, 1, "#FF0000");
     if (playerNum == 2) {
-        snake2 = new Snake(1,(sizeY/ 20 - 1));
+        snake2 = new Snake(1, (sizeY/ 20 - 1), "#FF0000");
     }
 }
 onkeydown = onkeyup = function(e){
