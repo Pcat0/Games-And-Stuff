@@ -14,6 +14,7 @@ var Snake = function(Xstart, Ystart, color) {
     this.snakeBody = [[Xstart, Ystart]];//x,y
     this.direction = 1;//0=up 1=right 2=down 3=left
     this.length = 5;
+    this.color = color;
     this.move = function(){
         var newBody = [];
         newBody[0] = this.snakeBody[0][0];
@@ -33,7 +34,7 @@ var Snake = function(Xstart, Ystart, color) {
                 break;
         }
         if ((newBody[0] < 0)||(newBody[1] < 0)||(newBody[0] > (sizeX/20))||(newBody[1] > (sizeY/20))) {stop(this)}
-        ctx.fillStyle = color;
+        ctx.fillStyle = this.color;
         ctx.fillRect((newBody[0] * 20),(newBody[1] * 20),20,20);
         this.snakeBody.unshift(newBody);
         if (this.snakeBody.length > this.length){
@@ -66,6 +67,8 @@ stop = function(snakeName) {
     return clearInterval(snakeName.main);
 };
 reset = function() {
+    snake = null;
+    snake2 = null;
     board = [];
     while (i <= (sizeX/20)) {board[i] = []; i++;}
     ctx.clearRect(0, 0, c.width, c.height);
@@ -89,4 +92,3 @@ onkeydown = onkeyup = function(e){
     if (map[83] && (playerNum == 2) && (snake2.direction != 0)) {snake2.direction = 2;}
     if (map[65] && (playerNum == 2) && (snake2.direction != 1)) {snake2.direction = 3;}
 };
-
