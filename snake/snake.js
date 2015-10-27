@@ -70,9 +70,9 @@ reset = function() {
     while (i <= (sizeX/20)) {board[i] = []; i++;}
     ctx.clearRect(0, 0, c.width, c.height);
     new Food();
-    snake = new Snake(1, 1, "#FF0000");
+    snake = new Snake(1, 1, "#'+Math.floor(Math.random()*16777215).toString(16);");
     if (playerNum == 2) {
-        snake2 = new Snake(1, (sizeY/ 20 - 1), "#FF0000");
+        snake2 = new Snake(1, (sizeY/ 20 - 1), "#'+Math.floor(Math.random()*16777215).toString(16);");
     }
 }
 onkeydown = onkeyup = function(e){
