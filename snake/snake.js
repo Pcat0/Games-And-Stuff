@@ -33,7 +33,7 @@ var Snake = function(Xstart, Ystart, color) {
                 newBody[0] = newBody[0]-1;
                 break;
         }
-        if ((newBody[0] < 0)||(newBody[1] < 0)||(newBody[0] > (sizeX/20))||(newBody[1] > (sizeY/20))) {stop(this)}
+        if ((newBody[0] < 0)||(newBody[1] < 0)||(newBody[0] > (sizeX/20))||(newBody[1] > (sizeY/20))) {gameStop(this)}
         ctx.fillStyle = this.color;
         ctx.fillRect((newBody[0] * 20),(newBody[1] * 20),20,20);
         this.snakeBody.unshift(newBody);
@@ -44,6 +44,7 @@ var Snake = function(Xstart, Ystart, color) {
         }
         if (board[newBody[0]][newBody[1]] == 1) {
             console.log("die");
+            gameStop(this);
         }
         if(board[newBody[0]][newBody[1]] == 2) {
             this.length = this.length + 5;
