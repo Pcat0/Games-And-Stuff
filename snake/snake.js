@@ -9,7 +9,7 @@ var snake;
 var snake2;
 sizeX = sizeX - 20;
 sizeY = sizeY - 20;
-
+//
 var Snake = function(Xstart, Ystart, color) {
     this.snakeBody = [[Xstart, Ystart]];//x,y
     this.direction = 1;//0=up 1=right 2=down 3=left
