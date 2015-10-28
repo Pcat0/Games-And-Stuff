@@ -90,7 +90,7 @@ var reset = function() {
         snake2 = new Snake(1, (sizeY/ 20 - 1), '#'+Math.floor(Math.random()*16777215).toString(16));
     }
 }
-var startGame(num) {
+var startGame = function(num){
     playerNum = num;
     reset();
     start(snake);
