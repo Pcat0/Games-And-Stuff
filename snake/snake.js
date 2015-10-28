@@ -63,7 +63,10 @@ var gameStop = function(loser){
         }else{
             alert("player 1 won");
         }
+    }else{
+        alert("you died, Your score: "+snake.length);
     }
+    
 };
 var Food = function() {
     this.coordinate = [Math.floor((Math.random() * (sizeX/20)) + 1), Math.floor((Math.random() * (sizeY/20)) + 1)];
@@ -90,7 +93,7 @@ var reset = function() {
         snake2 = new Snake(1, (sizeY/ 20 - 1), '#'+Math.floor(Math.random()*16777215).toString(16));
     }
 }
-var startGame = function(num){
+var gameStart = function(num){
     playerNum = num;
     reset();
     start(snake);
