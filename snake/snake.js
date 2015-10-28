@@ -64,6 +64,7 @@ var gameStop = function(loser){
             alert("player 1 won");
         }
     }else{
+        stop(snake);
         alert("you died, Your score: "+snake.length);
     }
     
