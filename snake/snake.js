@@ -90,6 +90,14 @@ var reset = function() {
         snake2 = new Snake(1, (sizeY/ 20 - 1), '#'+Math.floor(Math.random()*16777215).toString(16));
     }
 }
+var startGame(num) {
+    playerNum = num;
+    reset();
+    start(snake);
+    if (playerNum == 2) {
+        start(snake2);
+    }
+};
 onkeydown = onkeyup = function(e){
     var map = [];
     e = e || event; // to deal with IE
