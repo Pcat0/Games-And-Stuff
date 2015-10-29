@@ -19,7 +19,7 @@
 	<!-- WEBSOCKET SIMPLE SCRIPT -->
 	
 <script type="text/javascript">
-
+	var mess = {};
 	var logdiv = document.getElementById('mylog'); // get log object from html
 	var id = 0;
 	function logf(str){
@@ -52,7 +52,7 @@
 	};// add event handler for new connection 
 
 	function mysend(){
-		var mess = {};
+		
 		mess.sID = document.getElementById('chatId');
 		mess.mess = document.getElementById('userinput');
 		ws.send(mess); // send content of input field into websocket
