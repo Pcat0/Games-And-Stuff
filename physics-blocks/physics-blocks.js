@@ -1,12 +1,17 @@
-var object = function(){
+var c = document.getElementById("gameBoard");
+var ctx = c.getContext("2d");
+var block = function(){
   this.objectData = {
-    'type':null,
     'solid':null,
-    'static':null,
-    'on'
-  }
+    'color':null,
+    'onCollision':null
+  };
 };
 var BlockTest = function(){
   Block.call(this)
-  this.b =2
-}
+  this.objectData {
+    'solid':true,
+    'color':null,
+    'onCollision':null
+  };
+};
