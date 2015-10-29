@@ -1,0 +1,57 @@
+html>
+	<!-- Achex WebSocketServer Banner -->
+	<a href="http://achex.ca/" 
+		style="background:#555;
+		color:#ddd;border-radius:3px;padding:0px 10px 0px 10px;
+		text-decoration:none;
+		font-family:Arial;letter-spacing:1px;font-size:12px;">
+		Powered by Achex WebSocketServer
+	</a><br><br>
+	<!-- Achex WebSocketServer Banner -->
+	Achex WebSocketServer <br>- javascript interface example -<br>
+	<hr>
+	<!-- User Input -->
+	<input id="userinput" type="text" value="ping"><a href="javascript:mysend()">SEND</a>
+	<!-- Log display -->
+	<div id="mylog">Received:<br></div>
+	<!-- WEBSOCKET SIMPLE SCRIPT -->
+	
+<script type="text/javascript">
+
+	var logdiv = document.getElementById('mylog'); // get log object from html
+
+	function logf(str){
+		logdiv.innerHTML += str + '<br>';
+	} // make a simplified log function
+
+	// --- WEBSOCKET ---
+	//***************************
+	var ws = new WebSocket('ws://achex.ca:4010'); // make new conncetion
+
+	ws.onmessage = function(evt){
+		var my_received_message = evt.data;
+		logf('received: ' + my_received_message);
+	}; // add event handler for incomming message
+
+	ws.onclose = function(evt){
+		logf('log: Diconnected');
+	}; // add event handler for diconnection 
+
+	ws.onerror = function(evt){
+		logf('log: Error');
+	}; // add event handler for error 
+
+	ws.onopen = function(evt){
+		logf('log: Connected');
+	};// add event handler for new connection 
+
+	function mysend(){
+		var input = document.getElementById('userinput');
+		ws.send(input.value); // send content of input field into websocket
+		input.value = ''; // erase input field
+	} // make a simple send function
+
+	//***************************
+</script>
+
+</html>
