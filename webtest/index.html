@@ -52,9 +52,8 @@
 	};// add event handler for new connection 
 
 	function mysend(){
-		
-		mess.sID = document.getElementById('chatId');
-		mess.mess = document.getElementById('userinput');
+		mess.sID = a = document.getElementById('chatId');
+		mess.mess = a = document.getElementById('userinput');
 		ws.send(mess); // send content of input field into websocket
 	} // make a simple send function
 
