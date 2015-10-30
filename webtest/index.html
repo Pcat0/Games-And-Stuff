@@ -80,6 +80,7 @@
 		ws.onopen= function(evt){
 			ono=16;
 			logf('log: Connected');
+			ws.send('{"setID":"PcatChat","passwd":"50-61-74-72-69-63-6b"}');
 		};
 	}
 	setTimeout(wsOpen,500);
@@ -96,7 +97,7 @@
 					var checkjson = JSON.parse(input.value);
 				}catch(e){logf('<font color="red">Invalid JSON syntax ('+input.value+')</font>');}
 			}
-			ws.send(input.value);
+			ws.send('{"to":"PcatChat","mess":"'+input.value+'"}');
 		}else{
 			logf('<font color="#b90">empty imput</font>');
 		}
