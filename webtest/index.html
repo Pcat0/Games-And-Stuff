@@ -44,6 +44,7 @@
 		// add event handler for incomming message
 		ws.onmessage = function(evt){
 			var st_received_message = evt.data;
+			console.log('Received:'+received_message);
 			var received_message = JSON.parse(st_received_message);
 			if (received_message.name != undefined && received_message.message != undefined)
 			logf('<font color="#9aa">'+received_message.name+':</font> ' + received_message.message);
@@ -51,16 +52,19 @@
 
 		// add event handler for diconnection 
 		ws.onclose= function(evt){
+			console.log('Diconnected')
 			logf('log: Diconnected');
 		};
 
 		// add event handler for error 
 		ws.onerror= function(evt){
+			console.log('Error')
 			logf('log: Error');
 		};
 
 		// add event handler for new connection 
 		ws.onopen= function(evt){
+			console.log('Connected');
 			logf('log: Connected');
 			ws.send('{"setID":"PcatChat","passwd":"50-61-74-72-69-63-6b"}');
 		};
@@ -72,6 +76,7 @@
 		
 		var input = document.getElementById('userinput');
 		// send content of input field into websocket
+		console.log('Sent:'+input.value);
 		if(input.value !== ''){
 			logf('<font color="#caa">sent:</font> '+input.value);
 			ws.send('{"to":"PcatChat","name":"'+name+'","message":"'+input.value+'"}');
