@@ -20,12 +20,7 @@
 
 	<!-- WEBSOCKET SIMPLE SCRIPT -->
 	<script type="text/javascript">
-	var ono=0;
-	var onm=0;
-	var one=0;
-	var onc=0;
-	var ons=0;
-	var onmake=0;
+
 
 	// --- LOG ---
 	//***************************
@@ -44,31 +39,26 @@
 	var ws;
 
 	function wsOpen(){
-		onmake = 16;
 		ws = new WebSocket('ws://achex.ca:4010');
 
 		// add event handler for incomming message
 		ws.onmessage = function(evt){
-			onm=16;
 			var my_received_message = evt.data;
 			logf('<font color="#9aa">received:</font> ' + my_received_message);
 		};
 
 		// add event handler for diconnection 
 		ws.onclose= function(evt){
-			onc=16;
 			logf('log: Diconnected');
 		};
 
 		// add event handler for error 
 		ws.onerror= function(evt){
-			one=16;
 			logf('log: Error');
 		};
 
 		// add event handler for new connection 
 		ws.onopen= function(evt){
-			ono=16;
 			logf('log: Connected');
 			ws.send('{"setID":"PcatChat","passwd":"50-61-74-72-69-63-6b"}');
 		};
@@ -77,7 +67,7 @@
 
 	// make a simple send function
 	function send(){
-		ons=16;
+		
 		var input = document.getElementById('userinput');
 		// send content of input field into websocket
 		if(input.value !== ''){
