@@ -12,16 +12,14 @@
 	<hr>
 	<!-- User Input -->
 	<input id="userinput" type="text" value="ping"><a href="javascript:mysend()">SEND</a>
-	<input id="chatId" type="text" value="chat id">
-	<div id="myId"></div>
 	<!-- Log display -->
 	<div id="mylog">Received:<br></div>
 	<!-- WEBSOCKET SIMPLE SCRIPT -->
 	
 <script type="text/javascript">
-	var mess = {};
+
 	var logdiv = document.getElementById('mylog'); // get log object from html
-	var id = 0;
+
 	function logf(str){
 		logdiv.innerHTML += str + '<br>';
 	} // make a simplified log function
@@ -48,9 +46,9 @@
 	};// add event handler for new connection 
 
 	function mysend(){
-		destination = document.getElementById('chatId').value;
-		input = document.getElementById('userinput').value;
-		ws.send('{"toS":"' + destination + '","msg":"' + input + '"}');
+		var input = document.getElementById('userinput');
+		ws.send(input.value); // send content of input field into websocket
+		input.value = ''; // erase input field
 	} // make a simple send function
 
 	//***************************
