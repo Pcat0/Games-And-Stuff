@@ -43,8 +43,9 @@
 
 		// add event handler for incomming message
 		ws.onmessage = function(evt){
-			var my_received_message = evt.data;
-			logf('<font color="#9aa">received:</font> ' + my_received_message);
+			var st_received_message = evt.data;
+			var received_message = JSON.parse(st_received_message);
+			logf('<font color="#9aa">'+received_message.name+':</font> ' + received_message.message);
 		};
 
 		// add event handler for diconnection 
