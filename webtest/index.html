@@ -33,10 +33,6 @@
 	ws.onmessage = function(evt){
 		var my_received_message = evt.data;
 		logf('received: ' + my_received_message);
-		if (my_received_message.SID != null) {
-			id = my_received_message.SID;
-			document.getElementById('mylog').innerHTML = id;
-		}
 	}; // add event handler for incomming message
 
 	ws.onclose = function(evt){
