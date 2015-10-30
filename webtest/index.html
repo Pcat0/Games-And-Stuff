@@ -1,57 +1,193 @@
-<html>
+<html><head><title>Achex - Interactive Example</title>
+	<link rel="stylesheet" type="text/css" href="dev.css">
+<style type="text/css"></style></head>
+<body>
 	<!-- Achex WebSocketServer Banner -->
-	<a href="http://achex.ca/" 
-		style="background:#555;
+	<a href="http://achex.ca/" style="background:#555;
 		color:#ddd;border-radius:3px;padding:0px 10px 0px 10px;
 		text-decoration:none;
 		font-family:Arial;letter-spacing:1px;font-size:12px;">
 		Powered by Achex WebSocketServer
 	</a><br><br>
 	<!-- Achex WebSocketServer Banner -->
+
 	Achex WebSocketServer <br>- javascript interface example -<br>
+<div style="width:260px;">
 	<hr>
+</div>
+
 	<!-- User Input -->
-	<input id="userinput" type="text" value="ping"><a href="javascript:mysend()">SEND</a>
+	<input id="userinput" type="text" value="ping"><a href="javascript:send()">SEND</a> &nbsp;<a href="javascript:disc()" id="disc">DISCONNECT</a>
+
 	<!-- Log display -->
-	<div id="mylog">Received:<br></div>
+	<div id="mylog"><br>
+<span style="background:#bbb;border-radius:3px; padding:2px 5px 2px 5px;"><i>To authenticate, send:<br>{"setID":"YOURID","passwd":"ANYTHING"}</i></span><br><br>
+<span style="background:#bbb;border-radius:3px; padding:2px 5px 2px 5px;"><i>To communicate, send:<br>{"to":"yourFriendID","somemsgid":"somemsgval"}</i></span><br><br>
+<span style="background:#bbb;border-radius:3px; padding:2px 5px 2px 5px;"><i>To ECHO, send:<br>{"to":"YOURID","somemsgid":"somemsgval"}</i></span>
+<br><br>Received:<br>log: Connected<br><font color="#9aa">received:</font> {"SID":891}<br></div>
+
 	<!-- WEBSOCKET SIMPLE SCRIPT -->
-	
-<script type="text/javascript">
+	<script type="text/javascript">
+	var ono=0;
+	var onm=0;
+	var one=0;
+	var onc=0;
+	var ons=0;
+	var onmake=0;
 
-	var logdiv = document.getElementById('mylog'); // get log object from html
+	// --- LOG ---
+	//***************************
+	// get log object from html 
+	var logdiv = document.getElementById('mylog');
 
+	// make a simplified log function
 	function logf(str){
 		logdiv.innerHTML += str + '<br>';
-	} // make a simplified log function
+	}
+	//***************************
 
 	// --- WEBSOCKET ---
 	//***************************
-	var ws = new WebSocket('ws://achex.ca:4010'); // make new conncetion
+	// make new conncetion
+	var ws;
 
-	ws.onmessage = function(evt){
-		var my_received_message = evt.data;
-		logf('received: ' + my_received_message);
-	}; // add event handler for incomming message
+	function wsOpen(){
+		onmake = 16;
+		ws = new WebSocket('ws://achex.ca:4010');
 
-	ws.onclose = function(evt){
-		logf('log: Diconnected');
-	}; // add event handler for diconnection 
+		// add event handler for incomming message
+		ws.onmessage = function(evt){
+			onm=16;
+			var my_received_message = evt.data;
+			logf('<font color="#9aa">received:</font> ' + my_received_message);
+		};
 
-	ws.onerror = function(evt){
-		logf('log: Error');
-	}; // add event handler for error 
+		// add event handler for diconnection 
+		ws.onclose= function(evt){
+			onc=16;
+			logf('log: Diconnected');
+		};
 
-	ws.onopen = function(evt){
-		logf('log: Connected');
-	};// add event handler for new connection 
+		// add event handler for error 
+		ws.onerror= function(evt){
+			one=16;
+			logf('log: Error');
+		};
 
-	function mysend(){
+		// add event handler for new connection 
+		ws.onopen= function(evt){
+			ono=16;
+			logf('log: Connected');
+		};
+	}
+	setTimeout(wsOpen,500);
+
+	// make a simple send function
+	function send(){
+		ons=16;
 		var input = document.getElementById('userinput');
-		ws.send(input.value); // send content of input field into websocket
-		input.value = ''; // erase input field
-	} // make a simple send function
-
+		// send content of input field into websocket
+		if(input.value !== ''){
+			logf('<font color="#caa">sent:</font> '+input.value);
+			if( !(input.value == 'ping' || input.value == 'ltcy')){
+				try{
+					var checkjson = JSON.parse(input.value);
+				}catch(e){logf('<font color="red">Invalid JSON syntax ('+input.value+')</font>');}
+			}
+			ws.send(input.value);
+		}else{
+			logf('<font color="#b90">empty imput</font>');
+		}
+		// erase input field
+		input.value = '';
+	}
+	function disc(){
+		if(ws.readyState == 1){
+			ws.close();
+			document.getElementById('disc').innerHTML = 'CONNECT';
+		}else{
+			wsOpen();
+			document.getElementById('disc').innerHTML = 'DISCONNECT';
+		}
+	}
 	//***************************
-</script>
+	//
+	// FLASHY INTERACTIVE DISPLAY
+	// 
+	//***************************
 
-</html>
+	setInterval(function(){
+		if(onmake-1 >= 0)onmake--;
+		if(ono-1 >= 0)ono--;
+		if(onm-1 >= 0)onm--;
+		if(one-1 >= 0)one--;
+		if(onc-1 >= 0)onc--;
+		if(ons-1 >= 0)ons--;
+		document.getElementById('onmake').style.color='#0'+onmake.toString(16)+'0';
+		document.getElementById('onmessage').style.color='#0'+onm.toString(16)+'0';
+		document.getElementById('onopen').style.color	='#0'+ono.toString(16)+'0';
+		document.getElementById('onclose').style.color	='#0'+onc.toString(16)+'0';
+		document.getElementById('onerror').style.color	='#0'+one.toString(16)+'0';
+		document.getElementById('mysend').style.color	='#0'+ons.toString(16)+'0';
+	},150);
+	
+	</script>
+		<div id="interactive_code"><pre><span class="chtml">&lt;html&gt;
+	<span class="hcomment">&lt;!-- Achex WebSocketServer Banner --&gt;</span>
+	&lt;a href="http://achex.ca/" 
+		style="background:#555;
+		color:#ddd;border-radius:3px;padding:0px 10px 0px 10px;
+		text-decoration:none;
+		font-family:Arial;letter-spacing:1px;font-size:12px;"&gt;
+		Powered by Achex WebSocketServer
+	&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+	<span class="hcomment">&lt;!-- Achex WebSocketServer Banner --&gt;</span>
+	Achex WebSocketServer &lt;br&gt;- javascript interface example -&lt;br&gt;
+	&lt;hr&gt;
+	<span class="hcomment">&lt;!-- User Input --&gt;</span>
+	&lt;input id="userinput" type="text" value="ping"&gt;&lt;a href="javascript:mysend()"&gt;SEND&lt;/a&gt;
+	<span class="hcomment">&lt;!-- Log display --&gt;</span>
+	&lt;div id="mylog"&gt;Received:&lt;br&gt;&lt;/div&gt;</span>
+	<span class="hcomment">&lt;!-- WEBSOCKET SIMPLE SCRIPT --&gt;</span>
+	<div id="scriptspan">&lt;<span class="cscript">script type</span>="<span class="cstring">text/javascript</span>"&gt;
+
+	<span class="cvar">var</span> logdiv = <span class="cdoc">document</span>.getElementById(<span class="cstring">'mylog'</span>); <span class="ccomment">// get log object from html</span>
+
+	<span class="cfunc">function</span> logf(str){
+		logdiv.innerHTML += str + <span class="cstring">'&lt;br&gt;'</span>;
+	} <span class="ccomment">// make a simplified log function</span>
+
+	<span class="ccomment">// --- WEBSOCKET ---</span>
+	<span class="ccomment">//***************************</span>
+	<div id="onmake" style="color: rgb(0, 0, 0);"><span class="cvar">var</span> ws = <span class="cnew">new</span> <span class="cfuncname">WebSocket</span>(<span class="cstring">'ws://achex.ca:4010'</span>);</div> <span class="ccomment">// make new conncetion</span>
+
+	<div id="onmessage" style="color: rgb(0, 0, 0);">ws.<span class="cevent">onmessage</span> = <span class="cfunc">function</span>(<span class="cdoc">evt</span>){
+		<span class="cvar">var</span> my_received_message = <span class="cdoc">evt</span>.data;
+		logf(<span class="cstring">'received: '</span> + my_received_message);
+	};</div> <span class="ccomment">// add event handler for incomming message</span>
+
+	<div id="onclose" style="color: rgb(0, 0, 0);">ws.<span class="cevent">onclose</span> = <span class="cfunc">function</span>(<span class="cdoc">evt</span>){
+		logf(<span class="cstring">'log: Diconnected'</span>);
+	};</div> <span class="ccomment">// add event handler for diconnection </span>
+
+	<div id="onerror" style="color: rgb(0, 0, 0);">ws.<span class="cevent">onerror</span> = <span class="cfunc">function</span>(<span class="cdoc">evt</span>){
+		logf(<span class="cstring">'log: Error'</span>);
+	};</div> <span class="ccomment">// add event handler for error </span>
+
+	<div id="onopen" style="color: rgb(0, 0, 0);">ws.<span class="cevent">onopen</span> = <span class="cfunc">function</span>(<span class="cdoc">evt</span>){
+		logf(<span class="cstring">'log: Connected'</span>);
+	};</div><span class="ccomment">// add event handler for new connection </span>
+
+	<div id="mysend" style="color: rgb(0, 0, 0);"><span class="cfunc">function</span> mysend(){
+		<span class="cvar">var</span> input = <span class="cdoc">document</span>.getElementById(<span class="cstring">'userinput'</span>);
+		ws.<span class="cevent">send</span>(input.value); <span class="ccomment">// send content of input field into websocket</span>
+		input.value = <span class="cstring">''</span>; <span class="ccomment">// erase input field</span>
+	}</div> <span class="ccomment">// make a simple send function</span>
+
+	<span class="ccomment">//***************************</span>
+&lt;/<span class="cscript">script</span>&gt;</div>
+&lt;/html&gt;
+</pre></div>
+
+
+<div id="techsmith-snagitchrome-extension"></div></body></html>
