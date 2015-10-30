@@ -92,11 +92,6 @@
 		// send content of input field into websocket
 		if(input.value !== ''){
 			logf('<font color="#caa">sent:</font> '+input.value);
-			if( !(input.value == 'ping' || input.value == 'ltcy')){
-				try{
-					var checkjson = JSON.parse(input.value);
-				}catch(e){logf('<font color="red">Invalid JSON syntax ('+input.value+')</font>');}
-			}
 			ws.send('{"to":"PcatChat","mess":"'+input.value+'"}');
 		}else{
 			logf('<font color="#b90">empty imput</font>');
