@@ -127,7 +127,6 @@ var send = function(value){
     message.message = value;
     message = JSON.stringify(message);
 	ws.send(message);
-	input.value = '';
 };
 var wsOpen = function(){
 	ws = new WebSocket('ws://achex.ca:4010');
