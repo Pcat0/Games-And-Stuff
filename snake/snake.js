@@ -121,8 +121,15 @@ onkeydown = onkeyup = function(e){
     if (map[83] && (gameMode == 2) && (snake2.direction != 0)) {snake2.direction = 2;}
     if (map[65] && (gameMode == 2) && (snake2.direction != 1)) {snake2.direction = 3;}
 };
-
-function wsOpen(){
+var send = function(value){
+    var message = {};
+    message.toS = toS;
+    message.message = value;
+    message = JSON.stringify(message);
+	ws.send(message);
+	input.value = '';
+};
+var wsOpen = function(){
 	ws = new WebSocket('ws://achex.ca:4010');
 
 	// add event handler for incomming message
@@ -132,25 +139,18 @@ function wsOpen(){
 		var received_message = JSON.parse(st_received_message);
 	};
 	// add event handler for diconnection 
-	ws.onclose= function(evt){
+	ws.onclose = function(evt){
 		console.log('Diconnected');
 	};
 
 	// add event handler for error 
-	ws.onerror= function(evt){
+	ws.onerror = function(evt){
 		console.log('Error');
 	};
 
 	// add event handler for new connection 
-	ws.onopen= function(evt){
+	ws.onopen = function(evt){
 		console.log('Connected');
 	};
-}
-function send(value){
-    var message = {};
-    message.toS = toS;
-    message.message = value;
-    message = JSON.stringify(message);
-	ws.send(message);
-	input.value = '';
-}
+};
+setTimeout(wsOpen,500);
