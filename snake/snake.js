@@ -2,14 +2,15 @@ var c = document.getElementById("gameBoard");
 var ctx = c.getContext("2d");
 var board = [];
 var i = 0;
-var playerNum = 2;
+var gameMode = 2;
 var sizeX = 1000;
 var sizeY = 580;
 var snake;
 var snake2;
 sizeX = sizeX - 20;
 sizeY = sizeY - 20;
-//
+var ws;
+var toS = 0;
 var Snake = function(Xstart, Ystart, color) {
     this.snakeBody = [[Xstart, Ystart]];//x,y
     this.direction = 1;//0=up 1=right 2=down 3=left
@@ -55,7 +56,7 @@ var Snake = function(Xstart, Ystart, color) {
     return this;
 };
 var gameStop = function(loser){
-    if (playerNum == 2) {
+    if (gameMode == 2 || gameMode == 3) {
         stop(snake);
         stop(snake2);
         if (loser == snake) {
@@ -94,15 +95,15 @@ var reset = function() {
     ctx.clearRect(0, 0, c.width, c.height);
     new Food();
     snake = new Snake(1, 1, '#'+Math.floor(Math.random()*16777215).toString(16));
-    if (playerNum == 2) {
+    if (gameMode != 1) {
         snake2 = new Snake(1, (sizeY/ 20 - 1), '#'+Math.floor(Math.random()*16777215).toString(16));
     }
 }
 var gameStart = function(num){
-    playerNum = num;
+    gameMode = num;
     reset();
     start(snake);
-    if (playerNum == 2) {
+    if (gameMode != 1) {
         start(snake2);
     }
 };
@@ -115,8 +116,41 @@ onkeydown = onkeyup = function(e){
     if (map[39] && (snake.direction != 3)) {snake.direction = 1;}
     if (map[40] && (snake.direction != 0)) {snake.direction = 2;}
     if (map[37] && (snake.direction != 1)) {snake.direction = 3;}
-    if (map[87] && (playerNum == 2) && (snake2.direction != 2)) {snake2.direction = 0;}
-    if (map[68] && (playerNum == 2) && (snake2.direction != 3)) {snake2.direction = 1;}
-    if (map[83] && (playerNum == 2) && (snake2.direction != 0)) {snake2.direction = 2;}
-    if (map[65] && (playerNum == 2) && (snake2.direction != 1)) {snake2.direction = 3;}
+    if (map[87] && (gameMode == 2) && (snake2.direction != 2)) {snake2.direction = 0;}
+    if (map[68] && (gameMode == 2) && (snake2.direction != 3)) {snake2.direction = 1;}
+    if (map[83] && (gameMode == 2) && (snake2.direction != 0)) {snake2.direction = 2;}
+    if (map[65] && (gameMode == 2) && (snake2.direction != 1)) {snake2.direction = 3;}
 };
+
+function wsOpen(){
+	ws = new WebSocket('ws://achex.ca:4010');
+
+	// add event handler for incomming message
+	ws.onmessage = function(evt){
+		var st_received_message = evt.data;
+		console.log('Received:'+ st_received_message);
+		var received_message = JSON.parse(st_received_message);
+	};
+	// add event handler for diconnection 
+	ws.onclose= function(evt){
+		console.log('Diconnected');
+	};
+
+	// add event handler for error 
+	ws.onerror= function(evt){
+		console.log('Error');
+	};
+
+	// add event handler for new connection 
+	ws.onopen= function(evt){
+		console.log('Connected');
+	};
+}
+function send(value){
+    var message = {};
+    message.toS = toS;
+    message.message = value;
+    message = JSON.stringify(message);
+	ws.send(message);
+	input.value = '';
+}
