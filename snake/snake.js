@@ -150,6 +150,7 @@ var wsOpen = function(){
 	// add event handler for new connection 
 	ws.onopen = function(evt){
 		console.log('Connected');
+		ws.send('{"setID":"PcatChat","passwd":"50-61-74-72-69-63-6b"}');
 	};
 };
 setTimeout(wsOpen,500);
