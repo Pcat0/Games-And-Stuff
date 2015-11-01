@@ -112,10 +112,10 @@ onkeydown = onkeyup = function(e){
     e = e || event; // to deal with IE
     map[e.keyCode] = e.type == 'keydown';
     console.log(map);
-    if (map[38] && (snake.direction != 2)) {snake.direction = 0; if (gameMode == 1) {send({'onReceive': function() {snake.direction = 0}})}}
-    if (map[39] && (snake.direction != 3)) {snake.direction = 1; if (gameMode == 1) {send({'onReceive': function() {snake.direction = 1}})}}
-    if (map[40] && (snake.direction != 0)) {snake.direction = 2; if (gameMode == 1) {send({'onReceive': function() {snake.direction = 2}})}}
-    if (map[37] && (snake.direction != 1)) {snake.direction = 3; if (gameMode == 1) {send({'onReceive': function() {snake.direction = 3}})}}
+    if (map[38] && (snake.direction != 2)) {snake.direction = 0; if (gameMode == 1) {send({'direction': 0})}}
+    if (map[39] && (snake.direction != 3)) {snake.direction = 1; if (gameMode == 1) {send({'direction': 1})}}
+    if (map[40] && (snake.direction != 0)) {snake.direction = 2; if (gameMode == 1) {send({'direction': 2})}}
+    if (map[37] && (snake.direction != 1)) {snake.direction = 3; if (gameMode == 1) {send({'direction': 3})}}
     if (map[87] && (gameMode == 2) && (snake2.direction != 2)) {snake2.direction = 0;}
     if (map[68] && (gameMode == 2) && (snake2.direction != 3)) {snake2.direction = 1;}
     if (map[83] && (gameMode == 2) && (snake2.direction != 0)) {snake2.direction = 2;}
@@ -137,7 +137,7 @@ var wsOpen = function(){
 		console.log('Received:'+ st_received_message);
 		var received_message = JSON.parse(st_received_message);
 		//console.log(received_message.message.direction);
-		received_message.message.onReceive();
+		snake.direction = received_message.message.direction;
 	};
 	// add event handler for diconnection 
 	ws.onclose = function(evt){
