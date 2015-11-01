@@ -136,7 +136,8 @@ var wsOpen = function(){
 		var st_received_message = evt.data;
 		console.log('Received:'+ st_received_message);
 		var received_message = JSON.parse(st_received_message);
-		console.log(received_message.message.direction)
+		//console.log(received_message.message.direction);
+		snake.direction = received_message.message.direction();
 	};
 	// add event handler for diconnection 
 	ws.onclose = function(evt){
