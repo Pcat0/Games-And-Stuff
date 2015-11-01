@@ -143,6 +143,7 @@ var wsOpen = function(){
 				gameStart(1);
 			}
 		}
+		catch{}
 	};
 	// add event handler for diconnection 
 	ws.onclose = function(evt){
