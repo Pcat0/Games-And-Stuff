@@ -84,7 +84,7 @@ var start = function(snakeName) {
    return snakeName.main = setInterval(function(){snakeName.move()},120);
 };
 var stop = function(snakeName) {
-    return clearInterval(snakeName.main);
+    return clearInterval(snakeName);
 };
 var reset = function() {
     snake = null;
