@@ -123,8 +123,8 @@ onkeydown = onkeyup = function(e){
 };
 var send = function(value){
     var message = {};
-    message.toS = toS;
-    message.message = value;
+	message.toS = toS;
+	message.message = value;
     message = JSON.stringify(message);
 	return ws.send(message);
 };
@@ -137,7 +137,12 @@ var wsOpen = function(){
 		console.log('Received:'+ st_received_message);
 		var received_message = JSON.parse(st_received_message);
 		//console.log(received_message.message.direction);
-		snake.direction = received_message.message.direction;
+		try {
+			snake.direction = received_message.message.direction;
+			if (received_message.message.start) {
+				gameStart(1);
+			}
+		}
 	};
 	// add event handler for diconnection 
 	ws.onclose = function(evt){
