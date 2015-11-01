@@ -137,13 +137,10 @@ var wsOpen = function(){
 		console.log('Received:'+ st_received_message);
 		var received_message = JSON.parse(st_received_message);
 		//console.log(received_message.message.direction);
-		try {
-			snake.direction = received_message.message.direction;
-			if (received_message.message.start) {
-				gameStart(1);
-			}
+		snake.direction = received_message.message.direction;
+		if (received_message.message.start) {
+			gameStart(1);
 		}
-		catch{}
 	};
 	// add event handler for diconnection 
 	ws.onclose = function(evt){
