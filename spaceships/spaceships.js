@@ -17,7 +17,7 @@ var Objects = function() {
     this.self.style.height = this.data.sizeY;
     this.self.innerHTML = "Hello";
     document.body.appendChild(this.self);
-    var this.img = document.createElement("img");
+    this.img = document.createElement("img");
     this.img.src = this.data.icon;
     this.img.appendChild(DOM_img);
   };
