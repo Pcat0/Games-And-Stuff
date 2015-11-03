@@ -24,12 +24,14 @@ var Objects = function() {
     document.body.appendChild(this.self);
     this.img = document.createElement("img");
     this.img.src = this.data.icon;
+    this.self.style.width = this.data.sizeX;
+    this.self.style.height = this.data.sizeY;
     this.self.appendChild(this.img);
   };
 };
 var SpaceShip = function() {
   Objects.call(this);
   this.data.icon = 'http://opengameart.org/sites/default/files/styles/watermarked/public/spaceship1_1.png';
-  this.data.sizeX = '10px';
-  this.data.sizeY = '10px';
+  this.data.sizeX = '100px';
+  this.data.sizeY = '100px';
 }
