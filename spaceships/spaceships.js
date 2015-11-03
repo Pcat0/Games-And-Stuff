@@ -21,7 +21,7 @@ var Objects = function() {
     this.selfI.style.height = this.data.sizeY;
     this.selfI.style.top = this.y;
     this.selfI.style.left = this.x;
-    document.body.appendChild(this.self);
+    document.body.appendChild(this.selfI);
     this.img = document.createElement("img");
     this.img.src = this.data.icon;
     this.img.style.width = this.data.sizeX;
