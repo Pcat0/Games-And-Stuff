@@ -14,7 +14,7 @@ var Objects = function() {
     this.selfI.style.height = this.data.sizeY;
     this.selfI.style.position = 'absolute'
     this.selfI.style.top = this.y + 'px';
-    this.selfI.style.right = this.x + 'px';
+    this.selfI.style.left = this.x + 'px';
     document.body.appendChild(this.selfI);
     this.img = document.createElement("img");
     this.img.src = this.data.icon;
