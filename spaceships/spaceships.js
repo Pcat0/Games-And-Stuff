@@ -29,6 +29,7 @@ var Objects = function() {
     this.selfI.appendChild(this.img);
   };
 };
+//
 var SpaceShip = function() {
   Objects.call(this);
   this.data.icon = 'http://opengameart.org/sites/default/files/styles/watermarked/public/spaceship1_1.png';
