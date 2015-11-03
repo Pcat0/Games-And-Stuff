@@ -19,6 +19,6 @@ var Objects = function() {
     document.body.appendChild(this.self);
     this.img = document.createElement("img");
     this.img.src = this.data.icon;
-    this.img.appendChild(DOM_img);
+    this.self.appendChild(this.img);
   };
 };
