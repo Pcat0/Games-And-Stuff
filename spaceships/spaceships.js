@@ -7,8 +7,8 @@ span.innerHTML = "Hello";
 document.body.appendChild(span);
 var Objects = function() {
   this.data = {
-    'icon': null
-    'sizeX': null
+    'icon': null,
+    'sizeX': null,
     'sizeY': null
   }
   this.draw = function() {
