@@ -33,6 +33,6 @@ var Objects = function() {
 var SpaceShip = function() {
   Objects.call(this);
   this.data.icon = 'http://opengameart.org/sites/default/files/styles/watermarked/public/spaceship1_1.png';
-  this.data.sizeX = '100px';
-  this.data.sizeY = '100px';
+  this.data.sizeX = '60px';
+  this.data.sizeY = '60px';
 }
