@@ -21,6 +21,9 @@ var Objects = function() {
     this.img.style.height = this.data.sizeY;
     this.selfI.appendChild(this.img);
   };
+  this.remove = function(){
+    document.removeChild(this.selfI)
+  }
 };
 //
 var SpaceShip = function() {
