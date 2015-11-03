@@ -6,6 +6,7 @@ var Objects = function() {
   };
   this.x = null;
   this.y = null;
+  this.selfI;
   this.draw = function(x, y) {
     this.x = x;
     this.y = y;
@@ -22,7 +23,7 @@ var Objects = function() {
     this.selfI.appendChild(this.img);
   };
   this.remove = function(){
-    document.removeChild(this.selfI)
+    document.body.removeChild(this.selfI);
   }
 };
 //
