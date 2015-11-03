@@ -7,18 +7,29 @@ div.innerHTML = "Hello";
 document.body.appendChild(div);
 var Objects = function() {
   this.data = {
-    'icon': 'http://www.planwallpaper.com/static/images/Winter-Tiger-Wild-Cat-Images.jpg',
+    'icon': null,
     'sizeX': null,
     'sizeY': null
-  }
-  this.draw = function() {
+  };
+  this.x = null;
+  this.y = null;
+  this.draw = function(x, y) {
+    this.x = x;
+    this.y = y;
     this.self = document.createElement("div");
     this.self.style.width = this.data.sizeX;
     this.self.style.height = this.data.sizeY;
-    this.self.innerHTML = "Hello";
+    this.self.style.top = this.y;
+    this.self.style.left = this.x;
     document.body.appendChild(this.self);
     this.img = document.createElement("img");
     this.img.src = this.data.icon;
     this.self.appendChild(this.img);
   };
 };
+var SpaceShip = function() {
+  Objects.call(this);
+  this.data.icon 'http://opengameart.org/sites/default/files/styles/watermarked/public/spaceship1_1.png';
+  this.data.sizeX = '10px';
+  this.data.sizeY = '10px';
+}
