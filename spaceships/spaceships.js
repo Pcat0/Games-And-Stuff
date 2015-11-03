@@ -26,7 +26,7 @@ var Objects = function() {
     this.img.src = this.data.icon;
     this.img.style.width = this.data.sizeX;
     this.img.style.height = this.data.sizeY;
-    this.img.appendChild(this.img);
+    this.selfI.appendChild(this.img);
   };
 };
 var SpaceShip = function() {
