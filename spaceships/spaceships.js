@@ -16,17 +16,17 @@ var Objects = function() {
   this.draw = function(x, y) {
     this.x = x;
     this.y = y;
-    this.self = document.createElement("div");
-    this.self.style.width = this.data.sizeX;
-    this.self.style.height = this.data.sizeY;
-    this.self.style.top = this.y;
-    this.self.style.left = this.x;
+    this.selfI = document.createElement("div");
+    this.selfI.style.width = this.data.sizeX;
+    this.selfI.style.height = this.data.sizeY;
+    this.selfI.style.top = this.y;
+    this.selfI.style.left = this.x;
     document.body.appendChild(this.self);
     this.img = document.createElement("img");
     this.img.src = this.data.icon;
-    this.self.style.width = this.data.sizeX;
-    this.self.style.height = this.data.sizeY;
-    this.self.appendChild(this.img);
+    this.img.style.width = this.data.sizeX;
+    this.img.style.height = this.data.sizeY;
+    this.img.appendChild(this.img);
   };
 };
 var SpaceShip = function() {
