@@ -75,7 +75,7 @@ var Food = function() {
     }
     this.cSet()
     while (board[this.coordinate[0]][this.coordinate[1]] == 1){this.cSet;}
-    ctx.fillStyle = "#FFFF00";
+    ctx.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
     ctx.fillRect(this.coordinate[0] * 20,this.coordinate[1] * 20,20,20);
     board[this.coordinate[0]][this.coordinate[1]] = 2;
 };
