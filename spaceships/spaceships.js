@@ -65,7 +65,7 @@ function wsOpen(){
     var st_received_message = evt.data;
     console.log('Received:'+ st_received_message);
     var received_message = JSON.parse(st_received_message);
-    if (received_message.message != undefined && received_message.sID != sId;) {
+    if (received_message.message != undefined && received_message.sID != sId) {
       
     }
     if (received_message.SID != undefined) {
