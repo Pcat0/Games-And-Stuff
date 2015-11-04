@@ -6,9 +6,11 @@ var Objects = function() {
   };
   this.x = null;
   this.y = null;
-  this.draw = function(x, y) {
+  this.r = null;
+  this.draw = function(x, y, r) {
     this.x = x;
     this.y = y;
+    this.r = r;
     this.selfI = document.createElement("div");
     this.selfI.style.width = this.data.sizeX;
     this.selfI.style.height = this.data.sizeY;
@@ -26,10 +28,14 @@ var Objects = function() {
     document.body.removeChild(this.selfI);
   }
   this.move = function(x, y, type) {
-    this.x = (type) ? (this.x + x): x;
-    this.y = (type) ? (this.y + y): y;
+    this.x = type ? (this.x + x): x;
+    this.y = type ? (this.y + y): y;
     this.selfI.style.top = this.y + 'px';
     this.selfI.style.left = this.x + 'px';
+  }
+  this.rotate = function(deg, type) {
+    this.r = type ? (this.r + r): r;
+    this.selfI.style.webkitTransform = "rotate("+r+"deg)";
   }
 };
 //
