@@ -7,9 +7,9 @@ var Objects = function() {
     'sizeY': null,
     'vLoss': 0
   };
-  this.x = null;
-  this.y = null;
-  this.r = null;
+  this.x = 0;
+  this.y = 0;
+  this.r = 0;
   this.vx = 0;
   this.vy = 0;
   this.draw = function(x, y, r) {
@@ -41,13 +41,14 @@ var Objects = function() {
   this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
     this.selfI.style.webkitTransform = "rotate("+this.r+"deg)";
+    return this.r;
   };
   this.vSet = function(vx, vy, type) {
     this.vx = (type) ? (this.vx + vx): vx;
     this.vy = (type) ? (this.vy + vy): vy;
   };
   this.velocity = function() {
-    this.vx = this.vx - this.data.vLoss;
+    this.vx = this.vx- this.data.vLoss;
     this.vy = this.vy- this.data.vLoss;
     this.move(this.vx, this.vy, true);
   };
