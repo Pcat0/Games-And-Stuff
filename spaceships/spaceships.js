@@ -44,9 +44,9 @@ var Objects = function() {
     this.selfI.style.webkitTransform = "rotate("+this.r-90+"deg)";
     return this.r;
   };
-  this.vSet = function(r, power) {
-    this.vx =+ power*Math.cos(r*0.0174533);
-    this.vx =+ power*Math.sin(r*0.0174533);
+  this.vSet = function(power) {
+    this.vx =+ power*Math.cos(this.r*0.0174533);
+    this.vx =+ power*Math.sin(this.r*0.0174533);
   };
   this.velocity = function() {
     this.vx = this.vx- this.data.vLoss;
