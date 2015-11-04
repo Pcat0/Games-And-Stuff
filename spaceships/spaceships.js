@@ -1,3 +1,4 @@
+var ws
 var Objects = function() {
   this.data = {
     'icon': null,
@@ -26,17 +27,17 @@ var Objects = function() {
   };
   this.remove = function(){
     document.body.removeChild(this.selfI);
-  }
+  };
   this.move = function(x, y, type) {
     this.x = (type) ? (this.x + x): x;
     this.y = (type) ? (this.y + y): y;
     this.selfI.style.top = this.y + 'px';
     this.selfI.style.left = this.x + 'px';
-  }
+  };
   this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
     this.selfI.style.webkitTransform = "rotate("+this.r+"deg)";
-  }
+  };
 };
 //
 var SpaceShip = function() {
@@ -44,4 +45,33 @@ var SpaceShip = function() {
   this.data.icon = 'http://opengameart.org/sites/default/files/styles/watermarked/public/spaceship1_1.png';
   this.data.sizeX = '60px';
   this.data.sizeY = '60px';
+};
+
+function wsOpen(){
+	ws = new WebSocket('ws://achex.ca:4010');
+	ws.onmessage = function(evt){
+		var st_received_message = evt.data;
+		console.log('Received:'+ st_received_message);
+		var received_message = JSON.parse(st_received_message);
+	  if (received_message.message != undefined) {
+		}
+	};
+	ws.onclose = function(evt){
+		console.log('Diconnected');
+	};
+	ws.onerror = function(evt){
+		console.log('Error');
+	};
+	ws.onopen = function(evt){
+		console.log('Connected');
+		ws.send('{"setID":"Spaceship-Game-Sv1","passwd":"50-61-74-72-69-63-6b"}');
+	};
+}
+setTimeout(wsOpen,500);
+function send(object){
+  var message = {};
+  message.to = "Spaceship-Game-Sv1";
+  message.message = object;
+  message = JSON.stringify(message);
+	ws.send(message);
 }
