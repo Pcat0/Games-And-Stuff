@@ -4,7 +4,8 @@ var Objects = function() {
   this.data = {
     'icon': null,
     'sizeX': null,
-    'sizeY': null
+    'sizeY': null,
+    'vLoss': 0
   };
   this.x = null;
   this.y = null;
@@ -40,6 +41,15 @@ var Objects = function() {
   this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
     this.selfI.style.webkitTransform = "rotate("+this.r+"deg)";
+  };
+  this.vSet = function(vx, vy, type) {
+    this.vx = (type) ? (this.vx + vx): vx;
+    this.vy = (type) ? (this.vy + vy): vy;
+  };
+  this.velocity = function() {
+    this.vx = this.vx - this.data.vLoss;
+    this.vy = this.vy- this.data.vLoss;
+    this.move(this.vx, this.vy, true);
   };
 };
 //
