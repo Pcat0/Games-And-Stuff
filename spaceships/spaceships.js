@@ -25,6 +25,12 @@ var Objects = function() {
   this.remove = function(){
     document.body.removeChild(this.selfI);
   }
+  this.move = function(x, y, type) {
+    this.x = (type) ? this.x + x: x;
+    this.y = (type) ? this.y + y: y;
+    this.selfI.style.top = this.y + 'px';
+    this.selfI.style.left = this.x + 'px';
+  }
 };
 //
 var SpaceShip = function() {
