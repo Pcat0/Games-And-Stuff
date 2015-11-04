@@ -22,6 +22,7 @@ var Objects = function() {
     this.selfI.style.position = 'absolute'
     this.selfI.style.top = this.y + 'px';
     this.selfI.style.left = this.x + 'px';
+    this.selfI.style.webkitTransform = "rotate("+-90+"deg)";
     document.body.appendChild(this.selfI);
     this.img = document.createElement("img");
     this.img.src = this.data.icon;
@@ -40,7 +41,7 @@ var Objects = function() {
   };
   this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
-    this.selfI.style.webkitTransform = "rotate("+this.r+"deg)";
+    this.selfI.style.webkitTransform = "rotate("+this.r-90+"deg)";
     return this.r;
   };
   this.vSet = function(vx, vy, type) {
