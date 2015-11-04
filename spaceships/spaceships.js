@@ -1,4 +1,5 @@
-var ws
+var ws;
+var sId;
 var Objects = function() {
   this.data = {
     'icon': null,
@@ -8,6 +9,8 @@ var Objects = function() {
   this.x = null;
   this.y = null;
   this.r = null;
+  this.vx = 0;
+  this.vy = 0;
   this.draw = function(x, y, r) {
     this.x = x;
     this.y = y;
@@ -46,26 +49,29 @@ var SpaceShip = function() {
   this.data.sizeX = '60px';
   this.data.sizeY = '60px';
 };
-
 function wsOpen(){
-	ws = new WebSocket('ws://achex.ca:4010');
-	ws.onmessage = function(evt){
-		var st_received_message = evt.data;
-		console.log('Received:'+ st_received_message);
-		var received_message = JSON.parse(st_received_message);
-	  if (received_message.message != undefined) {
-		}
-	};
-	ws.onclose = function(evt){
-		console.log('Diconnected');
-	};
-	ws.onerror = function(evt){
-		console.log('Error');
-	};
-	ws.onopen = function(evt){
-		console.log('Connected');
-		ws.send('{"setID":"Spaceship-Game-Sv1","passwd":"50-61-74-72-69-63-6b"}');
-	};
+  ws = new WebSocket('ws://achex.ca:4010');
+  ws.onmessage = function(evt){
+    var st_received_message = evt.data;
+    console.log('Received:'+ st_received_message);
+    var received_message = JSON.parse(st_received_message);
+    if (received_message.message != undefined && received_message.sID != sId;) {
+      
+    }
+    if (received_message.SID != undefined) {
+      sId = received_message.SID;
+    }
+  };
+  ws.onclose = function(evt){
+    console.log('Diconnected');
+  };
+  ws.onerror = function(evt){
+    console.log('Error');
+  };
+  ws.onopen = function(evt){
+    console.log('Connected');
+    ws.send('{"setID":"Spaceship-Game-Sv1","passwd":"50-61-74-72-69-63-6b"}');
+  };
 }
 setTimeout(wsOpen,500);
 function send(object){
@@ -75,3 +81,13 @@ function send(object){
   message = JSON.stringify(message);
 	ws.send(message);
 }
+onkeydown = onkeyup = function(e){
+  var map = [];
+  e = e || event; // to deal with IE
+  map[e.keyCode] = e.type == 'keydown';
+  console.log(map);
+  if (map[38]) {}
+  if (map[39]) {}
+  if (map[40]) {}
+  if (map[37]) {}
+};
