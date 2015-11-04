@@ -35,7 +35,7 @@ var Objects = function() {
   }
   this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
-    this.selfI.style.webkitTransform = "rotate("+r+"deg)";
+    this.selfI.style.webkitTransform = "rotate("+this.r+"deg)";
   }
 };
 //
