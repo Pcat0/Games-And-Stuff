@@ -33,7 +33,7 @@ var Objects = function() {
     this.selfI.style.top = this.y + 'px';
     this.selfI.style.left = this.x + 'px';
   }
-  this.rotate = function(deg, type) {
+  this.rotate = function(r, type) {
     this.r = type ? (this.r + r): r;
     this.selfI.style.webkitTransform = "rotate("+r+"deg)";
   }
