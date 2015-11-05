@@ -94,7 +94,7 @@ function send(object){
 	ws.send(message);
 }
 var main = function()  {
-  if (map[38]) {ship.vSet(.1);}
+  if (map[38]) {ship.vSet(.01);}
   if (map[39]) {ship.rotate(1, true)}
   if (map[40]) {}
   if (map[37]) {ship.rotate(-1, true)}
