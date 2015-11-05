@@ -1,7 +1,8 @@
 var ws;
 var sId;
-var map = [];
-var Objects = function() {
+var keyMap = [];
+var ships = {};
+var object = function() {
   this.data = {
     'icon': null,
     'sizeX': null,
@@ -56,7 +57,7 @@ var Objects = function() {
 };
 //
 var SpaceShip = function() {
-  Objects.call(this);
+  object.call(this);
   this.data.icon = 'http://opengameart.org/sites/default/files/styles/watermarked/public/spaceship1_1.png';
   this.data.sizeX = '60px';
   this.data.sizeY = '60px';
@@ -68,7 +69,7 @@ function wsOpen(){
     console.log('Received:'+ st_received_message);
     var received_message = JSON.parse(st_received_message);
     if (received_message.onReceive != undefined) {
-      received_message.onReceive();
+      	received_message.onReceive();
     }
     if (received_message.SID != undefined) {
       sId = received_message.SID;
@@ -83,6 +84,7 @@ function wsOpen(){
   ws.onopen = function(evt){
     console.log('Connected');
     ws.send('{"setID":"Spaceship-Game-Sv1","passwd":"50-61-74-72-69-63-6b"}');
+    ship.
   };
 }
 setTimeout(wsOpen,500);
@@ -94,13 +96,13 @@ var send = function(onReceive){
 	ws.send(message);
 }
 var main = function()  {
-  if (map[38]) {send(function() {ship.vSet(.01);})}
-  if (map[39]) {send(function() {ship.rotate(1, true);})}
-  if (map[40]) {}
-  if (map[37]) {send(function() {ship.rotate(-1, true);})}
-}
+  if (keyMap[38]) {ship.vSet(.01)}
+  if (keyMap[39]) {ship.rotate(1, true)}
+  if (keyMap[40]) {}
+  if (keyMap[37]) {ship.rotate(-1, true)}
+};
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
-  map[e.keyCode] = e.type == 'keydown';
+  keyMap[e.keyCode] = e.type == 'keydown';
   //console.log(map);
 };
