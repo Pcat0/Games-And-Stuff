@@ -94,10 +94,10 @@ function send(object){
 	ws.send(message);
 }
 var main = function()  {
-  if (map[38]) {ship.vSet(1);}
-  if (map[39]) {ship.rotate(5, true)}
+  if (map[38]) {ship.vSet(.1);}
+  if (map[39]) {ship.rotate(1, true)}
   if (map[40]) {}
-  if (map[37]) {ship.rotate(-5, true)}
+  if (map[37]) {ship.rotate(-1, true)}
 }
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
