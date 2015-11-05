@@ -97,8 +97,8 @@ onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
   map[e.keyCode] = e.type == 'keydown';
   console.log(map);
-  if (map[38]) {}
-  if (map[39]) {}
+  if (map[38]) {ship.vSet(1);}
+  if (map[39]) {ship.rotate(5, true)}
   if (map[40]) {}
-  if (map[37]) {}
+  if (map[37]) {ship.rotate(-5, true)}
 };
