@@ -1,5 +1,6 @@
 var ws;
 var sId;
+var map = [];
 var Objects = function() {
   this.data = {
     'icon': null,
@@ -92,13 +93,14 @@ function send(object){
   message = JSON.stringify(message);
 	ws.send(message);
 }
-onkeydown = onkeyup = function(e){
-  var map = [];
-  e = e || event; // to deal with IE
-  map[e.keyCode] = e.type == 'keydown';
-  console.log(map);
-  if (map[38]) {ship.vSet(1);}
+function main() {
+	if (map[38]) {ship.vSet(1);}
   if (map[39]) {ship.rotate(5, true)}
   if (map[40]) {}
   if (map[37]) {ship.rotate(-5, true)}
+}
+onkeydown = onkeyup = function(e){
+  e = e || event; // to deal with IE
+  map[e.keyCode] = e.type == 'keydown';
+  //console.log(map);
 };
