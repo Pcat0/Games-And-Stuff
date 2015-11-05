@@ -73,7 +73,7 @@ function wsOpen(){
     }
     if (received_message.SID != undefined) {
       sId = received_message.SID;
-      ship.eval(sId) = new Spaceship();
+      ships.eval(sId) = new Spaceship();
     }
   };
   ws.onclose = function(evt){
