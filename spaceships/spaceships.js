@@ -1,7 +1,7 @@
 var ws;
 var sId;
 var keyMap = [];
-var ships = {};
+var ships = [];
 var object = function() {
   this.data = {
     'icon': null,
@@ -73,7 +73,7 @@ function wsOpen(){
     }
     if (received_message.SID != undefined) {
       sId = received_message.SID;
-      ships.eval(sId) = new Spaceship();
+      eval("ship-" + sId) = new Spaceship();
     }
   };
   ws.onclose = function(evt){
