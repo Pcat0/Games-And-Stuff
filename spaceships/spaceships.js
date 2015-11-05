@@ -93,8 +93,8 @@ function send(object){
   message = JSON.stringify(message);
 	ws.send(message);
 }
-function main() {
-	if (map[38]) {ship.vSet(1);}
+var main = function()  {
+  if (map[38]) {ship.vSet(1);}
   if (map[39]) {ship.rotate(5, true)}
   if (map[40]) {}
   if (map[37]) {ship.rotate(-5, true)}
