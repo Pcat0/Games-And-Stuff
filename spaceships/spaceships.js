@@ -41,7 +41,7 @@ var Objects = function() {
   };
   this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
-    this.selfI.style.webkitTransform = "rotate("+this.r-90+"deg)";
+    this.selfI.style.webkitTransform = "rotate("+(this.r-90)+"deg)";
     return this.r;
   };
   this.vSet = function(power) {
