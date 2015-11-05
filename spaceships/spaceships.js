@@ -45,7 +45,7 @@ var Objects = function() {
   };
   this.vSet = function(power) {
     this.vx =+ power*Math.cos(this.r*0.0174533);
-    this.vx =+ power*Math.sin(this.r*0.0174533);
+    this.vy =+ power*Math.sin(this.r*0.0174533);
   };
   this.velocity = function() {
     this.vx = this.vx- this.data.vLoss;
