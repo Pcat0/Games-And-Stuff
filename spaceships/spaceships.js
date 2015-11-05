@@ -73,6 +73,7 @@ function wsOpen(){
     }
     if (received_message.SID != undefined) {
       sId = received_message.SID;
+      ship.eval(sId) = new Spaceship();
     }
   };
   ws.onclose = function(evt){
@@ -84,7 +85,6 @@ function wsOpen(){
   ws.onopen = function(evt){
     console.log('Connected');
     ws.send('{"setID":"Spaceship-Game-Sv1","passwd":"50-61-74-72-69-63-6b"}');
-    ship.
   };
 }
 setTimeout(wsOpen,500);
