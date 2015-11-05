@@ -67,8 +67,8 @@ function wsOpen(){
     var st_received_message = evt.data;
     console.log('Received:'+ st_received_message);
     var received_message = JSON.parse(st_received_message);
-    if (received_message.message != undefined && received_message.sID != sId) {
-      
+    if (received_message.onReceive != undefined) {
+      received_message.onReceive();
     }
     if (received_message.SID != undefined) {
       sId = received_message.SID;
@@ -86,18 +86,18 @@ function wsOpen(){
   };
 }
 setTimeout(wsOpen,500);
-function send(object){
+var send = function(onReceive){
   var message = {};
   message.to = "Spaceship-Game-Sv1";
-  message.message = object;
+  message.onReceive = onReceive;
   message = JSON.stringify(message);
 	ws.send(message);
 }
 var main = function()  {
-  if (map[38]) {ship.vSet(.01);}
-  if (map[39]) {ship.rotate(1, true)}
+  if (map[38]) {send(function() {ship.vSet(.01);})}
+  if (map[39]) {send(function() {ship.rotate(1, true);})}
   if (map[40]) {}
-  if (map[37]) {ship.rotate(-1, true)}
+  if (map[37]) {send(function() {ship.rotate(-1, true);})}
 }
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
