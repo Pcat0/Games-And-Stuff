@@ -40,10 +40,10 @@ var object = function() {
     this.selfI.style.top = this.y + 'px';
     this.selfI.style.left = this.x + 'px';
   };
-  this.rotate = function(r, type, send) {
+  this.rotate = function(r, type, send_) {
     this.r = (type) ? (this.r + r): r;
     this.selfI.style.webkitTransform = "rotate("+(this.r-90)+"deg)";
-    if (send) {
+    if (send_) {
       send({'r': this.r});
     }
     return this.r;
