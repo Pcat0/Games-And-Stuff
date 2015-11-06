@@ -79,7 +79,7 @@ function wsOpen(){
           ws.send(JSON.stringify({'toS': received_message.sID, 'mess':{'join': true,'x': ships[sId].x,'y': ships[sId].y, 'r': ships[sId].r, 'vx':ships[sId].vx, 'vy':ships[sId].vy, 'newS':false}}));
         }
       }
-      if (received_message.mess.xv != undefined && received_message.mess.yv != undefined && received_message.mess.join == undefined) {
+      if (received_message.mess.xv != undefined && received_message.mess.join == undefined) {
         ships[received_message.sID].xv = received_message.mess.xy; ships[received_message.sID].yv = received_message.mess.yv;
       }
       if (received_message.mess.r != undefined && received_message.mess.join == undefined) {
