@@ -90,8 +90,8 @@ setTimeout(wsOpen,500);
 var send = function(mess){
   var message = {};
   message.to = "Spaceship-Game-Sv1";
-  message.mess = onReceive;
-  message = JSON.stringify(mess);
+  message.mess = mess;
+  message = JSON.stringify(message);
 	ws.send(message);
 }
 var main = function()  {
