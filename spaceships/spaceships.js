@@ -99,7 +99,7 @@ var main = function()  {
   if (keyMap[39]) {ships[sId].rotate(1, true)}
   if (keyMap[40]) {}
   if (keyMap[37]) {ships[sId].rotate(-1, true)}
-  ship_.forEach(function(a){a.velocity()})
+  ships.forEach(function(a){a.velocity()})
 };
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
