@@ -40,10 +40,12 @@ var object = function() {
     this.selfI.style.top = this.y + 'px';
     this.selfI.style.left = this.x + 'px';
   };
-  this.rotate = function(r, type) {
+  this.rotate = function(r, type, send) {
     this.r = (type) ? (this.r + r): r;
     this.selfI.style.webkitTransform = "rotate("+(this.r-90)+"deg)";
-    send({'r': this.r});
+    if (send) {
+      send({'r': this.r});
+    }
     return this.r;
   };
   this.vSet = function(power) {
@@ -111,9 +113,9 @@ var send = function(mess){
 }
 var main = function() {
   if (keyMap[38]) {ships[sId].vSet(.01)}
-  if (keyMap[39]) {ships[sId].rotate(1, true)}
+  if (keyMap[39]) {ships[sId].rotate(1, true, true)}
   if (keyMap[40]) {}
-  if (keyMap[37]) {ships[sId].rotate(-1, true)}
+  if (keyMap[37]) {ships[sId].rotate(-1, true, true)}
   ships.forEach(a => a.velocity());
 };
 onkeydown = onkeyup = function(e){
