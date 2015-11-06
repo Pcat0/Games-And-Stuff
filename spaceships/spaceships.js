@@ -69,11 +69,14 @@ function wsOpen(){
     console.log('Received:'+ st_received_message);
     var received_message = JSON.parse(st_received_message);
     if (received_message.mess != undefined && received_message.sID != sId) {
-      	//if (received_message.mess = ''
+      	if (received_message.mess.join) {
+      	  ships[received_message.sID] = new SpaceShip();ships[received_message.sID].draw(); ships[received_message.sID].move(1,1);
+      	}
     }
     if (received_message.SID != undefined) {
       sId = received_message.SID;
       ships[sId] = new SpaceShip();ships[sId].draw(); ships[sId].move(1,1);
+      send({'join': true});
     }
   };
   ws.onclose = function(evt){
@@ -100,7 +103,7 @@ var main = function()  {
   if (keyMap[39]) {ships[sId].rotate(1, true)}
   if (keyMap[40]) {}
   if (keyMap[37]) {ships[sId].rotate(-1, true)}
-  ships.forEach(function(a){a.velocity()})
+  ships.forEach(a => a.velocity());
 };
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
