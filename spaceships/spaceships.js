@@ -72,7 +72,7 @@ function wsOpen(){
       if (received_message.mess.join) {
         ships[received_message.sID] = new SpaceShip();ships[received_message.sID].draw(); ships[received_message.sID].move(received_message.mess.x,received_message.mess.y);
         if(received_message.mess.newS){
-          ws.send(JSON.stringify({'toS': received_message.sID, 'mess':{'join': true,'x': ships[sId].x,'y': ships[sId].y, 'newS':false}})
+          ws.send(JSON.stringify({'toS': received_message.sID, 'mess':{'join': true,'x': ships[sId].x,'y': ships[sId].y, 'newS':false}}));
         }
       }
     }
