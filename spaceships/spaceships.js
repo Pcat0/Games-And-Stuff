@@ -106,4 +106,4 @@ onkeydown = onkeyup = function(e){
   keyMap[e.keyCode] = e.type == 'keydown';
   //console.log(map);
 };
-var loop = setInterval(main(), 1);
+var loop = setInterval(function(){main()}, 1);
