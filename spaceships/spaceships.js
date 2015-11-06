@@ -70,13 +70,13 @@ function wsOpen(){
     var received_message = JSON.parse(st_received_message);
     if (received_message.mess != undefined && received_message.sID != sId) {
       	if (received_message.mess.join) {
-      	  ships[received_message.sID] = new SpaceShip();ships[received_message.sID].draw(); ships[received_message.sID].move(1,1);
+      	  ships[received_message.sID] = new SpaceShip();ships[received_message.sID].draw(); ships[received_message.sID].move(received_message.mess.x,received_message.mess.y);
       	}
     }
     if (received_message.SID != undefined) {
       sId = received_message.SID;
       ships[sId] = new SpaceShip();ships[sId].draw(); ships[sId].move(1,1);
-      send({'join': true});
+      send({'join': true,'x': 1,'y': 1});
     }
   };
   ws.onclose = function(evt){
