@@ -68,8 +68,8 @@ function wsOpen(){
     var st_received_message = evt.data;
     console.log('Received:'+ st_received_message);
     var received_message = JSON.parse(st_received_message);
-    if (received_message.onReceive != undefined) {
-      	received_message.onReceive();
+    if (received_message.mess != undefined && received_message.sID != sId) {
+      	//if (received_message.mess = ''
     }
     if (received_message.SID != undefined) {
       sId = received_message.SID;
@@ -87,21 +87,23 @@ function wsOpen(){
   };
 }
 setTimeout(wsOpen,500);
-var send = function(onReceive){
+var send = function(mess){
   var message = {};
   message.to = "Spaceship-Game-Sv1";
-  message.onReceive = onReceive;
-  message = JSON.stringify(message);
+  message.mess = onReceive;
+  message = JSON.stringify(mess);
 	ws.send(message);
 }
 var main = function()  {
-  if (keyMap[38]) {ship.vSet(.01)}
-  if (keyMap[39]) {ship.rotate(1, true)}
+  if (keyMap[38]) {ships[sId].vSet(.01)}
+  if (keyMap[39]) {ships[sId].rotate(1, true)}
   if (keyMap[40]) {}
-  if (keyMap[37]) {ship.rotate(-1, true)}
+  if (keyMap[37]) {ships[sId].rotate(-1, true)}
+  ship_.forEach(function(a){a.velocity()})
 };
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
   keyMap[e.keyCode] = e.type == 'keydown';
   //console.log(map);
 };
+setInterval(main(), 1);
