@@ -43,11 +43,13 @@ var object = function() {
   this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
     this.selfI.style.webkitTransform = "rotate("+(this.r-90)+"deg)";
+    send({'r': this.r});
     return this.r;
   };
   this.vSet = function(power) {
     this.vx += power*Math.cos(this.r*0.0174533);
     this.vy += power*Math.sin(this.r*0.0174533);
+    send({'vx': this.vx, 'vy': this.vy})
   };
   this.velocity = function() {
     this.vx = this.vx- this.data.vLoss;
@@ -75,6 +77,12 @@ function wsOpen(){
           ws.send(JSON.stringify({'toS': received_message.sID, 'mess':{'join': true,'x': ships[sId].x,'y': ships[sId].y, 'r': ships[sId].r, 'vx':ships[sId].vx, 'vy':ships[sId].vy, 'newS':false}}));
         }
       }
+      if (received_message.mess.xv != undefined && received_message.mess.yv != undefined && received_message.mess.join == undefined) {
+        ships[received_message.sID].xv = received_message.mess.xy; ships[received_message.sID].yv = received_message.mess.yv;
+      }
+      if (received_message.mess.r != undefined && received_message.mess.join == undefined) {
+        ships[received_message.sID].rotate(received_message.mess.r);
+      }
     }
     if (received_message.SID != undefined) {
       sId = received_message.SID;
@@ -101,7 +109,7 @@ var send = function(mess){
   message = JSON.stringify(message);
 	ws.send(message);
 }
-var main = function()  {
+var main = function() {
   if (keyMap[38]) {ships[sId].vSet(.01)}
   if (keyMap[39]) {ships[sId].rotate(1, true)}
   if (keyMap[40]) {}
