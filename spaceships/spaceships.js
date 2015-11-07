@@ -9,7 +9,8 @@ var object = function() {
     'icon': null,
     'sizeX': null,
     'sizeY': null,
-    'vLoss': 0
+    'vLoss': 0,
+    'rOffset': 0
   };
   this.x = 0;
   this.y = 0;
@@ -44,7 +45,7 @@ var object = function() {
   };
   this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
-    this.selfI.style.webkitTransform = "rotate("+(this.r-90)+"deg)";
+    this.selfI.style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
     return this.r;
   };
   this.vSet = function(power) {
@@ -63,6 +64,7 @@ var SpaceShip = function() {
   this.data.icon = 'http://opengameart.org/sites/default/files/styles/watermarked/public/spaceship1_1.png';
   this.data.sizeX = '60px';
   this.data.sizeY = '60px';
+  this.data.rOffset = -90;
 };
 var laserBlast = function() {
   object.call(this);
