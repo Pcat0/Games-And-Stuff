@@ -98,7 +98,7 @@ function wsOpen(){
       if (received_message.mess.r != undefined && received_message.mess.join == undefined) {
         ships[received_message.sID].rotate(received_message.mess.r);
       }
-      if (received_message.mess.shoot = true) {
+      if (received_message.mess.shoot) {
         var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].move(ships[received_message.sID].x,ships[received_message.sID].y); lasers[_i].rotate(ships[received_message.sID].r); lasers[_i].vSet(5);
       }
     }
