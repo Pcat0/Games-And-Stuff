@@ -59,7 +59,7 @@ var object = function() {
     this.vy = this.vy- this.data.vLoss;
     this.move(this.vx, this.vy, true);
     this.age++;
-    if (age >= this.data.maxAge && this.data.maxAge != undefined){
+    if (this.age >= this.data.maxAge && this.data.maxAge != undefined){
     	return true;
     }
   };
