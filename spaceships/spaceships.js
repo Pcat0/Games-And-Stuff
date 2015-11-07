@@ -2,6 +2,7 @@ var ws;
 var sId;
 var keyMap = [];
 var ships = [];
+var lasers = [];
 var object = function() {
   this.data = {
     'icon': null,
@@ -40,18 +41,14 @@ var object = function() {
     this.selfI.style.top = this.y + 'px';
     this.selfI.style.left = this.x + 'px';
   };
-  this.rotate = function(r, type, send_) {
+  this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
     this.selfI.style.webkitTransform = "rotate("+(this.r-90)+"deg)";
-    if (send_) {
-      send({'r': this.r});
-    }
     return this.r;
   };
   this.vSet = function(power) {
     this.vx += power*Math.cos(this.r*0.0174533);
     this.vy += power*Math.sin(this.r*0.0174533);
-    send({'vx': this.vx, 'vy': this.vy})
   };
   this.velocity = function() {
     this.vx = this.vx- this.data.vLoss;
@@ -69,8 +66,8 @@ var SpaceShip = function() {
 var laserBlast = function() {
   object.call(this);
   this.data.icon = 'http://memberfiles.freewebs.com/37/52/64535237/photos/Sharing-Sprites/redLaserRay.png';
-  this.data.sizeX = '60px';
-  this.data.sizeY = '60px';
+  this.data.sizeX = '30px';
+  this.data.sizeY = '30px';
 };
 function wsOpen(){
   ws = new WebSocket('ws://achex.ca:4010');
@@ -118,10 +115,10 @@ var send = function(mess){
 	ws.send(message);
 }
 var main = function() {
-  if (keyMap[38]) {ships[sId].vSet(.01)}
-  if (keyMap[39]) {ships[sId].rotate(1, true, true)}
-  if (keyMap[40]) {}
-  if (keyMap[37]) {ships[sId].rotate(-1, true, true)}
+  if (keyMap[38]) {ships[sId].vSet(.01); send({'vx': ships[sId].vx, 'vy': ships[sId].vy});}
+  if (keyMap[39]) {ships[sId].rotate(1, true); send({'r': ships[sId].r});}
+  if (keyMap[37]) {ships[sId].rotate(-1, true); send({'r': ships[sId].r});}
+  if (keyMap[32]) {var _i = lasers.push(new laserBlast); lasers[_i].draw(); lasers[_i].move(ships[sId].x,ships[sId].y); lasers[_i].rotate(ships[sId].r); lasers[_i].vSet(5);}
   ships.forEach(a => a.velocity());
 };
 onkeydown = onkeyup = function(e){
