@@ -120,7 +120,7 @@ var main = function() {
   if (keyMap[39]) {ships[sId].rotate(1, true); send({'r': ships[sId].r});}
   if (keyMap[37]) {ships[sId].rotate(-1, true); send({'r': ships[sId].r});}
   if (keyMap[32] && lsDe == 0) {lsDe = 50; var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].move(ships[sId].x,ships[sId].y); lasers[_i].rotate(ships[sId].r); lasers[_i].vSet(5);}
-  lsDa = (lsDe == 0) ? lsDe: laDe - 1;
+  lsDa = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(a => a.tick());
   lasers.forEach(a => a.tick());
 };
