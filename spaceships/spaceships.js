@@ -3,6 +3,7 @@ var sId;
 var keyMap = [];
 var ships = [];
 var lasers = [];
+var lsDe = 0;
 var object = function() {
   this.data = {
     'icon': null,
@@ -50,7 +51,7 @@ var object = function() {
     this.vx += power*Math.cos(this.r*0.0174533);
     this.vy += power*Math.sin(this.r*0.0174533);
   };
-  this.velocity = function() {
+  this.tick = function() {
     this.vx = this.vx- this.data.vLoss;
     this.vy = this.vy- this.data.vLoss;
     this.move(this.vx, this.vy, true);
@@ -118,8 +119,10 @@ var main = function() {
   if (keyMap[38]) {ships[sId].vSet(.01); send({'vx': ships[sId].vx, 'vy': ships[sId].vy});}
   if (keyMap[39]) {ships[sId].rotate(1, true); send({'r': ships[sId].r});}
   if (keyMap[37]) {ships[sId].rotate(-1, true); send({'r': ships[sId].r});}
-  if (keyMap[32]) {var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].move(ships[sId].x,ships[sId].y); lasers[_i].rotate(ships[sId].r); lasers[_i].vSet(5);}
-  ships.forEach(a => a.velocity());
+  if (keyMap[32] && lsDe == 0) {lsDe = 50; var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].move(ships[sId].x,ships[sId].y); lasers[_i].rotate(ships[sId].r); lasers[_i].vSet(5);}
+  lsDa = (lsDe == 0) ? lsDe: laDe - 1;
+  ships.forEach(a => a.tick());
+  lasers.forEach(a => a.tick());
 };
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
