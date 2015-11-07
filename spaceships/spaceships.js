@@ -6,17 +6,19 @@ var lasers = [];
 var lsDe = 0;
 var object = function() {
   this.data = {
-    'icon': null,
-    'sizeX': null,
-    'sizeY': null,
+    'icon': undefined,
+    'sizeX': undefined,
+    'sizeY': undefined,
     'vLoss': 0,
-    'rOffset': 0
+    'rOffset': 0,
+    'maxAge': undefined
   };
   this.x = 0;
   this.y = 0;
   this.r = 0;
   this.vx = 0;
   this.vy = 0;
+  this.age = 0;
   this.draw = function(x, y) {
     this.x = x;
     this.y = y;
@@ -56,6 +58,10 @@ var object = function() {
     this.vx = this.vx- this.data.vLoss;
     this.vy = this.vy- this.data.vLoss;
     this.move(this.vx, this.vy, true);
+    this.age++;
+    if (age >= this.data.maxAge && this.data.maxAge != undefined){
+    	return true;
+    }
   };
 };
 //
@@ -71,6 +77,7 @@ var laserBlast = function() {
   this.data.icon = 'http://memberfiles.freewebs.com/37/52/64535237/photos/Sharing-Sprites/redLaserRay.png';
   this.data.sizeX = '30px';
   this.data.sizeY = '30px';
+  this.data.maxAge = 20;
 };
 function wsOpen(){
   ws = new WebSocket('ws://achex.ca:4010');
@@ -123,8 +130,8 @@ var main = function() {
   if (keyMap[37]) {ships[sId].rotate(-1, true); send({'r': ships[sId].r});}
   if (keyMap[32] && lsDe == 0) {lsDe = 50; var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].move(ships[sId].x,ships[sId].y); lasers[_i].rotate(ships[sId].r); lasers[_i].vSet(5);}
   lsDa = (lsDe == 0) ? lsDe: lsDe - 1;
-  ships.forEach(a => a.tick());
-  lasers.forEach(a => a.tick());
+  ships.forEach(function(a){a.tick()});
+  lasers.forEach(function(a, b){if(a.tick()){a.remove; lasers.splice(b, 1)}});
 };
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
