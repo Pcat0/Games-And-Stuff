@@ -118,7 +118,7 @@ var main = function() {
   if (keyMap[38]) {ships[sId].vSet(.01); send({'vx': ships[sId].vx, 'vy': ships[sId].vy});}
   if (keyMap[39]) {ships[sId].rotate(1, true); send({'r': ships[sId].r});}
   if (keyMap[37]) {ships[sId].rotate(-1, true); send({'r': ships[sId].r});}
-  if (keyMap[32]) {var _i = lasers.push(new laserBlast); lasers[_i].draw(ships[sId].x,ships[sId].y); lasers[_i].rotate(ships[sId].r); lasers[_i].vSet(5);}
+  if (keyMap[32]) {var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].move(ships[sId].x,ships[sId].y); lasers[_i].rotate(ships[sId].r); lasers[_i].vSet(5);}
   ships.forEach(a => a.velocity());
 };
 onkeydown = onkeyup = function(e){
