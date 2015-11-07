@@ -66,6 +66,12 @@ var SpaceShip = function() {
   this.data.sizeX = '60px';
   this.data.sizeY = '60px';
 };
+var laserBlast = function() {
+  object.call(this);
+  this.data.icon = 'http://memberfiles.freewebs.com/37/52/64535237/photos/Sharing-Sprites/redLaserRay.png';
+  this.data.sizeX = '60px';
+  this.data.sizeY = '60px';
+};
 function wsOpen(){
   ws = new WebSocket('ws://achex.ca:4010');
   ws.onmessage = function(evt){
