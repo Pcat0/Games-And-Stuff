@@ -136,7 +136,7 @@ var main = function() {
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(function(a){a.tick()});
   lasers.forEach(function(a, b){if(a.tick()){a.remove(); lasers.splice(b, 1);}});
-  lasers.forEach(function(a, b){ships.forEach(function(c, b) {if (a.x < c.x + c.sizeX && a.x + a.sizeX > c.x && a.y < c.y + c.sizeY && a.sizeY + a.y > c.y) {a.remove(); lasers.splice(b, 1);c.remove(); ships.splice(d, 1);}})});
+  lasers.forEach(function(a, b){ships.forEach(function(c, b) {if (a.x < c.x + c.data.sizeX && a.x + a.data.sizeX > c.x && a.y < c.y + c.data.sizeY && a.y + a.data.sizeY > c.y) {a.remove(); lasers.splice(b, 1);c.remove(); ships.splice(d, 1);}})});
 };
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
