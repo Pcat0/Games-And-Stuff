@@ -128,6 +128,12 @@ var send = function(mess){
   message = JSON.stringify(message);
 	ws.send(message);
 }
+var death = function(shipID) {
+  ships[shipID].move(1,1);
+  ships[shipID].rotate(0);
+  ships[shipID].vx = 0;
+  ships[shipID].vy = 0;
+}
 var main = function() {
   if (keyMap[38]) {ships[sId].vSet(.01); send({'vx': ships[sId].vx, 'vy': ships[sId].vy});}
   if (keyMap[39]) {ships[sId].rotate(1, true); send({'r': ships[sId].r});}
@@ -141,7 +147,7 @@ var main = function() {
   	a.x + parseInt(a.data.sizeX.replace('px', '')) > ships[sId].x &&
   	a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
   	a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y && a.age > 31) {
-  		console.log('death');
+  		death(sId);
   	}
   })
 };
