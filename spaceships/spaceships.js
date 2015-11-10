@@ -163,5 +163,6 @@ onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
   keyMap[e.keyCode] = e.type == 'keydown';
   //console.log(map);
+  return false;
 };
 var loop = setInterval(function(){main()}, 1);
