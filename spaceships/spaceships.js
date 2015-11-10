@@ -84,6 +84,7 @@ var laserBlast = function() {
   this.data.sizeX = '30px';
   this.data.sizeY = '30px';
   this.data.maxAge = 200;
+  this.owner = null;
 };
 function wsOpen(){
   ws = new WebSocket('ws://achex.ca:4010');
@@ -105,7 +106,7 @@ function wsOpen(){
         ships[received_message.sID].rotate(received_message.mess.r);
       }
       if (received_message.mess.shoot) {
-        var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].move(ships[received_message.sID].x,ships[received_message.sID].y); lasers[_i].rotate(ships[received_message.sID].r); lasers[_i].vSet(5);
+        var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw(); lasers[_i].owner = sId; lasers[_i].move(ships[received_message.sID].x,ships[received_message.sID].y); lasers[_i].rotate(ships[received_message.sID].r); lasers[_i].vSet(5);
       }
       if (received_message.mess.death) {
         death(received_message.sID);
@@ -150,7 +151,7 @@ var main = function() {
   if (keyMap[38]) {ships[sId].vSet(.01); send({'vx': ships[sId].vx, 'vy': ships[sId].vy});}
   if (keyMap[39]) {ships[sId].rotate(1, true); send({'r': ships[sId].r});}
   if (keyMap[37]) {ships[sId].rotate(-1, true); send({'r': ships[sId].r});}
-  if (keyMap[32] && lsDe == 0) {lsDe = 50; var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].move(ships[sId].x,ships[sId].y); lasers[_i].rotate(ships[sId].r); lasers[_i].vSet(5); send({'shoot': true});}
+  if (keyMap[32] && lsDe == 0) {lsDe = 50; var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].owner = sId; lasers[_i].move(ships[sId].x,ships[sId].y); lasers[_i].rotate(ships[sId].r); lasers[_i].vSet(5); send({'shoot': true});}
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(function(a){a.tick()});
   lasers.forEach(function(a, b){if(a.tick()){a.remove(); lasers.splice(b, 1);}});
