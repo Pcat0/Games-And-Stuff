@@ -140,8 +140,8 @@ var main = function() {
   	if (a.x < ships[sId].x + parseInt(ships[sId].data.sizeX.replace('px', '')) &&
   	a.x + parseInt(a.data.sizeX.replace('px', '')) > ships[sId].x &&
   	a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
-  	a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y) {
-  		console.log('test');
+  	a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y && a.age > 31) {
+  		console.log('death');
   	}
   })
 };
