@@ -102,6 +102,9 @@ function wsOpen(){
       if (received_message.mess.shoot) {
         var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].move(ships[received_message.sID].x,ships[received_message.sID].y); lasers[_i].rotate(ships[received_message.sID].r); lasers[_i].vSet(5);
       }
+      if (received_message.mess.death) {
+        death(received_message.sID);
+      }
     }
     if (received_message.SID != undefined) {
       sId = received_message.SID;
@@ -147,6 +150,7 @@ var main = function() {
   	a.x + parseInt(a.data.sizeX.replace('px', '')) > ships[sId].x &&
   	a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
   	a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y && a.age > 31) {
+  	  send({'death': true})
   		death(sId);
   	}
   })
