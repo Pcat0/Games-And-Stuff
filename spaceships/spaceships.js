@@ -136,7 +136,7 @@ var main = function() {
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(function(a){a.tick()});
   lasers.forEach(function(a, b){if(a.tick()){a.remove(); lasers.splice(b, 1);}});
-  lasers.forEach(function(a, b){ships.forEach(function(c, d) { if (a.x < c.x + c.data.sizeX.replace('px', '') && a.x + a.data.sizeX.replace('px', '') > c.x && a.y < c.y + c.data.sizeY.replace('px', '') && a.data.sizeX.replace('px', '') + a.y > c.y && a.age > 30) {console.log('test')/*a.remove(); lasers.splice(b, 1);c.remove(); ships.splice(d, 1);*/}})});
+  lasers.forEach(function(a, b){if (a.x < ships[sId].x + ships[sId].data.sizeX.replace('px', '') && a.x + a.data.sizeX.replace('px', '') > ships[sId].x && a.y < ships[sId].y + ships[sId].data.sizeY.replace('px', '') && a.data.sizeX.replace('px', '') + a.y > ships[sId].y && a.age > 30) {console.log('test')/*a.remove(); lasers.splice(b, 1);c.remove(); ships.splice(d, 1);*/})});
 };
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
