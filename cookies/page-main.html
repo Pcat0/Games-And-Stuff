@@ -2,6 +2,6 @@
 <head></head>
 <body>
   Want a cookie?
-  <button onclick="if (document.cookie.split(';').0 != 'cookie'){document.cookie = 'cookie';alert('You took a cookie.');}else{alert('You already took a cookie, eat it first.');}">Take a Cookie.</button>
-  <button onclick="if (document.cookie.split(';').0 != 'cookie'){alert('You need to get a cookie before you eat it.');}else{document.cookie = 'noCookie';alert('You ate your cookie.');}">Eat your cookie.</button>
+  <button onclick="if (document.cookie.split(';')[0] != 'cookie'){document.cookie = 'cookie';alert('You took a cookie.');}else{alert('You already took a cookie, eat it first.');}">Take a Cookie.</button>
+  <button onclick="if (document.cookie.split(';')[0] != 'cookie'){alert('You need to get a cookie before you eat it.');}else{document.cookie = 'noCookie';alert('You ate your cookie.');}">Eat your cookie.</button>
 </body>
