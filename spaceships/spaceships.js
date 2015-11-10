@@ -137,10 +137,10 @@ var main = function() {
   ships.forEach(function(a){a.tick()});
   lasers.forEach(function(a, b){if(a.tick()){a.remove(); lasers.splice(b, 1);}});
   lasers.forEach(function(a, b){
-  	if (a.x < ships[sId].x + ships[sId].data.sizeX.replace('px', '') &&
-  	a.x + a.data.sizeX.replace('px', '') > ships[sId].x &&
-  	a.y < ships[sId].y + ships[sId].data.sizeY.replace('px', '') &&
-  	a.y + a.data.sizeY.replace('px', '') > ships[sId].y) {
+  	if (a.x < ships[sId].x + parseInt(ships[sId].data.sizeX.replace('px', '')) &&
+  	a.x + parseInt(a.data.sizeX.replace('px', '')) > ships[sId].x &&
+  	a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
+  	a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y) {
   		console.log('test');
   	}
   })
