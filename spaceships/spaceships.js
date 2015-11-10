@@ -136,7 +136,14 @@ var main = function() {
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(function(a){a.tick()});
   lasers.forEach(function(a, b){if(a.tick()){a.remove(); lasers.splice(b, 1);}});
-  lasers.forEach(function(a, b){if (a.x < ships[sId].x + ships[sId].data.sizeX.replace('px', '') && a.x + a.data.sizeX.replace('px', '') > ships[sId].x && a.y < ships[sId].y + ships[sId].data.sizeY.replace('px', '') && a.data.sizeX.replace('px', '') + a.y > ships[sId].y && a.age > 30) {console.log('test')/*a.remove(); lasers.splice(b, 1);c.remove(); ships.splice(d, 1);*/}});
+  lasers.forEach(function(a, b){
+  	if (a.x < ships[sId].x + ships[sId].data.sizeX.replace('px', '') &&
+  	a.x + a.data.sizeX.replace('px', '') > ships[sId].x &&
+  	a.y < ships[sId].y + ships[sId].data.sizeY.replace('px', '') &&
+  	a.y + a.data.sizeY.replace('px', '') > ships[sId].y) {
+  		console.log('test');
+  	}
+  })
 };
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
