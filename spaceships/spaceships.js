@@ -5,6 +5,7 @@ var ships = [];
 var lasers = [];
 var myLasers = [];
 var lsDe = 0;
+var tick = 0;
 var object = function() {
   this.data = {
     'icon': undefined,
@@ -109,6 +110,9 @@ function wsOpen(){
       if (received_message.mess.death) {
         death(received_message.sID);
       }
+      if (received_message.mess.update) {
+        ships[received_message.sID].vx = received_message.mess.vx; ships[received_message.sID].vy = received_message.mess.vy; ships[received_message.sID].rotate(received_message.mess.r); ships[received_message.sID].move(received_message.mess.x, received_message.mess.y)
+      }
     }
     if (received_message.SID != undefined) {
       sId = received_message.SID;
@@ -142,6 +146,7 @@ var death = function(shipID) {
   ships[shipID].vy = 0;
 }
 var main = function() {
+  tick++;
   if (keyMap[38]) {ships[sId].vSet(.01); send({'vx': ships[sId].vx, 'vy': ships[sId].vy});}
   if (keyMap[39]) {ships[sId].rotate(1, true); send({'r': ships[sId].r});}
   if (keyMap[37]) {ships[sId].rotate(-1, true); send({'r': ships[sId].r});}
@@ -158,6 +163,9 @@ var main = function() {
   		death(sId);
   	}
   })
+  if (tick%20 == 0) {
+    send({'update': true,'x': ships[sId].x,'y': ships[sId].y, 'r': ships[sId].r, 'vx':ships[sId].vx, 'vy':ships[sId].vy})
+  }
 };
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
