@@ -84,7 +84,7 @@ function wsOpen(){
   ws = new WebSocket('ws://achex.ca:4010');
   ws.onmessage = function(evt){
     var st_received_message = evt.data;
-    console.log('Received:'+ st_received_message);
+    //console.log('Received:'+ st_received_message);
     var received_message = JSON.parse(st_received_message);
     if (received_message.mess != undefined && received_message.sID != sId) {
       if (received_message.mess.join) {
