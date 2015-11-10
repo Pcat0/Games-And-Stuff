@@ -43,6 +43,10 @@ var object = function() {
   this.move = function(x, y, type) {
     this.x = (type) ? (this.x + x): x;
     this.y = (type) ? (this.y + y): y;
+    this.x = (this.x < 0) ? 0: this.x;
+    this.y = (this.y < 0) ? 0: this.y;
+    this.x = (this.x > 1260) ? 1260: this.x;
+    this.y = (this.y > 600) ? 600: this.y;
     this.selfI.style.top = this.y + 'px';
     this.selfI.style.left = this.x + 'px';
   };
