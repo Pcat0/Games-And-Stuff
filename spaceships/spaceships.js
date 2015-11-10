@@ -45,8 +45,8 @@ var object = function() {
     this.y = (type) ? (this.y + y): y;
     if (this.x < 0){this.x = 0; this.vx = 0;}
     if (this.y < 0){this.y = 0; this.vy = 0;}
-    if (this.x < 1260){this.x = 1260; this.vx = 1260;}
-    if (this.y < 600){this.y = 600; this.vy = 600;}
+    if (this.x > 1260){this.x = 1260; this.vx = 0;}
+    if (this.y > 600){this.y = 600; this.vy = 0;}
     this.selfI.style.top = this.y + 'px';
     this.selfI.style.left = this.x + 'px';
   };
