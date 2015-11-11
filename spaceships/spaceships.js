@@ -170,6 +170,7 @@ var main = function() {
   	  //send({'death': true})
   		//death(sId);
   		ships[sId].helth += 20;
+  		a.remove(); lasers.splice(b, 1);
   	}
   })
   if (tick%1000 == 0) {
