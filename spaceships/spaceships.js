@@ -13,7 +13,8 @@ var object = function() {
     'sizeY': undefined,
     'vLoss': 0,
     'rOffset': 0,
-    'maxAge': undefined
+    'maxAge': undefined,
+    'maxHelth': undefined
   };
   this.x = 0;
   this.y = 0;
@@ -21,6 +22,7 @@ var object = function() {
   this.vx = 0;
   this.vy = 0;
   this.age = 0;
+  this.helth = this.data.maxHelth;
   this.draw = function(x, y) {
     this.x = x;
     this.y = y;
@@ -65,6 +67,9 @@ var object = function() {
     this.vy = this.vy- this.data.vLoss;
     this.move(this.vx, this.vy, true);
     this.age++;
+    if (this.helth < 0 && this.data.maxHelth != undefined){
+    	return true;
+    }
     if (this.age >= this.data.maxAge && this.data.maxAge != undefined){
     	return true;
     }
@@ -77,6 +82,7 @@ var SpaceShip = function() {
   this.data.sizeX = '60px';
   this.data.sizeY = '60px';
   this.data.rOffset = -90;
+  this.data.maxHelth = 200;
 };
 var laserBlast = function() {
   object.call(this);
@@ -153,7 +159,7 @@ var main = function() {
   if (keyMap[37]) {ships[sId].rotate(-1, true); send({'r': ships[sId].r});}
   if (keyMap[32] && lsDe == 0) {lsDe = 50; var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].owner = sId; lasers[_i].move(ships[sId].x,ships[sId].y); lasers[_i].rotate(ships[sId].r); lasers[_i].vSet(5); send({'shoot': true});}
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
-  ships.forEach(function(a){a.tick()});
+  ships.forEach(function(a, b){if(a.tick()){a.remove(); ships.splice(b, 1);}});
   lasers.forEach(function(a, b){if(a.tick()){a.remove(); lasers.splice(b, 1);}});
   lasers.forEach(function(a, b){
   	if (a.x < ships[sId].x + parseInt(ships[sId].data.sizeX.replace('px', '')) &&
@@ -161,8 +167,9 @@ var main = function() {
   	a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
   	a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y &&
   	a.owner != sId) {
-  	  send({'death': true})
-  		death(sId);
+  	  //send({'death': true})
+  		//death(sId);
+  		a.helth -= 20;
   	}
   })
   if (tick%1000 == 0) {
