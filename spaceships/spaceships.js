@@ -169,7 +169,7 @@ var main = function() {
   	a.owner != sId*/) {
   	  //send({'death': true})
   		//death(sId);
-  		a.helth += 20;
+  		ships[sId].helth += 20;
   	}
   })
   if (tick%1000 == 0) {
