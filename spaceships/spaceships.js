@@ -22,7 +22,7 @@ var object = function() {
   this.vx = 0;
   this.vy = 0;
   this.age = 0;
-  this.helth = this.data.maxHelth;
+  this.helth = 0;
   this.draw = function(x, y) {
     this.x = x;
     this.y = y;
@@ -67,7 +67,7 @@ var object = function() {
     this.vy = this.vy- this.data.vLoss;
     this.move(this.vx, this.vy, true);
     this.age++;
-    if (this.helth < 0 && this.data.maxHelth != undefined){
+    if (this.helth >= this.data.maxHelth && this.data.maxHelth != undefined){
     	return true;
     }
     if (this.age >= this.data.maxAge && this.data.maxAge != undefined){
@@ -169,7 +169,7 @@ var main = function() {
   	a.owner != sId) {
   	  //send({'death': true})
   		//death(sId);
-  		a.helth -= 20;
+  		a.helth += 20;
   	}
   })
   if (tick%1000 == 0) {
