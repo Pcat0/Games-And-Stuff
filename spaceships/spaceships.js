@@ -14,7 +14,7 @@ var object = function() {
     'vLoss': 0,
     'rOffset': 0,
     'maxAge': undefined,
-    'maxHelth': undefined
+    'maxHelth': undefined,
   };
   this.x = 0;
   this.y = 0;
@@ -33,12 +33,16 @@ var object = function() {
     this.selfI.style.top = this.y + 'px';
     this.selfI.style.left = this.x + 'px';
     this.selfI.style.webkitTransform = "rotate("+-90+"deg)";
-    document.body.appendChild(this.selfI);
-    this.img = document.createElement("img");
-    this.img.src = this.data.icon;
-    this.img.style.width = this.data.sizeX;
-    this.img.style.height = this.data.sizeY;
-    this.selfI.appendChild(this.img);
+    if (this.data.icon != 'text') {
+      document.body.appendChild(this.selfI);
+      this.img = document.createElement("img");
+      this.img.src = this.data.icon;
+      this.img.style.width = this.data.sizeX;
+      this.img.style.height = this.data.sizeY;
+      this.selfI.appendChild(this.img);
+    }else{
+      this.selfI.innerHTML = this.data.text;
+    }
   };
   this.remove = function(){
     document.body.removeChild(this.selfI);
@@ -91,6 +95,13 @@ var laserBlast = function() {
   this.data.sizeY = '30px';
   this.data.maxAge = 200;
   this.owner = null;
+};
+var test = function() {
+  object.call(this);
+  this.data.icon = 'text';
+  this.data.sizeX = '30px';
+  this.data.sizeY = '30px';
+  this.data.text = 'test'
 };
 function wsOpen(){
   ws = new WebSocket('ws://achex.ca:4010');
