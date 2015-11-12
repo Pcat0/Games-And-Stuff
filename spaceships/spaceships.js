@@ -38,7 +38,7 @@ var object = function() {
     this.img.src = this.data.icon;
     this.img.style.width = this.data.sizeX;
     this.img.style.height = this.data.sizeY;
-    this.selfI.style.webkitTransform = "rotate("+-90+"deg)";
+    this.img.style.webkitTransform = "rotate("+-90+"deg)";
     this.selfI.appendChild(this.img);
     if (this.data.text != undefined){
       this.selfI.innerHTML = this.selfI.innerHTML + '</br>'
