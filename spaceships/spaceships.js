@@ -75,7 +75,7 @@ var object = function() {
     this.move(this.vx, this.vy, true);
     this.age++;
     if (this.data.text == 'helth'){
-    	this.selfI.children.item().innerHTML = (this.data.maxHelth - this.helth)/this.data.maxHelth * 100 + "%")
+    	this.selfI.children.item().innerHTML = (this.data.maxHelth - this.helth)/this.data.maxHelth * 100 + "%"
     }
     if (this.helth >= this.data.maxHelth && this.data.maxHelth != undefined){
     	return true;
