@@ -34,12 +34,13 @@ var object = function() {
     this.selfI.style.left = this.x + 'px';
     this.selfI.style.webkitTransform = "rotate("+-90+"deg)";
     document.body.appendChild(this.selfI);
-    this.img = document.createElement("img");
     if (this.data.icon != 'text') {
+      this.img = document.createElement("img");
       this.img.src = this.data.icon;
       this.img.style.width = this.data.sizeX;
     	this.img.style.height = this.data.sizeY;
     }else{
+      this.img = document.createElement("div");
       this.selfI.innerHTML = this.data.text;
     }
     this.selfI.appendChild(this.img);
