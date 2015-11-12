@@ -170,10 +170,10 @@ var main = function() {
   if (keyMap[37]) {ships[sId].rotate(-1, true); send({'r': ships[sId].r});}
   if (keyMap[32] && lsDe == 0) {lsDe = 50; var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].owner = sId; lasers[_i].move(ships[sId].x,ships[sId].y); lasers[_i].rotate(ships[sId].r); lasers[_i].vSet(5); send({'shoot': true});}
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
-  ships.forEach(function(a, b){if(a.tick()){send({'death': true});death(sId)}});
+  ships.forEach(function(a, b){if(a.tick()){send({'death': true});death(b)}});
   lasers.forEach(function(a, b){if(a.tick()){a.remove(); lasers.splice(b, 1);}});
   lasers.forEach(function(a, b){
-  	if (a.x < ships[sId].x + parseInt(ships[sId].data.sizeX.replace('px', '')) &&
+  if (a.x < ships[sId].x + parseInt(ships[sId].data.sizeX.replace('px', '')) &&
   	a.x + parseInt(a.data.sizeX.replace('px', '')) > ships[sId].x &&
   	a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
   	a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y &&
