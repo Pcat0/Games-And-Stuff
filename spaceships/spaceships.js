@@ -101,7 +101,7 @@ var text = function() {
   this.data.icon = 'text';
   this.data.sizeX = '30px';
   this.data.sizeY = '30px';
-  this.data.rOffset = -90;
+  this.data.rOffset = 0;
   this.data.text = 'test'
 };
 function wsOpen(){
