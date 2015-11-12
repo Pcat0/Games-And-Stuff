@@ -131,6 +131,9 @@ function wsOpen(){
       if (received_message.mess.update) {
         ships[received_message.sID].vx = received_message.mess.vx; ships[received_message.sID].vy = received_message.mess.vy; ships[received_message.sID].rotate(received_message.mess.r); ships[received_message.sID].move(received_message.mess.x, received_message.mess.y)
       }
+      if(received_message.mess.helth){
+      	ships[received_message.sID].helth = received_message.mess.helthLv;
+      }
     }
     if (received_message.SID != undefined) {
       sId = received_message.SID;
@@ -179,10 +182,10 @@ var main = function() {
   	a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
   	a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y &&
   	a.owner != sId) {
-  	  //send({'death': true})
   		//death(sId);
   		ships[sId].helth += 20;
   		a.remove(); lasers.splice(b, 1);
+  		send({'helth': true, 'helthLv': ships[sId].helth})
   	}
   })
   if (tick%1000 == 0) {
