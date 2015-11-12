@@ -162,6 +162,7 @@ var death = function(shipID) {
   ships[shipID].rotate(0);
   ships[shipID].vx = 0;
   ships[shipID].vy = 0;
+  ships[shipID].helth = 0;
 }
 var main = function() {
   tick++;
