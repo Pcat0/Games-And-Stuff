@@ -41,7 +41,7 @@ var object = function() {
     	this.img.style.height = this.data.sizeY;
     }else{
       this.img = document.createElement("div");
-      this.selfI.innerHTML = this.data.text;
+      this.img.innerHTML = this.data.text;
     }
     this.selfI.appendChild(this.img);
   };
