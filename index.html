@@ -2,26 +2,52 @@
 <html>
   <head>
     <style>
+      @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900);
       * {
         box-sizing: border-box;
-        font-family: Verdana, sans-serif;
+        font-family: Roboto, sans-serif;
+        outline: none;
       }
       body {
         margin: 0;
+        overflow: hidden;
       }
       ul {
         padding-left: 10px;
         margin: 0;
         list-style-type: none;
       }
-      header {
+      .head {
+        position: absolute;
+        top: 0;
+        left: 0;
         background-color: #000;
         color: white;
-        padding: 5px;
+        padding: 2px;
+        padding-left: 10vh;
+        width: 100vw;
         height: 10vh;
         line-height: 10vh;
+        transition: top 0.2s cubic-bezier(.55,0,.75,.1);
       }
-      nav {
+      .head.fade {
+        top: -10vh;
+      }
+      h1 {
+        margin: 0;
+      }
+      .toggle-overlay {
+        width: 8vh;
+        height: 8vh;
+        position: absolute;
+        top: 1vh;
+        left: 1vh;
+        border-radius: 4vh;
+        background: #FFF;
+        border: none;
+        box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.5);
+      }
+      .sidebar {
         line-height: 30px;
         background-color: #eeeeee;
         height: 90vh;
@@ -30,58 +56,78 @@
         top: 10vh;
         left: 0;
         padding: 5px;
+        transition: left 0.2s cubic-bezier(.55,0,.75,.1);
       }
-      section {
+      .sidebar.fade {
+        left: -10vw;
+      }
+      .overlay {
+        background-color: rgba(0, 0, 0, 0.8);
         width: 90vw;
         height: 90vh;
         position: absolute;
         top: 10vh;
         left: 10vw;
+        display: flex;
+        transition: opacity 0.2s cubic-bezier(.55,0,.75,.1);
       }
-      footer {
-        background-color: black;
-        color: white;
-        clear: both;
-        text-align: center;
-        padding: 5px; 
+      .overlay.fade {
+        opacity: 0;
+      }
+      .overlay.gone {
+        display: none;
+      }
+      .overlay > * {
+        margin: 10px;
+        padding: 5px;
+        border-radius: 2px;
+        background-color: #FFF;
+        position: relative;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 600px;
+        overflow: auto;
       }
     </style>
   </head>
   <body>
-    <header>
-      <img src="https://sites.google.com/a/isd624.org/patrick-ambli/_/rsrc/1444148613920/link/GAMES%20AND%20STUFF.png" alt="Games and stuff">
-    </header>
-    <nav>
-      <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/tic-tac-toe">Tic Tac Toe</a>
-        </li>
-        <li>
-          <a href="/cookies">cookie</a>
-        </li>
-        <li>
-          <a href="/snake">snake</a>
-        </li>
-        <li>
-          <a href="/">Pointless link.</a>
-        </li>
-      </ul>
-    </nav>
-    <section>
-        Welcome to Games and Stuff. A web page that, you guessed it, has games and stuff on it. The page is a work in progress, so don't be surprised if something is buggy or doesn't work. by: Patrick Ambli, Hans Felde.
-    </section>
-    <!-- Start of StatCounter Code for Default Guide -->
+    <div class="tools">
+      <div class="head">
+        <h1>Games & Stuff</h1>
+      </div>
+      <div class="sidebar">
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/tic-tac-toe">Tic Tac Toe</a>
+          </li>
+          <li>
+            <a href="/cookies">cookie</a>
+          </li>
+          <li>
+            <a class="" href="/snake">snake</a>
+          </li>
+          <li>
+            <a onclick="(() => false)" href="/employees">"employees"</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button class="toggle-overlay"></button>
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-69409530-1', 'auto');
-      ga('send', 'pageview');
+      document.querySelector(".toggle-overlay").onclick = 
+        () => Array.prototype.indexOf.call(document.querySelector(".head").classList, "fade") != -1
+          ? (document.querySelector(".head").classList.toggle("fade"), setTimeout(
+            (() => (document.querySelector(".sidebar").classList.toggle("fade"))), 200))
+          : (document.querySelector(".sidebar").classList.toggle("fade"), setTimeout(
+            (() => (document.querySelector(".head").classList.toggle("fade"))), 200));
     </script>
   </body>
 </html>
-//
+<!--
+  TODO:
+  use iframes in background instead of linking to other pages
+-->
