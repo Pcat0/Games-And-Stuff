@@ -15,6 +15,7 @@ var object = function() {
     'rOffset': 0,
     'maxAge': undefined,
     'maxHelth': undefined,
+    'text': undefined
   };
   this.x = 0;
   this.y = 0;
@@ -32,18 +33,18 @@ var object = function() {
     this.selfI.style.position = 'absolute'
     this.selfI.style.top = this.y + 'px';
     this.selfI.style.left = this.x + 'px';
-    this.selfI.style.webkitTransform = "rotate("+-90+"deg)";
     document.body.appendChild(this.selfI);
-    if (this.data.icon != 'text') {
-      this.img = document.createElement("img");
-      this.img.src = this.data.icon;
-      this.img.style.width = this.data.sizeX;
-    	this.img.style.height = this.data.sizeY;
-    }else{
-      this.img = document.createElement("div");
-      this.img.innerHTML = this.data.text;
-    }
+    this.img = document.createElement("img");
+    this.img.src = this.data.icon;
+    this.img.style.width = this.data.sizeX;
+    this.img.style.height = this.data.sizeY;
+    this.selfI.style.webkitTransform = "rotate("+this.data.rOffset+"deg)";
     this.selfI.appendChild(this.img);
+    if (this.data.text != rOffset){
+      this.div = document.createElement("div");
+      this.div.innerHTML = this.data.text;
+      this.selfI.appendChild(this.div);
+    }
   };
   this.remove = function(){
     document.body.removeChild(this.selfI);
@@ -60,7 +61,7 @@ var object = function() {
   };
   this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
-    this.selfI.style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
+    this.img.style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
     return this.r;
   };
   this.vSet = function(power) {
@@ -103,7 +104,7 @@ var text = function() {
   this.data.sizeX = '30px';
   this.data.sizeY = '30px';
   this.data.rOffset = 0;
-  this.data.text = 'test'
+  
 };
 function wsOpen(){
   ws = new WebSocket('ws://achex.ca:4010');
