@@ -188,6 +188,7 @@ var main = function() {
   		send({'helth': true, 'helthLv': ships[sId].helth})
   	}
   })
+  window.scrollTo(ships[sId], ships[sId]);
   if (tick%1000 == 0) {
     send({'update': true,'x': ships[sId].x,'y': ships[sId].y, 'r': ships[sId].r, 'vx':ships[sId].vx, 'vy':ships[sId].vy})
   }
