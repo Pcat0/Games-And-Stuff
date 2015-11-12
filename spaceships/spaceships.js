@@ -89,6 +89,7 @@ var SpaceShip = function() {
   this.data.sizeY = '60px';
   this.data.rOffset = -90;
   this.data.maxHelth = 200;
+  this.data.text = 'test';
 };
 var laserBlast = function() {
   object.call(this);
@@ -97,14 +98,6 @@ var laserBlast = function() {
   this.data.sizeY = '30px';
   this.data.maxAge = 200;
   this.owner = null;
-};
-var text = function() {
-  object.call(this);
-  this.data.icon = 'text';
-  this.data.sizeX = '30px';
-  this.data.sizeY = '30px';
-  this.data.rOffset = 0;
-  
 };
 function wsOpen(){
   ws = new WebSocket('ws://achex.ca:4010');
