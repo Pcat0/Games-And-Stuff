@@ -34,15 +34,15 @@ var object = function() {
     this.selfI.style.left = this.x + 'px';
     this.selfI.style.webkitTransform = "rotate("+-90+"deg)";
     document.body.appendChild(this.selfI);
+    this.img = document.createElement("img");
     if (this.data.icon != 'text') {
-      this.img = document.createElement("img");
       this.img.src = this.data.icon;
-      this.img.style.width = this.data.sizeX;
-      this.img.style.height = this.data.sizeY;
-      this.selfI.appendChild(this.img);
     }else{
       this.selfI.innerHTML = this.data.text;
     }
+    this.img.style.width = this.data.sizeX;
+    this.img.style.height = this.data.sizeY;
+    this.selfI.appendChild(this.img);
   };
   this.remove = function(){
     document.body.removeChild(this.selfI);
