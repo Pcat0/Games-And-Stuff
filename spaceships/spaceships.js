@@ -74,6 +74,9 @@ var object = function() {
     this.vy = this.vy- this.data.vLoss;
     this.move(this.vx, this.vy, true);
     this.age++;
+    if (this.data.text == 'helth'){
+    	this.selfI.children.item().innerHTML = (this.data.maxHelth - this.helth)/this.data.maxHelth * 100 + "%")
+    }
     if (this.helth >= this.data.maxHelth && this.data.maxHelth != undefined){
     	return true;
     }
@@ -90,7 +93,7 @@ var SpaceShip = function() {
   this.data.sizeY = '60px';
   this.data.rOffset = -90;
   this.data.maxHelth = 200;
-  this.data.text = 'test';
+  this.data.text = 'helth';
 };
 var laserBlast = function() {
   object.call(this);
