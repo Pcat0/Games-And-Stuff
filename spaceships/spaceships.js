@@ -37,11 +37,11 @@ var object = function() {
     this.img = document.createElement("img");
     if (this.data.icon != 'text') {
       this.img.src = this.data.icon;
+      this.img.style.width = this.data.sizeX;
+    	this.img.style.height = this.data.sizeY;
     }else{
       this.selfI.innerHTML = this.data.text;
     }
-    this.img.style.width = this.data.sizeX;
-    this.img.style.height = this.data.sizeY;
     this.selfI.appendChild(this.img);
   };
   this.remove = function(){
@@ -101,6 +101,7 @@ var text = function() {
   this.data.icon = 'text';
   this.data.sizeX = '30px';
   this.data.sizeY = '30px';
+  this.data.rOffset = 90;
   this.data.text = 'test'
 };
 function wsOpen(){
