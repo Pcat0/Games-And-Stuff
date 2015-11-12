@@ -39,13 +39,13 @@ var object = function() {
     this.img.style.width = this.data.sizeX;
     this.img.style.height = this.data.sizeY;
     this.img.style.webkitTransform = "rotate("+-90+"deg)";
-    this.selfI.innerHTML = this.selfI.innerHTML + this.img;
+    this.selfI.appendChild(this.img);
     if (this.data.text != undefined){
-      //this.selfI.innerHTML = this.selfI.innerHTML + '</br>'
+      this.selfI.innerHTML = this.selfI.innerHTML + '</br>'
       this.div = document.createElement("div");
       this.div.innerHTML = this.data.text;
       this.selfI.innerHTML = this.selfI.innerHTML + '</br>' + this.div
-      //this.selfI.appendChild(this.div);
+      this.selfI.appendChild(this.div);
     }
   };
   this.remove = function(){
