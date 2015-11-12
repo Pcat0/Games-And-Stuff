@@ -44,7 +44,6 @@ var object = function() {
       this.selfI.innerHTML = this.selfI.innerHTML + '</br>'
       this.div = document.createElement("div");
       this.div.innerHTML = this.data.text;
-      this.selfI.innerHTML = this.selfI.innerHTML + '</br>' + this.div
       this.selfI.appendChild(this.div);
     }
   };
