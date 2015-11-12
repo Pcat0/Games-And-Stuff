@@ -40,7 +40,7 @@ var object = function() {
     this.img.style.height = this.data.sizeY;
     this.selfI.style.webkitTransform = "rotate("+this.data.rOffset+"deg)";
     this.selfI.appendChild(this.img);
-    if (this.data.text != rOffset){
+    if (this.data.text != undefined){
       this.div = document.createElement("div");
       this.div.innerHTML = this.data.text;
       this.selfI.appendChild(this.div);
