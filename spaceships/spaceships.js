@@ -96,7 +96,7 @@ var laserBlast = function() {
   this.data.maxAge = 200;
   this.owner = null;
 };
-var test = function() {
+var text = function() {
   object.call(this);
   this.data.icon = 'text';
   this.data.sizeX = '30px';
