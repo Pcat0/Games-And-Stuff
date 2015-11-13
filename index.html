@@ -20,6 +20,14 @@
         margin: 0;
         list-style-type: none;
       }
+      iframe {
+        border: none;
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
       .head {
         position: absolute;
         top: 0;
@@ -107,7 +115,7 @@
       <div class="sidebar">
         <ul class=".iframe-dirswap">
           <li>
-            <a href="/">Home</a>
+            <a href="/home">Home</a>
           </li>
           <li>
             <a href="/tic-tac-toe">Tic Tac Toe</a>
@@ -119,7 +127,7 @@
             <a class="" href="/snake">snake</a>
           </li>
           <li>
-            <a onclick="false" href="/employees">"employees"</a>
+            <a href="/employees">"employees"</a>
           </li>
         </ul>
       </div>
@@ -133,7 +141,7 @@
             (() => (document.querySelector(".sidebar").classList.toggle("fade"))), 200))
           : (document.querySelector(".sidebar").classList.toggle("fade"), setTimeout(
             (() => (document.querySelector(".head").classList.toggle("fade"))), 200));
-      Array.map.call(document.querySelectorAll(".iframe-dirswap a"),
+      Array.prototype.map.call(document.querySelectorAll(".iframe-dirswap a"),
         e => e.onclick = (() => document.querySelector("iframe").src = this.href, false));
     </script>
   </body>
