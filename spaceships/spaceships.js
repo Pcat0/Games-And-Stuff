@@ -62,7 +62,7 @@ var object = function() {
   };
   this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
-    this.selfI.children.item().style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
+    this.selfI.children.item(0).style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
     return this.r;
   };
   this.vSet = function(power) {
