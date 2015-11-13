@@ -65,7 +65,7 @@ var object = function() {
     this.selfI.children.item(0).style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
     return this.r;
   };
-  this.vSet = function(power) {\
+  this.vSet = function(power) {
     this.vx = (this.vx > 5) ? 5: this.vx += power*Math.cos(this.r*0.0174533);
     this.vy = (this.vx > 5) ? 5:this.vy += power*Math.sin(this.r*0.0174533);
   };
