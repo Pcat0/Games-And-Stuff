@@ -105,7 +105,7 @@
         <h1>Games &amp; Stuff</h1>
       </div>
       <div class="sidebar">
-        <ul>
+        <ul class=".iframe-dirswap">
           <li>
             <a href="/">Home</a>
           </li>
@@ -124,7 +124,7 @@
         </ul>
       </div>
     </div>
-    Welcome to Games and Stuff. A web page that, you guessed it, has games and stuff on it. This is a work in progress, so don't be surprised if something is buggy or doesn't work. by: Patrick Ambli, Hans Felde.
+    <iframe src="/home"></iframe>
     <button class="toggle-overlay"></button>
     <script>
       document.querySelector(".toggle-overlay").onclick = 
@@ -133,10 +133,8 @@
             (() => (document.querySelector(".sidebar").classList.toggle("fade"))), 200))
           : (document.querySelector(".sidebar").classList.toggle("fade"), setTimeout(
             (() => (document.querySelector(".head").classList.toggle("fade"))), 200));
+      Array.map.call(document.querySelectorAll(".iframe-dirswap a"),
+        e => e.onclick = (() => document.querySelector("iframe").src = this.href, false));
     </script>
   </body>
 </html>
-<!--
-  TODO:
-  use iframes in background instead of linking to other pages
--->
