@@ -185,10 +185,10 @@ var main = function() {
   		//death(sId);
   		ships[sId].helth += 20;
   		a.remove(); lasers.splice(b, 1);
-  		send({'helth': true, 'helthLv': ships[sId].helth})
+  		send({'helth': true, 'helthLv': ships[sId].helth});
   	}
   })
-  window.scrollTo(ships[sId].x, ships[sId].y);
+  window.scrollTo(ships[sId].x - window.innerWidth / 2, ships[sId].y - window.innerHeight / 2);
   if (tick%1000 == 0) {
     send({'update': true,'x': ships[sId].x,'y': ships[sId].y, 'r': ships[sId].r, 'vx':ships[sId].vx, 'vy':ships[sId].vy})
   }
