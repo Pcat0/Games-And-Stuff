@@ -66,7 +66,7 @@ var object = function() {
     return this.r;
   };
   this.vSet = function(power) {
-    if (Math.sqrt(Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2) + Math.pow(power*Math.sin(this.r*0.0174533) + this.vy, 2)) < 2 || Math.sqrt(power*Math.cos(this.r*0.0174533)) + Math.sqrt(power*Math.cos(this.r*0.0174533)) > -2) {
+    if (Math.sqrt(Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2) + Math.pow(power*Math.sin(this.r*0.0174533) + this.vy, 2)) < 2 && Math.sqrt(Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2) + Math.sqrt(Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2) > -2) {
       this.vx += power*Math.cos(this.r*0.0174533);
       this.vy += power*Math.sin(this.r*0.0174533);
     }
