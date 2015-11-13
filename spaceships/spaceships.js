@@ -15,7 +15,8 @@ var object = function() {
     'rOffset': 0,
     'maxAge': undefined,
     'maxHelth': undefined,
-    'text': undefined
+    'text': undefined,
+    'topSpeed': undefined
   };
   this.x = 0;
   this.y = 0;
@@ -66,7 +67,7 @@ var object = function() {
     return this.r;
   };
   this.vSet = function(power) {
-    if (Math.sqrt(Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2) + Math.pow(power*Math.sin(this.r*0.0174533) + this.vy, 2)) < 2 && Math.sqrt(Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2) + Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2)) > -2) {
+    if (Math.sqrt(Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2) + Math.pow(power*Math.sin(this.r*0.0174533) + this.vy, 2)) < this.data.topSpeed && Math.sqrt(Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2) + Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2)) > 0 - this.data.topSpeed) {
       this.vx += power*Math.cos(this.r*0.0174533);
       this.vy += power*Math.sin(this.r*0.0174533);
     }
@@ -97,6 +98,7 @@ var SpaceShip = function() {
   this.data.rOffset = -90;
   this.data.maxHelth = 200;
   this.data.text = 'helth';
+  this.data.topSpeed = 2.5;
 };
 var laserBlast = function() {
   object.call(this);
@@ -105,6 +107,7 @@ var laserBlast = function() {
   this.data.sizeY = '30px';
   this.data.maxAge = 200;
   this.owner = null;
+  this.data.topSpeed = 10;
 };
 function wsOpen(){
   ws = new WebSocket('ws://achex.ca:4010');
