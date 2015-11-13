@@ -55,8 +55,8 @@ var object = function() {
     this.y = (type) ? (this.y + y): y;
     if (this.x < 0){this.x = 0; this.vx = 0;}
     if (this.y < 0){this.y = 0; this.vy = 0;}
-    if (this.x > 3000){this.x = 3000; this.vx = 0;}
-    if (this.y > 3000){this.y = 3000; this.vy = 0;}
+    if (this.x > 2000){this.x = 2000; this.vx = 0;}
+    if (this.y > 2000){this.y = 2000; this.vy = 0;}
     this.selfI.style.top = this.y + 'px';
     this.selfI.style.left = this.x + 'px';
   };
@@ -65,9 +65,9 @@ var object = function() {
     this.selfI.children.item(0).style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
     return this.r;
   };
-  this.vSet = function(power) {
-    this.vx += power*Math.cos(this.r*0.0174533);
-    this.vy += power*Math.sin(this.r*0.0174533);
+  this.vSet = function(power) {\
+    this.vx = (this.vx > 5) ? 5: this.vx += power*Math.cos(this.r*0.0174533);
+    this.vy = (this.vx > 5) ? 5:this.vy += power*Math.sin(this.r*0.0174533);
   };
   this.tick = function() {
     this.vx = this.vx- this.data.vLoss;
