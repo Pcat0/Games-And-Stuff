@@ -66,8 +66,10 @@ var object = function() {
     return this.r;
   };
   this.vSet = function(power) {
-    this.vx = (this.vx > 5) ? 5: this.vx += power*Math.cos(this.r*0.0174533);
-    this.vy = (this.vx > 5) ? 5:this.vy += power*Math.sin(this.r*0.0174533);
+    if (Math.sqrt(power*Math.cos(this.r*0.0174533)) + Math.sqrt(power*Math.cos(this.r*0.0174533)) < 2 || Math.sqrt(power*Math.cos(this.r*0.0174533)) + Math.sqrt(power*Math.cos(this.r*0.0174533)) > -2) {
+      this.vx += power*Math.cos(this.r*0.0174533);
+      this.vy += power*Math.sin(this.r*0.0174533);
+    }
   };
   this.tick = function() {
     this.vx = this.vx- this.data.vLoss;
