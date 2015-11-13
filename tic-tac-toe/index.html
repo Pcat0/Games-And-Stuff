@@ -2,82 +2,45 @@
 <html>
   <head>
     <style>
-      * {
-        box-sizing: border-box;
-        font-family: Verdana, sans-serif;
+      span.menu2p {
+        display:none;
       }
-      body {
-        margin: 0;
+      span.menuMain {
+        display:inline;
       }
-      ul {
-        padding-left: 10px;
-        margin: 0;
-        list-style-type: none;
+      span.gameBoard {
+        display:none;
       }
-      header {
-        background-color: #000;
-        color: white;
-        padding: 5px;
-        height: 10vh;
-        line-height: 10vh;
-      }
-      nav {
-        line-height: 30px;
-        background-color: #eeeeee;
-        height: 90vh;
-        width: 10vw;
-        position: absolute;
-        top: 10vh;
-        left: 0;
-        padding: 5px;
-      }
-      section {
-        width: 90vw;
-        height: 90vh;
-        position: absolute;
-        top: 10vh;
-        left: 10vw;
-      }
-      footer {
-        background-color: black;
-        color: white;
-        clear: both;
-        text-align: center;
-        padding: 5px; 
-      }
+      button.square {
+        width:100px;
+        height:100px;
+      } 
+      button.menu {
+        position: relative;
+        width: 250px;
+        height: 40px;
+        left: 15px;
+        font-size: 28px;
+      } 
     </style>
   </head>
   <body>
-    <header>
-      <img src="https://sites.google.com/a/isd624.org/patrick-ambli/_/rsrc/1444148613920/link/GAMES%20AND%20STUFF.png" alt="Games and stuff">
-    </header>
-    <nav>
-      <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/tic-tac-toe">Tic Tac Toe</a>
-        </li>
-        <li>
-          <a href="/cookies">cookie</a>
-        </li>
-        <li>
-          <a href="/snake">snake</a>
-        </li>
-      </ul>
-    </nav>
-    <section>
-      <iframe src="page-main" style="border:none; width:90vw; height:90vh;"></iframe>
-    </section>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-69409530-1', 'auto');
-      ga('send', 'pageview');
-    </script>
+    <span id="menuMain" class="menuMain">
+       <h1>Tic Tac Toe</h1>
+       <button class="menu" onclick="getElementById('menuMain').style.display = 'none'; getElementById('gameBoard').style.display = 'inline';tictactoe.setGameMode(1)" id="1p">Single Player</button><br/>
+       <button class="menu" onclick="getElementById('menuMain').style.display = 'none'; getElementById('menu2p').style.display = 'inline'" id="2p">Multiplayer</button>
+    </span>
+    <span id="menu2p" class="menu2p">
+      <h1>Multiplayer</h1>
+      <button class="menu" onclick="getElementById('menu2p').style.display = 'none'; getElementById('gameBoard').style.display = 'inline';tictactoe.setGameMode(2)" id="local">Local</button><br/>
+      <button class="menu" id="online">Online</button>
+    </span>
+    <span id="gameBoard" class="gameBoard">
+      <button class="square" onclick="tictactoe.play(1,1);" id="tic1"></button><button class="square" onclick="tictactoe.play(2,1);" id="tic2"></button><button class="square" onclick="tictactoe.play(3,1);" id="tic3"></button><br/>
+      <button class="square" onclick="tictactoe.play(1,2);" id="tic4"></button><button class="square" onclick="tictactoe.play(2,2);" id="tic5"></button><button class="square" onclick="tictactoe.play(3,2);" id="tic6"></button><br/>
+      <button class="square" onclick="tictactoe.play(1,3);" id="tic7"></button><button class="square" onclick="tictactoe.play(2,3);" id="tic8"></button><button onclick="tictactoe.play(3,3);" class="square" id="tic9"></button>
+    </span>
+    <script src="tic-tac-toe.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
