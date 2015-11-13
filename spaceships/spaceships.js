@@ -73,6 +73,7 @@ var object = function() {
     this.vx = this.vx- this.data.vLoss;
     this.vy = this.vy- this.data.vLoss;
     this.move(this.vx, this.vy, true);
+    console.log(age);
     this.age++;
     if (this.data.text == 'helth'){
     	this.selfI.children.item(2).innerHTML = (this.data.maxHelth - this.helth)/this.data.maxHelth * 100 + "%"
