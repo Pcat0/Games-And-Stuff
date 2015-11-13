@@ -2,73 +2,28 @@
 <html>
   <head>
     <style>
-      * {
-        box-sizing: border-box;
-        font-family: Verdana, sans-serif;
+      div.gameBoard {
+        background-color:white;
+        border-style: solid;
+        border-width: 5px;
+        width: 1000px;
+        height: 580px;
       }
-      body {
-        margin: 0;
-      }
-      ul {
-        padding-left: 10px;
-        margin: 0;
-        list-style-type: none;
-      }
-      header {
-        background-color: #000;
-        color: white;
-        padding: 5px;
-        height: 10vh;
-        line-height: 10vh;
-      }
-      nav {
-        line-height: 30px;
-        background-color: #eeeeee;
-        height: 90vh;
-        width: 10vw;
+      div.centered {
         position: absolute;
-        top: 10vh;
-        left: 0;
-        padding: 5px;
-      }
-      section {
-        width: 90vw;
-        height: 90vh;
-        position: absolute;
-        top: 10vh;
-        left: 10vw;
-      }
-      footer {
-        background-color: black;
-        color: white;
-        clear: both;
-        text-align: center;
-        padding: 5px; 
+        top: 50%;
+        left: 50%;
+        transform(-50%, -50%);
+        border: 3px #000 solid;
       }
     </style>
   </head>
   <body>
-    <header>
-      <img src="https://sites.google.com/a/isd624.org/patrick-ambli/_/rsrc/1444148613920/link/GAMES%20AND%20STUFF.png" alt="Games and stuff">
-    </header>
-    <nav>
-      <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/tic-tac-toe">Tic Tac Toe</a>
-        </li>
-        <li>
-          <a href="/cookies">cookie</a>
-        </li>
-        <li>
-          <a href="/snake">snake</a>
-        </li>
-      </ul>
-    </nav>
-    <section>
-      <iframe src="page-main" style="border:none; width:90vw; height:90vh;"></iframe>
-    </section>
+    <div class="gameBoard">
+      <canvas id="gameBoard" width="1000px" height="580px"></canvas>
+      <script src="snake.js"></script>
+    </div>
+    <button onclick="gameStart(1)">Start one player game.</button>
+    <button onclick="gameStart(2)">Start two player game.</button>
   </body>
 </html>
