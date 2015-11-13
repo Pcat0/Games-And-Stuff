@@ -142,7 +142,7 @@
           : (document.querySelector(".sidebar").classList.toggle("fade"), setTimeout(
             (() => (document.querySelector(".head").classList.toggle("fade"))), 200));
       Array.prototype.map.call(document.querySelectorAll(".iframe-dirswap a"),
-        e => e.onclick = (() => document.querySelector("iframe").src = this.href, false));
+        e => e.onclick = (() => (document.querySelector("iframe").src = e.href, false)));
     </script>
   </body>
 </html>
