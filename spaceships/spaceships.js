@@ -79,7 +79,7 @@ var object = function() {
     //console.log(this.age);
     this.age++;
     if (this.data.text == 'helth'){
-    	this.selfI.children.item(2).innerHTML = (this.data.maxHelth - this.helth)/this.data.maxHelth * 100 + "%"
+    	this.selfI.children.item(2).innerHTML = +((this.data.maxHelth - this.helth)/this.data.maxHelth * 100).toFixed(2)  + "%"
     }
     if (this.helth >= this.data.maxHelth && this.data.maxHelth != undefined){
     	return true;
