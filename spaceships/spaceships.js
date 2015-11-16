@@ -54,8 +54,8 @@ var object = function() {
   this.move = function(x, y, type) {
     this.x = (type) ? (this.x + x): x;
     this.y = (type) ? (this.y + y): y;
-    if (this.x < 0){this.x = 0; this.helth += this.vx * 10; this.vx = 0;}
-    if (this.y < 0){this.y = 0; this.helth += this.vy * 10; this.vy = 0;}
+    if (this.x < 0){this.x = 0; -this.helth += this.vx * 10; this.vx = 0;}
+    if (this.y < 0){this.y = 0; -this.helth += this.vy * 10; this.vy = 0;}
     if (this.x > 2000){this.x = 2000; this.helth += this.vx * 10; this.vx = 0;}
     if (this.y > 2000){this.y = 2000; this.helth += this.vy * 10; this.vy = 0;}
     this.selfI.style.top = this.y + 'px';
