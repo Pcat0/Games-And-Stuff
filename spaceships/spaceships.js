@@ -76,6 +76,7 @@ var object = function() {
     this.vx = this.vx- this.data.vLoss;
     this.vy = this.vy- this.data.vLoss;
     this.move(this.vx, this.vy, true);
+    this.helth += .1;
     //console.log(this.age);
     this.age++;
     if (this.data.text == 'helth'){
