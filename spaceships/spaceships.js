@@ -179,9 +179,9 @@ var death = function(shipID) {
 }
 var main = function() {
   tick++;
-  if (keyMap[38]) {ships[sId].vSet(.01); send({'vx': ships[sId].vx, 'vy': ships[sId].vy});}
-  if (keyMap[39]) {ships[sId].rotate(1, true); send({'r': ships[sId].r});}
-  if (keyMap[37]) {ships[sId].rotate(-1, true); send({'r': ships[sId].r});}
+  if (keyMap[38]) {ships[sId].vSet(.01); /*send({'vx': ships[sId].vx, 'vy': ships[sId].vy});*/}
+  if (keyMap[39]) {ships[sId].rotate(1, true); /*send({'r': ships[sId].r});*/}
+  if (keyMap[37]) {ships[sId].rotate(-1, true); /*send({'r': ships[sId].r});*/}
   if (keyMap[32] && lsDe == 0) {lsDe = 50; var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].owner = sId; lasers[_i].move(ships[sId].x,ships[sId].y); lasers[_i].rotate(ships[sId].r); lasers[_i].vSet(5); send({'shoot': true});}
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(function(a, b){if(a.tick()){send({'death': true});death(b)}});
@@ -199,9 +199,9 @@ var main = function() {
   	}
   })
   window.scrollTo(ships[sId].x - window.innerWidth / 2, ships[sId].y - window.innerHeight / 2);
-  if (tick%1000 == 0) {
+  //if (tick%1000 == 0) {
     send({'update': true,'x': ships[sId].x,'y': ships[sId].y, 'r': ships[sId].r, 'vx':ships[sId].vx, 'vy':ships[sId].vy})
-  }
+  //}
 };
 onkeydown = onkeyup = function(e){
   e = e || event; // to deal with IE
