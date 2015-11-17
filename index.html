@@ -109,7 +109,7 @@
     </style>
   </head>
   <body>
-    <iframe src="/home"></iframe>
+    <iframe src="/home" id='iframe'></iframe>
     <div class="tools">
       <div class="head">
         <h1>Games &amp; Stuff</h1>
@@ -149,7 +149,8 @@
           : (document.querySelector(".sidebar").classList.toggle("fade"), setTimeout(
             (() => (document.querySelector(".head").classList.toggle("fade"))), 200));
       Array.prototype.map.call(document.querySelectorAll(".iframe-dirswap a"),
-        e => e.onclick = (() => (document.querySelector("iframe").src = e.href, false)));
+        e => e.onclick = (() => (a = document.querySelector("iframe"), a.src = e.href, false,
+        a.style.top = '10vw', a.style.top = '90vh')));
     </script>
     <script>
       //google analytics
@@ -160,7 +161,6 @@
 
       ga('create', 'UA-69409530-1', 'auto');
       ga('send', 'pageview');
-      //ga('set', 'metric2', 1);
     </script>
   </body>
 </html>
