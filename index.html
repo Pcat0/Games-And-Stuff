@@ -144,9 +144,9 @@
     <script>
       document.querySelector(".toggle-overlay").onclick = 
         () => Array.prototype.indexOf.call(document.querySelector(".head").classList, "fade") != -1
-          ? (document.querySelector(".head").classList.toggle("fade"), document.querySelector("iframe").style.top = '10vw', setTimeout(
-            (() => (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.left = '10vh')), 200))
-          : (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.top = '0vw', setTimeout(
+          ? (document.querySelector(".head").classList.toggle("fade"), document.querySelector("iframe").style.top = '10vh', setTimeout(
+            (() => (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.left = '10vw')), 200))
+          : (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.top = '0vh', setTimeout(
             (() => (document.querySelector(".head").classList.toggle("fade"),document.querySelector("iframe").style.left = '0vw')), 200));
       Array.prototype.map.call(document.querySelectorAll(".iframe-dirswap a"),
         e => e.onclick = (() => (document.querySelector("iframe").src = e.href, false)));
