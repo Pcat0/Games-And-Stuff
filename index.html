@@ -23,8 +23,8 @@
       }
       iframe {
         border: none;
-        width: 100vw;
-        height: 100vh;
+        width: 90vw;
+        height: 90vh;
         position: absolute;
         top: 10vh;
         left: 10vw;
@@ -144,10 +144,10 @@
     <script>
       document.querySelector(".toggle-overlay").onclick = 
         () => Array.prototype.indexOf.call(document.querySelector(".head").classList, "fade") != -1
-          ? (document.querySelector(".head").classList.toggle("fade"), document.querySelector("iframe").style.top = '10vh', setTimeout(
-            (() => (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.left = '10vw')), 200))
-          : (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.top = '0vh', setTimeout(
-            (() => (document.querySelector(".head").classList.toggle("fade"),document.querySelector("iframe").style.left = '0vw')), 200));
+          ? (document.querySelector(".head").classList.toggle("fade"), document.querySelector("iframe").style.top = '10vh',document.querySelector("iframe").style.height = '90vh', setTimeout(
+            (() => (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.left = '10vw',document.querySelector("iframe").style.width = '90vw')), 200))
+          : (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.top = '0vh',document.querySelector("iframe").style.height = '100vw', setTimeout(
+            (() => (document.querySelector(".head").classList.toggle("fade"),document.querySelector("iframe").style.left = '0vw',document.querySelector("iframe").style.width = '100vw')), 200));
       Array.prototype.map.call(document.querySelectorAll(".iframe-dirswap a"),
         e => e.onclick = (() => (document.querySelector("iframe").src = e.href, false)));
     </script>
