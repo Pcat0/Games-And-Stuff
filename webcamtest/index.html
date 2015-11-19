@@ -28,16 +28,22 @@
     </div>
     <script>
       var videoStream;
-      var video = document.querySelector("#videoElement");
+      var video; //= document.querySelector("#videoElement");
+      var ctx;
       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
       if (navigator.getUserMedia) {       
         navigator.getUserMedia({video: true}, handleVideo, videoError);
+        canvas = options.targetCanvas || document.createElement("canvas");
+		    canvas.setAttribute('width', 500);
+		    canvas.setAttribute('height', 500);
+		    ctx = canvas.getContext('2d');
       }else{
         console.log('Your browser dose not support getUserMedia.');
       }
       function handleVideo(stream) {
-        video.src = window.URL.createObjectURL(stream);
+        video = window.URL.createObjectURL(stream);
         videoStream = stream;
+        context.drawImage(video, 0, 0, video.width, video.height);
       }
       function videoError(e) {
         console.log('Error'+e);
