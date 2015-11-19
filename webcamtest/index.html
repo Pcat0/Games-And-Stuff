@@ -46,7 +46,7 @@
       function handleVideo(stream) {
         video.src = window.URL.createObjectURL(stream);
         videoStream = stream;
-        ctx.drawImage(video, 0, 0, video.width, video.height);
+        renderTimer = setInterval(function() {ctx.drawImage(video, 0, 0, video.width, video.height);}, 1);
       }
       function videoError(e) {
         console.log('Error'+e);
