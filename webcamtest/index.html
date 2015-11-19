@@ -43,7 +43,7 @@
       function handleVideo(stream) {
         video = window.URL.createObjectURL(stream);
         videoStream = stream;
-        context.drawImage(video, 0, 0, video.width, video.height);
+        ctx.drawImage(video, 0, 0, video.width, video.height);
       }
       function videoError(e) {
         console.log('Error'+e);
