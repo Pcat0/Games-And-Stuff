@@ -27,8 +27,9 @@
       </video>
     </div>
     <script>
+      var video = document.createElement("video");
       var videoStream;
-      var video; //= document.querySelector("#videoElement");
+      //var video = document.querySelector("#videoElement");
       var ctx;
       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
       if (navigator.getUserMedia) {       
@@ -41,7 +42,7 @@
         console.log('Your browser dose not support getUserMedia.');
       }
       function handleVideo(stream) {
-        video = window.URL.createObjectURL(stream);
+        video.src = window.URL.createObjectURL(stream);
         videoStream = stream;
         ctx.drawImage(video, 0, 0, video.width, video.height);
       }
