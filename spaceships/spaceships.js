@@ -96,10 +96,10 @@ var object = function() {
 //
 var SpaceShip = function() {
   object.call(this);
-  //this.data.icon = 'http://opengameart.org/sites/default/files/styles/watermarked/public/spaceship1_1.png';
-  this.data.icon = 'www.isd624.org/graphics/thumbnails//LovettThumbnail.jpg';
-  this.data.sizeX = '200px';
-  this.data.sizeY = '200px';
+  this.data.icon = 'http://opengameart.org/sites/default/files/styles/watermarked/public/spaceship1_1.png';
+  //this.data.icon = 'www.isd624.org/graphics/thumbnails//LovettThumbnail.jpg';
+  this.data.sizeX = '60px';
+  this.data.sizeY = '60px';
   this.data.rOffset = -90;
   this.data.maxHelth = 200;
   this.data.text = 'helth';
