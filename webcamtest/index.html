@@ -33,10 +33,10 @@
       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
       if (navigator.getUserMedia) {       
         navigator.getUserMedia({video: true}, handleVideo, videoError);
-        canvas = options.targetCanvas || document.createElement("canvas");
-		    canvas.setAttribute('width', 500);
-		    canvas.setAttribute('height', 500);
-		    ctx = canvas.getContext('2d');
+        canvas = document.createElement("canvas");
+        canvas.setAttribute('width', 500);
+        canvas.setAttribute('height', 500);
+        ctx = canvas.getContext('2d');
       }else{
         console.log('Your browser dose not support getUserMedia.');
       }
