@@ -48,8 +48,6 @@
         videoStream = stream;
         renderTimer = setInterval(function() {
           ctx2.drawImage(video, 0, 0, video.width, video.height);
-          for (var y = 0; y < canvasHeight; y += 2) {
-          for (var x = 0; x < canvasWidth; x++) {
         }, 1);
       }
       function videoError(e) {
