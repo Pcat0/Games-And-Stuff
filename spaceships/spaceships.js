@@ -214,7 +214,7 @@ var main = function() {
   if (keyMap[32] && lsDe == 0) {lsDe = 50; var laser = lasers[sId]; var _i = laser.push(new laserBlast) - 1; laser[_i].draw();laser[_i].owner = sId; laser[_i].move(ships[sId].x,ships[sId].y); laser[_i].rotate(ships[sId].r); laser[_i].vSet(5); send({'shoot': true, 'LaserID': _i});}
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(function(a, b){if(a.tick()){send({'death': true});death(b)}});
-  lasers.forEach(function(a){a.forEach(function(b, c){if(a.tick()){b.remove(); lasers.splice(c, 1);}})});
+  lasers.forEach(function(a){a.forEach(function(b, c){if(b.tick()){b.remove(); lasers[a].splice(c, 1);}})});
   lasers[sId].forEach(function(a, b){
   if (a.x < ships[sId].x + parseInt(ships[sId].data.sizeX.replace('px', '')) &&
   	a.x + parseInt(a.data.sizeX.replace('px', '')) > ships[sId].x &&
