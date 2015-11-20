@@ -19,7 +19,7 @@ var object = function() {
     'maxHelth': undefined,
     'text': undefined,
     'topSpeed': undefined, 
-    'oncollision': function() {}
+    'oncollision': undefined
   };
   this.x = 0;
   this.y = 0;
@@ -135,7 +135,7 @@ var laserBlast = function() {
     a.remove();
     lasers.splice(b, 1);
     send({'remove': true, 'listId': b});
-  }
+  };
   
 };
 function wsOpen(){
