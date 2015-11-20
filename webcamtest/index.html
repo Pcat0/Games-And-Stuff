@@ -30,25 +30,26 @@
       video.setAttribute('height', 1000);
       var videoStream;
       var can = document.getElementById('can');
-      ctx2 = can.getContext('2d');
+      var ctx2 = can.getContext('2d');
+      var width = 1280;
+      var height = 720;
       //var video = document.querySelector("#videoElement");
       var ctx;
       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
       if (navigator.getUserMedia) {       
-        navigator.getUserMedia({video: true}, handleVideo, videoError);
+        navigator.getUserMedia({video: { width: width, height: height }}, handleVideo, videoError);
         canvas = document.createElement("canvas");
-        canvas.setAttribute('width', 500);
-        canvas.setAttribute('height', 500);
+        canvas.setAttribute('width', width);
+        canvas.setAttribute('height', height);
         ctx = canvas.getContext('2d');
       }else{
         console.log('Your browser dose not support getUserMedia.');
       }
       function handleVideo(stream) {
         video.src = window.URL.createObjectURL(stream);
-        videoStream = stream;
         renderTimer = setInterval(function() {
-          ctx2.drawImage(video, 0, 0, video.width, video.height);
-        }, 1);
+          ctx2.drawImage(video, 0, 0, width, height);
+        }, 5);
       }
       function videoError(e) {
         console.log('Error'+e);
