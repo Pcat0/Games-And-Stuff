@@ -22,15 +22,15 @@
   </head>
   <body>
     <div id="container">
-      <video autoplay="true" id="videoElement">
-       
-      </video>
+      <canvas id = 'can'></canvas>
     </div>
     <script>
       var video = document.createElement("video");
       video.setAttribute('width', 1000);
       video.setAttribute('height', 1000);
       var videoStream;
+      var can = document.getElementById('can');
+      ctx2 = can.getContext('2d');
       //var video = document.querySelector("#videoElement");
       var ctx;
       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
@@ -46,7 +46,11 @@
       function handleVideo(stream) {
         video.src = window.URL.createObjectURL(stream);
         videoStream = stream;
-        renderTimer = setInterval(function() {ctx.drawImage(video, 0, 0, video.width, video.height);}, 1);
+        renderTimer = setInterval(function() {
+          ctx2.drawImage(video, 0, 0, video.width, video.height);
+          for (var y = 0; y < canvasHeight; y += 2) {
+          for (var x = 0; x < canvasWidth; x++) {
+        }, 1);
       }
       function videoError(e) {
         console.log('Error'+e);
