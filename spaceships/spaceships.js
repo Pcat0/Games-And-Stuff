@@ -120,6 +120,21 @@ var laserBlast = function() {
     lasers.splice(b, 1);
     send({'helth': true, 'helthLv': ships[sId].helth});
   }
+  /*
+  var laserBlast = function() {
+  object.call(this);
+  this.data.icon = 'http://memberfiles.freewebs.com/37/52/64535237/photos/Sharing-Sprites/redLaserRay.png';
+  this.data.sizeX = '30px';
+  this.data.sizeY = '30px';
+  this.data.maxAge = 200;
+  this.owner = null;
+  this.data.topSpeed = 10;
+  this.data.oncollision = function(a, b){
+    a.remove();
+    lasers.splice(b, 1);
+    send({'remove': true, 'listId': b});
+  }
+  */
 };
 function wsOpen(){
   ws = new WebSocket('ws://achex.ca:4010');
@@ -141,10 +156,13 @@ function wsOpen(){
         ships[received_message.sID].rotate(received_message.mess.r);
       }
       if (received_message.mess.shoot) {
-        var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw(); lasers[_i].owner = received_message.sID; lasers[_i].move(ships[received_message.sID].x,ships[received_message.sID].y); lasers[_i].rotate(ships[received_message.sID].r); lasers[_i].vSet(5);
+        var _i = lasers[received_message.sID].push(new laserBlast) - 1; lasers[received_message.sID][_i].draw(); lasers[received_message.sID][_i].owner = received_message.sID; lasers[received_message.sID][_i].move(ships[received_message.sID].x,ships[received_message.sID].y); lasers[_i][received_message.sID].rotate(ships[received_message.sID].r); lasers[_i][received_message.sID].vSet(5);
       }
       if (received_message.mess.death) {
         death(received_message.sID);
+      }
+      if (received_message.mess.remove) {
+        lasers[received_message.sID][received_message.mess.listId].remove(); lasers.splice(received_message.mess.listId, 1);
       }
       if (received_message.mess.update) {
         ships[received_message.sID].vx = received_message.mess.vx; ships[received_message.sID].vy = received_message.mess.vy; ships[received_message.sID].rotate(received_message.mess.r); ships[received_message.sID].move(received_message.mess.x, received_message.mess.y)
@@ -190,7 +208,7 @@ var main = function() {
   if (keyMap[38]) {ships[sId].vSet(.01); /*send({'vx': ships[sId].vx, 'vy': ships[sId].vy});*/}
   if (keyMap[39]) {ships[sId].rotate(1, true); /*send({'r': ships[sId].r});*/}
   if (keyMap[37]) {ships[sId].rotate(-1, true); /*send({'r': ships[sId].r});*/}
-  if (keyMap[32] && lsDe == 0) {lsDe = 50; var _i = lasers.push(new laserBlast) - 1; lasers[_i].draw();lasers[_i].owner = sId; lasers[_i].move(ships[sId].x,ships[sId].y); lasers[_i].rotate(ships[sId].r); lasers[_i].vSet(5); send({'shoot': true});}
+  if (keyMap[32] && lsDe == 0) {lsDe = 50; var _i = lasers[sId].push(new laserBlast) - 1; lasers[sId][_i].draw();lasers[sId][_i].owner = sId; lasers[sId][_i].move(ships[sId].x,ships[sId].y); lasers[sId][_i].rotate(ships[sId].r); lasers[sId][_i].vSet(5); send({'shoot': true, 'LaserID': _i});}
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(function(a, b){if(a.tick()){send({'death': true});death(b)}});
   lasers.forEach(function(a, b){if(a.tick()){a.remove(); lasers.splice(b, 1);}});
