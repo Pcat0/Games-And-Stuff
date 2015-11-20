@@ -16,7 +16,8 @@ var object = function() {
     'maxAge': undefined,
     'maxHelth': undefined,
     'text': undefined,
-    'topSpeed': undefined
+    'topSpeed': undefined, 
+    'oncollision': function() {}
   };
   this.x = 0;
   this.y = 0;
@@ -113,6 +114,12 @@ var laserBlast = function() {
   this.data.maxAge = 200;
   this.owner = null;
   this.data.topSpeed = 10;
+  this.data.oncollision = function(a, b){
+    ships[sId].helth += 20;
+    a.remove();
+    lasers.splice(b, 1);
+    send({'helth': true, 'helthLv': ships[sId].helth}););
+  }
 };
 function wsOpen(){
   ws = new WebSocket('ws://achex.ca:4010');
@@ -169,7 +176,7 @@ var send = function(mess){
   message.to = "Spaceship-Game-Sv1";
   message.mess = mess;
   message = JSON.stringify(message);
-	ws.send(message);
+  ws.send(message);
 }
 var death = function(shipID) {
   ships[shipID].move(1,1);
@@ -193,10 +200,7 @@ var main = function() {
   	a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
   	a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y &&
   	a.owner != sId) {
-  		//death(sId);
-  		ships[sId].helth += 20;
-  		a.remove(); lasers.splice(b, 1);
-  		send({'helth': true, 'helthLv': ships[sId].helth});
+      a.data.oncollision(a, b);
   	}
   })
   window.scrollTo(ships[sId].x - window.innerWidth / 2, ships[sId].y - window.innerHeight / 2);
