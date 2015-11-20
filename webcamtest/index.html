@@ -47,9 +47,11 @@
       }
       function handleVideo(stream) {
         video.src = window.URL.createObjectURL(stream);
-        //renderTimer = setInterval(function() {
+        console.log('test')
+        
+        renderTimer = setInterval(function() {
           ctx2.drawImage(video, 0, 0, width, height);
-        //}, 5);
+        }, 5);
       }
       function videoError(e) {
         console.log('Error'+e);
