@@ -122,21 +122,21 @@ var laserBlast = function() {
     lasers.splice(b, 1);
     send({'helth': true, 'helthLv': ships[sId].helth});
   }
-  /*
+  
   var laserBlast = function() {
   object.call(this);
-  this.data.icon = 'http://memberfiles.freewebs.com/37/52/64535237/photos/Sharing-Sprites/redLaserRay.png';
-  this.data.sizeX = '30px';
-  this.data.sizeY = '30px';
-  this.data.maxAge = 200;
+  this.data.icon = 'http://images.clipartpanda.com/dot-com-clipart-dot-clipart-8e5a5a7ed9284c00a7bc45f2ad1ea8e8VPJ1OJ.png';
+  this.data.sizeX = '20px';
+  this.data.sizeY = '20px';
+  this.data.maxAge = 1000;
   this.owner = null;
-  this.data.topSpeed = 10;
+  this.data.topSpeed = 0;
   this.data.oncollision = function(a, b){
     a.remove();
     lasers.splice(b, 1);
     send({'remove': true, 'listId': b});
   }
-  */
+  
 };
 function wsOpen(){
   ws = new WebSocket('ws://achex.ca:4010');
@@ -216,15 +216,17 @@ var main = function() {
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(function(a, b){if(a.tick()){send({'death': true});death(b)}});
   lasers.forEach(function(a){a.forEach(function(b, c){if(b.tick()){b.remove(); a.splice(c, 1);}})});
-  lasers[sId].forEach(function(a, b){
-  if (a.x < ships[sId].x + parseInt(ships[sId].data.sizeX.replace('px', '')) &&
-  	a.x + parseInt(a.data.sizeX.replace('px', '')) > ships[sId].x &&
-  	a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
-  	a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y &&
-  	a.owner != sId) {
-      a.data.oncollision(a, b);
-  	}
-  })
+  if (lasers[sId] != undefined) {
+    lasers[sId].forEach(function(a, b){
+      if (a.x < ships[sId].x + parseInt(ships[sId].data.sizeX.replace('px', '')) &&
+      a.x + parseInt(a.data.sizeX.replace('px', '')) > ships[sId].x &&
+      a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
+      a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y &&
+      a.owner != sId) {
+        a.data.oncollision(a, b);
+      }
+    })
+  }
   window.scrollTo(ships[sId].x - window.innerWidth / 2, ships[sId].y - window.innerHeight / 2);
   //if (tick%1000 == 0) {
     send({'update': true,'x': ships[sId].x,'y': ships[sId].y, 'r': ships[sId].r, 'vx':ships[sId].vx, 'vy':ships[sId].vy})
