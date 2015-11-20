@@ -31,8 +31,8 @@
       var videoStream;
       var can = document.getElementById('can');
       var ctx2 = can.getContext('2d');
-      var width = 1280;
-      var height = 720;
+      var width = 5000;
+      var height = 5000;
       //var video = document.querySelector("#videoElement");
       var ctx;
       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
@@ -47,9 +47,9 @@
       }
       function handleVideo(stream) {
         video.src = window.URL.createObjectURL(stream);
-        renderTimer = setInterval(function() {
+        //renderTimer = setInterval(function() {
           ctx2.drawImage(video, 0, 0, width, height);
-        }, 5);
+        //}, 5);
       }
       function videoError(e) {
         console.log('Error'+e);
