@@ -145,6 +145,7 @@ function wsOpen(){
     if (received_message.mess != undefined && received_message.sID != sId) {
       if (received_message.mess.join) {
         ships[received_message.sID] = new SpaceShip(); ships[received_message.sID].draw(); ships[received_message.sID].move(received_message.mess.x,received_message.mess.y); ships[received_message.sID].rotate(received_message.mess.r); ships[received_message.sID].vx = received_message.mess.vx;ships[received_message.sID].vy = received_message.mess.vy;
+        lasers[received_message.sID] = [];
         if(received_message.mess.newS){
           ws.send(JSON.stringify({'toS': received_message.sID, 'mess':{'join': true,'x': ships[sId].x,'y': ships[sId].y, 'r': ships[sId].r, 'vx':ships[sId].vx, 'vy':ships[sId].vy, 'newS':false}}));
         }
@@ -174,6 +175,7 @@ function wsOpen(){
     if (received_message.SID != undefined) {
       sId = received_message.SID;
       ships[sId] = new SpaceShip();ships[sId].draw(); ships[sId].move(1,1);
+      lasers[sId] = [];
       send({'join': true,'x': 1,'y': 1, 'r':0, 'vx':0, 'vy':0, 'newS':true});
     }
   };
