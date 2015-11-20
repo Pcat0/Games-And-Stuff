@@ -123,7 +123,7 @@ var laserBlast = function() {
     send({'helth': true, 'helthLv': ships[sId].helth});
   }
   
-  var laserBlast = function() {
+  var metal = function() {
   object.call(this);
   this.data.icon = 'http://images.clipartpanda.com/dot-com-clipart-dot-clipart-8e5a5a7ed9284c00a7bc45f2ad1ea8e8VPJ1OJ.png';
   this.data.sizeX = '20px';
