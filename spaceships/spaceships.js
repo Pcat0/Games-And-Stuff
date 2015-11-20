@@ -7,6 +7,7 @@ var lasers = [];
 var myLasers = [];
 var lsDe = 0;
 var tick = 0;
+var lasersNum = 0;
 var object = function() {
   this.data = {
     'icon': undefined,
@@ -211,7 +212,7 @@ var main = function() {
   if (keyMap[38]) {ships[sId].vSet(.01); /*send({'vx': ships[sId].vx, 'vy': ships[sId].vy});*/}
   if (keyMap[39]) {ships[sId].rotate(1, true); /*send({'r': ships[sId].r});*/}
   if (keyMap[37]) {ships[sId].rotate(-1, true); /*send({'r': ships[sId].r});*/}
-  if (keyMap[32] && lsDe == 0) {lsDe = 50; var laser = lasers[sId]; var _i = laser.push(new laserBlast) - 1; laser[_i].draw();laser[_i].owner = sId; laser[_i].move(ships[sId].x,ships[sId].y); laser[_i].rotate(ships[sId].r); laser[_i].vSet(5); send({'shoot': true, 'LaserID': _i});}
+  if (keyMap[32] && lsDe == 0) {lsDe = 50; lasers[sId];lasers[sId][lasersNum] = new laserBlast; lasers[sId][lasersNum].draw();lasers[sId][lasersNum].owner = sId; lasers[sId][lasersNum].move(ships[sId].x,ships[sId].y); laser[_i].rotate(ships[sId].r); lasers[sId][lasersNum].vSet(5); send({'shoot': true, 'LaserID': _i});}
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(function(a, b){if(a.tick()){send({'death': true});death(b)}});
   lasers.forEach(function(a){a.forEach(function(b, c){if(b.tick()){b.remove(); a.splice(c, 1);}})});
