@@ -212,7 +212,7 @@ var main = function() {
   if (keyMap[38]) {ships[sId].vSet(.01); /*send({'vx': ships[sId].vx, 'vy': ships[sId].vy});*/}
   if (keyMap[39]) {ships[sId].rotate(1, true); /*send({'r': ships[sId].r});*/}
   if (keyMap[37]) {ships[sId].rotate(-1, true); /*send({'r': ships[sId].r});*/}
-  if (keyMap[32] && lsDe == 0) {lsDe = 50; lasers[sId];lasers[sId][lasersNum] = new laserBlast; lasers[sId][lasersNum].draw();lasers[sId][lasersNum].owner = sId; lasers[sId][lasersNum].move(ships[sId].x,ships[sId].y); lasers[sId];lasers[sId][lasersNum].rotate(ships[sId].r); lasers[sId][lasersNum].vSet(5); send({'shoot': true, 'LaserID': _i});}
+  if (keyMap[32] && lsDe == 0) {lsDe = 50;lasers[sId][lasersNum] = new laserBlast; lasers[sId][lasersNum].draw();lasers[sId][lasersNum].owner = sId; lasers[sId][lasersNum].move(ships[sId].x,ships[sId].y); lasers[sId];lasers[sId][lasersNum].rotate(ships[sId].r); lasers[sId][lasersNum].vSet(5); send({'shoot': true, 'LaserID': lasersNum}); lasersNum++;}
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(function(a, b){if(a.tick()){send({'death': true});death(b)}});
   lasers.forEach(function(a){a.forEach(function(b, c){if(b.tick()){b.remove(); a.splice(c, 1);}})});
