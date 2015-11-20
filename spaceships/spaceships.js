@@ -156,7 +156,7 @@ function wsOpen(){
         ships[received_message.sID].rotate(received_message.mess.r);
       }
       if (received_message.mess.shoot) {
-        var _i = lasers[received_message.sID].push(new laserBlast) - 1; lasers[received_message.sID][_i].draw(); lasers[received_message.sID][_i].owner = received_message.sID; lasers[received_message.sID][_i].move(ships[received_message.sID].x,ships[received_message.sID].y); lasers[_i][received_message.sID].rotate(ships[received_message.sID].r); lasers[_i][received_message.sID].vSet(5);
+        var laser = lasers[received_message.sID]; var _i = laser.push(new laserBlast) - 1; laser[_i].draw(); laser[_i].owner = received_message.sID; laser[_i].move(ships[received_message.sID].x,ships[received_message.sID].y); laser[_i].rotate(ships[received_message.sID].r); laser[_i].vSet(5);
       }
       if (received_message.mess.death) {
         death(received_message.sID);
@@ -208,7 +208,7 @@ var main = function() {
   if (keyMap[38]) {ships[sId].vSet(.01); /*send({'vx': ships[sId].vx, 'vy': ships[sId].vy});*/}
   if (keyMap[39]) {ships[sId].rotate(1, true); /*send({'r': ships[sId].r});*/}
   if (keyMap[37]) {ships[sId].rotate(-1, true); /*send({'r': ships[sId].r});*/}
-  if (keyMap[32] && lsDe == 0) {lsDe = 50; var _i = lasers[sId].push(new laserBlast) - 1; lasers[sId][_i].draw();lasers[sId][_i].owner = sId; lasers[sId][_i].move(ships[sId].x,ships[sId].y); lasers[sId][_i].rotate(ships[sId].r); lasers[sId][_i].vSet(5); send({'shoot': true, 'LaserID': _i});}
+  if (keyMap[32] && lsDe == 0) {lsDe = 50; var laser = lasers[sId]; var _i = laser.push(new laserBlast) - 1; laser[_i].draw();laser[_i].owner = sId; laser[_i].move(ships[sId].x,ships[sId].y); laser[_i].rotate(ships[sId].r); laser[_i].vSet(5); send({'shoot': true, 'LaserID': _i});}
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(function(a, b){if(a.tick()){send({'death': true});death(b)}});
   lasers.forEach(function(a, b){if(a.tick()){a.remove(); lasers.splice(b, 1);}});
