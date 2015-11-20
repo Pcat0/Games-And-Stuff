@@ -37,7 +37,7 @@
       var ctx;
       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
       if (navigator.getUserMedia) {       
-        navigator.getUserMedia({video: { width: 1280, height: 720 }}, handleVideo, videoError);
+        navigator.getUserMedia({ audio: false, video: { width: 1280, height: 720 } } handleVideo, videoError);
         canvas = document.createElement("canvas");
         canvas.setAttribute('width', width);
         canvas.setAttribute('height', height);
