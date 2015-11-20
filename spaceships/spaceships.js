@@ -118,7 +118,7 @@ var laserBlast = function() {
     ships[sId].helth += 20;
     a.remove();
     lasers.splice(b, 1);
-    send({'helth': true, 'helthLv': ships[sId].helth}););
+    send({'helth': true, 'helthLv': ships[sId].helth});
   }
 };
 function wsOpen(){
