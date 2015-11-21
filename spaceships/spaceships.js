@@ -121,6 +121,7 @@ var laserBlast = function() {
     a.remove();
     lasers.splice(b, 1);
     send({'helth': true, 'helthLv': ships[sId].helth});
+    console.log('test1');
   }
 };  
   var metal = function() {
@@ -223,6 +224,7 @@ var main = function() {
       a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
       a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y &&
       a.owner != sId) {
+        console.log('test1');
         a.data.oncollision(a, b);
       }
     })
