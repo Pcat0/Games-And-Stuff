@@ -217,8 +217,7 @@ var main = function() {
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(function(a, b){if(a.tick()){send({'death': true});death(b)}});
   lasers.forEach(function(a){a.forEach(function(b, c){if(b.tick()){b.remove(); a.splice(c, 1);}})});
-  if (lasers[sId] != undefined) {
-    lasers[sId].forEach(function(a, b){
+  lasers.forEach(function(c){c.forEach(function(a, b){
       if (a.x < ships[sId].x + parseInt(ships[sId].data.sizeX.replace('px', '')) &&
       a.x + parseInt(a.data.sizeX.replace('px', '')) > ships[sId].x &&
       a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
