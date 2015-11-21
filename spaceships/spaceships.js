@@ -52,7 +52,9 @@ var object = function() {
     }
   };
   this.remove = function(){
+  try{
     document.body.removeChild(this.selfI);
+  }
   };
   this.move = function(x, y, type) {
     this.x = (type) ? (this.x + x): x;
