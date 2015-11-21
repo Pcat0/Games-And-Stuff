@@ -122,7 +122,7 @@ var laserBlast = function() {
     lasers.splice(b, 1);
     send({'helth': true, 'helthLv': ships[sId].helth});
   }
-  
+};  
   var metal = function() {
   object.call(this);
   this.data.icon = 'http://images.clipartpanda.com/dot-com-clipart-dot-clipart-8e5a5a7ed9284c00a7bc45f2ad1ea8e8VPJ1OJ.png';
