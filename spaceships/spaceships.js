@@ -52,9 +52,7 @@ var object = function() {
     }
   };
   this.remove = function(){
-  try{
-    document.body.removeChild(this.selfI);
-  }
+  document.body.removeChild(this.selfI);
   };
   this.move = function(x, y, type) {
     this.x = (type) ? (this.x + x): x;
@@ -118,12 +116,11 @@ var laserBlast = function() {
   this.data.maxAge = 200;
   this.owner = null;
   this.data.topSpeed = 10;
-  this.data.oncollision = function(a, b){
+  this.data.oncollision = function(a, b, c){
     ships[sId].helth += 20;
     a.remove();
-    lasers.splice(b, 1);
+    lasers[c].splice(b, 1);
     send({'helth': true, 'helthLv': ships[sId].helth});
-    console.log('test1');
   }
 };  
   var metal = function() {
@@ -136,8 +133,8 @@ var laserBlast = function() {
   this.data.topSpeed = 0;
   this.data.oncollision = function(a, b){
     a.remove();
-    lasers.splice(b, 1);
-    send({'remove': true, 'listId': b});
+    lasers[c].splice(b, 1);
+    send({'remove': true, 'listId': c, 'objId': b});
   };
   
 };
@@ -168,7 +165,7 @@ function wsOpen(){
         death(received_message.sID);
       }
       if (received_message.mess.remove) {
-        lasers[received_message.sID][received_message.mess.listId].remove(); lasers.splice(received_message.mess.listId, 1);
+        lasers[received_message.listId][received_message.mess.objId].remove(); lasers.splice(received_message.mess.listId, 1);
       }
       if (received_message.mess.update) {
         ships[received_message.sID].vx = received_message.mess.vx; ships[received_message.sID].vy = received_message.mess.vy; ships[received_message.sID].rotate(received_message.mess.r); ships[received_message.sID].move(received_message.mess.x, received_message.mess.y)
@@ -225,8 +222,7 @@ var main = function() {
       a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
       a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y &&
       a.owner != sId) {
-        console.log('test1');
-        a.data.oncollision(a, b);
+        a.data.oncollision(a, b, c);
       }
     })
   });
