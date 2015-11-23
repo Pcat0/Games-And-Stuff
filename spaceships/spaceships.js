@@ -1,4 +1,3 @@
-
 var ws;
 var sId;
 var keyMap = [];
@@ -8,6 +7,7 @@ var myLasers = [];
 var lsDe = 0;
 var tick = 0;
 var lasersNum = 0;
+var metalCount = 0;
 var object = function() {
   this.data = {
     'icon': undefined,
@@ -133,11 +133,11 @@ var laserBlast = function() {
   this.owner = null;
   this.data.topSpeed = 0;
   this.data.oncollision = function(a, b, c, d){
+    metalCount += 1;
     a.remove();
     lasers[d].splice(b, 1);
-    send({'remove': true, 'listId': c, 'objId': b});
+    send({'remove':true, 'listId': d, 'objId': b});
   };
-  
 };
 function wsOpen(){
   ws = new WebSocket('ws://achex.ca:4010');
