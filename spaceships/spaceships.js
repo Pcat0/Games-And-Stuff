@@ -166,7 +166,7 @@ function wsOpen(){
         death(received_message.sID);
       }
       if (received_message.mess.remove) {
-        lasers[received_message.listId][received_message.mess.objId].remove(); lasers[received_message.listId].splice(received_message.mess.listId, 1);
+        lasers[received_message.listId][received_message.mess.objId].remove(); lasers[received_message.listId].splice(received_message.mess.objId, 1);
       }
       if (received_message.mess.update) {
         ships[received_message.sID].vx = received_message.mess.vx; ships[received_message.sID].vy = received_message.mess.vy; ships[received_message.sID].rotate(received_message.mess.r); ships[received_message.sID].move(received_message.mess.x, received_message.mess.y)
