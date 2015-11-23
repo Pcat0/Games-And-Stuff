@@ -160,7 +160,7 @@ function wsOpen(){
         ships[received_message.sID].rotate(received_message.mess.r);
       }
       if (received_message.mess.shoot) {
-        var laser = lasers[received_message.sID]; var _i = laser.push(new laserBlast) - 1; laser[_i].draw(); laser[_i].owner = received_message.sID; laser[_i].move(ships[received_message.sID].x,ships[received_message.sID].y); laser[_i].rotate(ships[received_message.sID].r); laser[_i].vSet(5);
+        var laser = lasers[received_message.sID]; var _i = laser[received_message.mess.LaserID] = new laserBlast; laser[received_message.mess.LaserID].draw(); laser[received_message.mess.LaserID].owner = received_message.sID; laser[received_message.mess.LaserID].move(ships[received_message.sID].x,ships[received_message.sID].y); laser[received_message.mess.LaserID].rotate(ships[received_message.sID].r); laser[_i].vSet(5);
       }
       if (received_message.mess.death) {
         death(received_message.sID);
