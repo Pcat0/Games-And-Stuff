@@ -116,10 +116,10 @@ var laserBlast = function() {
   this.data.maxAge = 200;
   this.owner = null;
   this.data.topSpeed = 10;
-  this.data.oncollision = function(a, b, c){
+  this.data.oncollision = function(a, b, c, d){
     ships[sId].helth += 20;
     a.remove();
-    lasers[c].splice(b, 1);
+    lasers[d].splice(b, 1);
     send({'helth': true, 'helthLv': ships[sId].helth});
   }
 };  
@@ -216,13 +216,13 @@ var main = function() {
   lsDe = (lsDe == 0) ? lsDe: lsDe - 1;
   ships.forEach(function(a, b){if(a.tick()){send({'death': true});death(b)}});
   lasers.forEach(function(a){a.forEach(function(b, c){if(b.tick()){b.remove(); a.splice(c, 1);}})});
-  lasers.forEach(function(c){c.forEach(function(a, b){
+  lasers.forEach(function(c, d){c.forEach(function(a, b){
       if (a.x < ships[sId].x + parseInt(ships[sId].data.sizeX.replace('px', '')) &&
       a.x + parseInt(a.data.sizeX.replace('px', '')) > ships[sId].x &&
       a.y < ships[sId].y + parseInt(ships[sId].data.sizeY.replace('px', '')) &&
       a.y + parseInt(a.data.sizeY.replace('px', '')) > ships[sId].y &&
       a.owner != sId) {
-        a.data.oncollision(a, b, c);
+        a.data.oncollision(a, b, c, d);
       }
     })
   });
