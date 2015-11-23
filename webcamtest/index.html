@@ -25,33 +25,17 @@
       <canvas id = 'can'></canvas>
     </div>
     <script>
-      var video = document.createElement("video");
-      video.setAttribute('width', 1000);
-      video.setAttribute('height', 1000);
-      var videoStream;
-      var can = document.getElementById('can');
-      var ctx2 = can.getContext('2d');
-      var width = 5000;
-      var height = 5000;
-      //var video = document.querySelector("#videoElement");
+      var video = document.querySelector("#videoElement");
       var ctx;
       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
       if (navigator.getUserMedia) {       
         navigator.getUserMedia({video:true}, handleVideo, videoError);
-        canvas = document.createElement("canvas");
-        canvas.setAttribute('width', width);
-        canvas.setAttribute('height', height);
-        ctx = canvas.getContext('2d');
       }else{
         console.log('Your browser dose not support getUserMedia.');
       }
       function handleVideo(stream) {
         video.src = window.URL.createObjectURL(stream);
         console.log('test')
-        
-        renderTimer = setInterval(function() {
-          ctx2.drawImage(video, 0, 0, width, height);
-        }, 5);
       }
       function videoError(e) {
         console.log('Error'+e);
