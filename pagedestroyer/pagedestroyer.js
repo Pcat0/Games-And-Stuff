@@ -23,6 +23,18 @@ html2canvas(document.body, {
       }
       x = 0;
       y += blockY;
+      onclick = function(e) {
+        var all = document.getElementsByTagName("*");
+        for (var i=0, max=all.length; i < max; i++) {
+          var box = all[i].getBoundingClientRect();
+          if (all[i].childElementCount === 0 && all[i].tagName != 'IFRAME' && all[i].tagName != 'SCRIPT' && box.top != 0 && box.width != 0){
+            if (box.left < (e.pageX + 100) && (box.left + box.width) > (e.pageX - 100) && box.top < (e.pageY + 100) && (box.top + box.height) > (e.pageY - 100)) {
+             console.log('~~~~~~~true~~~~~~');
+              all[i].parentNode.removeChild(all[i]);
+            }
+          }
+        }
+      }
     }
   }
 });
