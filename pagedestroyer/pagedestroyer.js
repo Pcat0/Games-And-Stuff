@@ -11,6 +11,7 @@ fileref.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/
 document.body.appendChild(fileref)
 html2canvas(document.body, {onrendered: function(canvas) {
   document.body.innerHTML = "";
+  document.body.style.backgroundColor = 'lightgrey';
     while (y < height) {
       while (x < width){
         ctx = canvas.getContext("2d");
