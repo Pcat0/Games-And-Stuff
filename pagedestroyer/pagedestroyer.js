@@ -32,7 +32,7 @@ html2canvas(document.body, {onrendered: function(canvas) {
       y += blockY;
       var boxSize = 30;
       var all;
-      setInterval(function(){ships.forEach(function(a){a.tick()})}, 1);
+      setInterval(function(){items.forEach(function(a){a.tick()})}, 1);
       onclick = function(e) {
         var i = 0;
         var all = document.getElementsByTagName("canvas");
@@ -42,7 +42,7 @@ html2canvas(document.body, {onrendered: function(canvas) {
           var box = all[i].getBoundingClientRect();
           if (box.left < (e.x + boxSize) && (box.left + box.width) > (e.x - boxSize) && box.top < (e.y + boxSize) && (box.top + box.height) > (e.y - boxSize)) {
               //document.body.removeChild(all[i]);
-              var _i = items.push(new move(all[i])) - 1;
+              var _i = items.push(new move(all[i])) - 1);
               item[_i].vSet(2);
               //i -= 1;
             }
@@ -64,7 +64,7 @@ var move = function(item) {
   };
    this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
-    this.selfI.children.item(0).style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
+    item.style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
     return this.r;
   };
    this.move = function(x, y, type) {
