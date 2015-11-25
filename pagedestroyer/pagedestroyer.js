@@ -43,7 +43,7 @@ html2canvas(document.body, {onrendered: function(canvas) {
           if (box.left < (e.x + boxSize) && (box.left + box.width) > (e.x - boxSize) && box.top < (e.y + boxSize) && (box.top + box.height) > (e.y - boxSize)) {
               //document.body.removeChild(all[i]);
               var _i = items.push(new move(all[i])) - 1;
-              item[_i].vSet(2);
+              items[_i].vSet(2);
               //i -= 1;
             }
           }
