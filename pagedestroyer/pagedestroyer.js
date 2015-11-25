@@ -53,6 +53,9 @@ html2canvas(document.body, {onrendered: function(canvas) {
   }
 });
 var move = function(item) {
+  this.data = {
+    'vLoss': .2,
+  };
   this.tick = function() {
     this.vx = this.vx- this.data.vLoss;
     this.vy = this.vy- this.data.vLoss;
