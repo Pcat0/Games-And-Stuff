@@ -8,9 +8,9 @@ document.body.style.margin = '0px';
 var items = [];
 var tool = 'hammer';
 var gravity = .5;
-var fileref=document.createElement('script');fileref.setAttribute("type","text/javascript");fileref.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js');
-var fileref2=document.createElement('script');fileref2.setAttribute("type","text/javascript");fileref2.setAttribute("src", 'https://Pcat0.github.io/utilities/keyCodes.js');
-document.body.appendChild(fileref);
+var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
+LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true);
+LOADJS('keyCodes');
 fileref.onload = function(){
 html2canvas(document.body, {onrendered: function(canvas) {
   document.body.innerHTML = "";
