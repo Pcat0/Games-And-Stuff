@@ -6,12 +6,11 @@ var blockX = Math.ceil(width / 50);
 var blockY = Math.ceil(height / 50);
 document.body.style.margin = '0px';
 var items = [];
-
 var fileref=document.createElement('script');
 fileref.setAttribute("type","text/javascript");
 fileref.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js');
 document.body.appendChild(fileref);
-
+fileref.onload = function(){
 html2canvas(document.body, {onrendered: function(canvas) {
   document.body.innerHTML = "";
   document.body.style.backgroundColor = 'lightgrey';
@@ -32,7 +31,7 @@ html2canvas(document.body, {onrendered: function(canvas) {
       y += blockY;
       var boxSize = 30;
       var all;
-      setInterval(function(){items.forEach(function(a){a.tick()})}, 1);
+      setInterval(function(){items.forEach(function(a){a.tick()})}, 5);
       onclick = function(e) {
         var i = 0;
         var all = document.getElementsByTagName("canvas");
@@ -43,7 +42,8 @@ html2canvas(document.body, {onrendered: function(canvas) {
           if (box.left < (e.x + boxSize) && (box.left + box.width) > (e.x - boxSize) && box.top < (e.y + boxSize) && (box.top + box.height) > (e.y - boxSize)) {
               //document.body.removeChild(all[i]);
               var _i = items.push(new move(all[i])) - 1;
-              items[_i].vSet(2);
+              items[_i].setUp();
+              items[_i].vSet(.1);
               //i -= 1;
             }
           }
@@ -52,6 +52,7 @@ html2canvas(document.body, {onrendered: function(canvas) {
     }
   }
 });
+};
 var move = function(item) {
   this.x = 0;
   this.y = 0;
@@ -59,7 +60,7 @@ var move = function(item) {
   this.vx = 0;
   this.vy = 0;
   this.data = {
-    'vLoss': .2,
+    'vLoss': 0,
   };
   this.tick = function() {
     this.vx = this.vx- this.data.vLoss;
@@ -69,18 +70,20 @@ var move = function(item) {
   this.vSet = function(power) {
     this.vx += power*Math.cos(this.r*0.0174533);
     this.vy += power*Math.sin(this.r*0.0174533);
-  };
+   };
    this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
     item.style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
     return this.r;
-  };
+   };
+   this.setUp = function(){
+     this.x = parseInt(item.style.left.split('p')[0]);
+     this.y = parseInt(item.style.top.split('p')[0]);
+   };
    this.move = function(x, y, type) {
     this.x = (type) ? (this.x + x): x;
     this.y = (type) ? (this.y + y): y;
     item.style.top = this.y + 'px';
     item.style.left = this.x + 'px';
   };
-  
-  
 };
