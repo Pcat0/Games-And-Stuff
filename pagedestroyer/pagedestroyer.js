@@ -7,9 +7,8 @@ var blockY = Math.ceil(height / 50);
 document.body.style.margin = '0px';
 var items = [];
 var tool = 'hammer';
-var fileref=document.createElement('script');
-fileref.setAttribute("type","text/javascript");
-fileref.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js');
+var gravity = .5;
+var fileref=document.createElement('script');fileref.setAttribute("type","text/javascript");fileref.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js');
 document.body.appendChild(fileref);
 fileref.onload = function(){
 html2canvas(document.body, {onrendered: function(canvas) {
@@ -64,12 +63,11 @@ var move = function(item) {
   this.vx = 0;
   this.vy = 0;
   this.data = {
-    'vLoss': 0,
-    'gravity':.5
+    'vLoss': 0
   };
   this.tick = function() {
     this.vx = this.vx- this.data.vLoss;
-    this.vy = this.vy- this.data.vLoss + this.data.gravity;
+    this.vy = this.vy- this.data.vLoss + gravity;
     this.move(this.vx, this.vy, true);
   };
   this.vSet = function(power) {
