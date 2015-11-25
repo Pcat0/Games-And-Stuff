@@ -41,10 +41,11 @@ html2canvas(document.body, {onrendered: function(canvas) {
           var box = all[i].getBoundingClientRect();
           if (box.left < (e.x + boxSize) && (box.left + box.width) > (e.x - boxSize) && box.top < (e.y + boxSize) && (box.top + box.height) > (e.y - boxSize)) {
               //document.body.removeChild(all[i]);
+              all[i].style.zIndex = '9001';
               var _i = items.push(new move(all[i])) - 1;
               items[_i].setUp();
-              items[_i].vSet(.1);
-              //i -= 1;
+              items[_i].r = Math.atan2(box.top - e.y,box.left - e.x) * 180 / Math.PI;
+              items[_i].vSet(.5);
             }
           }
         }
@@ -61,10 +62,11 @@ var move = function(item) {
   this.vy = 0;
   this.data = {
     'vLoss': 0,
+    'gravity':.0001
   };
   this.tick = function() {
     this.vx = this.vx- this.data.vLoss;
-    this.vy = this.vy- this.data.vLoss;
+    this.vy = this.vy- this.data.vLoss + this.data.gravity;
     this.move(this.vx, this.vy, true);
   };
   this.vSet = function(power) {
@@ -85,5 +87,9 @@ var move = function(item) {
     this.y = (type) ? (this.y + y): y;
     item.style.top = this.y + 'px';
     item.style.left = this.x + 'px';
+    if (this.x < 0){this.x = 0; this.vx = 0;}
+    if (this.y < 0){this.y = 0; this.vy = 0;}
+    if (this.x > width){this.x = width; this.vx = 0;}
+    if (this.y > height){this.y = height; this.vy = 0;}
   };
 };
