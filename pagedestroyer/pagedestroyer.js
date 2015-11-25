@@ -9,7 +9,7 @@ var items = [];
 var tool = 'hammer';
 var gravity = .5;
 var fileref=document.createElement('script');fileref.setAttribute("type","text/javascript");fileref.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js');
-var fileref=document.createElement('script');fileref.setAttribute("type","text/javascript");fileref.setAttribute("src", 'https://Pcat0.github.io/utilities/keyCodes.js');
+var fileref2=document.createElement('script');fileref2.setAttribute("type","text/javascript");fileref2.setAttribute("src", 'https://Pcat0.github.io/utilities/keyCodes.js');
 document.body.appendChild(fileref);
 fileref.onload = function(){
 html2canvas(document.body, {onrendered: function(canvas) {
