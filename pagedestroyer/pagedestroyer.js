@@ -46,3 +46,4 @@ html2canvas(document.body, {onrendered: function(canvas) {
     }
   }
 });
+var move(item) {
