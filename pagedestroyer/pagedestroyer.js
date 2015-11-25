@@ -37,7 +37,7 @@ html2canvas(document.body, {onrendered: function(canvas) {
         if (typeof all[i] !== 'undefined') {
           var box = all[i].getBoundingClientRect();
           if (box.left < (e.x + boxSize) && (box.left + box.width) > (e.x - boxSize) && box.top < (e.y + boxSize) && (box.top + box.height) > (e.y - boxSize)) {
-              document.body.removeChild(all[i]);
+              //document.body.removeChild(all[i]);
               i -= 1;
             }
           }
@@ -64,8 +64,8 @@ var move = function(item) {
    this.move = function(x, y, type) {
     this.x = (type) ? (this.x + x): x;
     this.y = (type) ? (this.y + y): y;
-    this.selfI.style.top = this.y + 'px';
-    this.selfI.style.left = this.x + 'px';
+    item.style.top = this.y + 'px';
+    item.style.left = this.x + 'px';
   };
   
   
