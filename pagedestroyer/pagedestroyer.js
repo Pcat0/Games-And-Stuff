@@ -46,4 +46,27 @@ html2canvas(document.body, {onrendered: function(canvas) {
     }
   }
 });
-var move(item) {
+var move = function(item) {
+  this.tick = function() {
+    this.vx = this.vx- this.data.vLoss;
+    this.vy = this.vy- this.data.vLoss;
+    this.move(this.vx, this.vy, true);
+  };
+  this.vSet = function(power) {
+    this.vx += power*Math.cos(this.r*0.0174533);
+    this.vy += power*Math.sin(this.r*0.0174533);
+  };
+   this.rotate = function(r, type) {
+    this.r = (type) ? (this.r + r): r;
+    this.selfI.children.item(0).style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
+    return this.r;
+  };
+   this.move = function(x, y, type) {
+    this.x = (type) ? (this.x + x): x;
+    this.y = (type) ? (this.y + y): y;
+    this.selfI.style.top = this.y + 'px';
+    this.selfI.style.left = this.x + 'px';
+  };
+  
+  
+};
