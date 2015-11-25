@@ -62,7 +62,7 @@ var move = function(item) {
   this.vy = 0;
   this.data = {
     'vLoss': 0,
-    'gravity':.0001
+    'gravity':.0005
   };
   this.tick = function() {
     this.vx = this.vx- this.data.vLoss;
