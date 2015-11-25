@@ -46,7 +46,7 @@ html2canvas(document.body, {onrendered: function(canvas) {
             var _i = items.push(new move(all[i])) - 1;
             items[_i].setUp();
             items[_i].r = Math.atan2(box.top - e.y,box.left - e.x) * 180 / Math.PI;
-            items[_i].vSet(.5);
+            items[_i].vSet(2);
           }
         }
       }
