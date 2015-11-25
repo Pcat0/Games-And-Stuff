@@ -5,7 +5,6 @@ var width = screen.width;
 var blockX = Math.ceil(width / 50);
 var blockY = Math.ceil(height / 50);
 document.body.style.margin = '0px';
-loadScript("https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js", onload());
 var fileref=document.createElement('script');
 fileref.setAttribute("type","text/javascript");
 fileref.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js');
