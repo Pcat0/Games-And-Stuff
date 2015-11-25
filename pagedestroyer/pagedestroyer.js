@@ -8,7 +8,7 @@ document.body.style.margin = '0px';
 var fileref=document.createElement('script');
 fileref.setAttribute("type","text/javascript");
 fileref.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js');
-
+document.body.appendChild(fileref)
 html2canvas(document.body, {onrendered: function(canvas) {
   document.body.innerHTML = "";
     while (y < height) {
@@ -35,7 +35,7 @@ html2canvas(document.body, {onrendered: function(canvas) {
         i++;
         if (typeof all[i] !== 'undefined') {
           var box = all[i].getBoundingClientRect();
-          if (box.left < (e.pageX + boxSize) && (box.left + box.width) > (e.pageX - boxSize) && box.top < (e.pageY + boxSize) && (box.top + box.height) > (e.pageY - boxSize)) {
+          if (box.left < (e.x + boxSize) && (box.left + box.width) > (e.x - boxSize) && box.top < (e.y + boxSize) && (box.top + box.height) > (e.y - boxSize)) {
               document.body.removeChild(all[i]);
               i -= 1;
             }
@@ -45,5 +45,3 @@ html2canvas(document.body, {onrendered: function(canvas) {
     }
   }
 });
-
-//<script src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'></script>
