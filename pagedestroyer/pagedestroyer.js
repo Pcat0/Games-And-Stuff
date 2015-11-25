@@ -43,7 +43,6 @@ html2canvas(document.body, {onrendered: function(canvas) {
     var i = 0;
     var all = document.getElementsByTagName("canvas");
       while (i < all.length) {
-      i++;
       if (typeof all[i] !== 'undefined') {
         var box = all[i].getBoundingClientRect();
         if (box.left < (e.x + boxSize) && (box.left + box.width) > (e.x - boxSize) && box.top < (e.y + boxSize) && (box.top + box.height) > (e.y - boxSize)) {
@@ -56,7 +55,9 @@ html2canvas(document.body, {onrendered: function(canvas) {
               items[_i].vSet(6);
             }
           }
+          
         }
+      i++;
       }
     }
   }
