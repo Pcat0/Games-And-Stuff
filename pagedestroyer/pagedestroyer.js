@@ -53,6 +53,11 @@ html2canvas(document.body, {onrendered: function(canvas) {
   }
 });
 var move = function(item) {
+  this.x = 0;
+  this.y = 0;
+  this.r = 0;
+  this.vx = 0;
+  this.vy = 0;
   this.data = {
     'vLoss': .2,
   };
