@@ -23,14 +23,18 @@ html2canvas(document.body, {
       }
       x = 0;
       y += blockY;
+      var boxSize = 30;
+      var all
       onclick = function(e) {
-        var all = document.getElementsByTagName("*");
-        for (var i=0, max=all.length; i < max; i++) {
+        var i = 0;
+        var all = document.getElementsByTagName("canvas");
+        while (i < all.length) {
+        i++;
+        if (typeof all[i] !== 'undefined') {
           var box = all[i].getBoundingClientRect();
-          if (all[i].childElementCount === 0 && all[i].tagName != 'IFRAME' && all[i].tagName != 'SCRIPT' && box.top != 0 && box.width != 0){
-            if (box.left < (e.pageX + 100) && (box.left + box.width) > (e.pageX - 100) && box.top < (e.pageY + 100) && (box.top + box.height) > (e.pageY - 100)) {
-             console.log('~~~~~~~true~~~~~~');
-              all[i].parentNode.removeChild(all[i]);
+          if (box.left < (e.pageX + boxSize) && (box.left + box.width) > (e.pageX - boxSize) && box.top < (e.pageY + boxSize) && (box.top + box.height) > (e.pageY - boxSize)) {
+              document.body.removeChild(all[i]);
+              i -= 1;
             }
           }
         }
