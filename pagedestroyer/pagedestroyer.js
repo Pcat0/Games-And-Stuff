@@ -21,10 +21,9 @@ var updateStats = function(){
 updateStats();
 s.onload = function(){
 LOADJS('keyCodes', false, function() {onkeydown = function(e){
-  if(keyCodes[e.keyCode] === 'h'){tool = 'hammer'; boxSize = 30;}
-  if(keyCodes[e.keyCode] === 'b'){tool = 'bomb'; boxSize = 60;}
-  if(keyCodes[e.keyCode] === 'g'){gravity = (gravity === 0) ? .5: 0;}
-  updateStats();
+  if(keyCodes[e.keyCode] === 'h'){tool = 'hammer'; boxSize = 30;updateStats();}
+  if(keyCodes[e.keyCode] === 'b'){tool = 'bomb'; boxSize = 60;updateStats();}
+  if(keyCodes[e.keyCode] === 'g'){gravity = (gravity === 0) ? .5: 0;updateStats();}
 }});
 LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, function(){html2canvas(document.body, {onrendered: function(canvas) {
   document.body.innerHTML = "";
