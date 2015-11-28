@@ -8,15 +8,9 @@ document.body.style.margin = '0px';
 var items = [];
 var tool = 'hammer';
 var gravity = .5;
-/*
-var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
-s.onload = function(){
-  LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, onLoad());
-  LOADJS('keyCodes');
-}
-*/
-var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js');document.body.appendChild(s);
-s.onload = function(){
+
+//var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js');document.body.appendChild(s);
+var onload = function(){
 html2canvas(document.body, {onrendered: function(canvas) {
   document.body.innerHTML = "";
   document.body.style.backgroundColor = 'lightgrey';
@@ -101,3 +95,9 @@ var move = function(item) {
     if (this.y > height){this.y = height; this.vy = 0;}
   };
 };
+
+var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
+s.onload = function(){
+  LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, onLoad());
+  LOADJS('keyCodes');
+}
