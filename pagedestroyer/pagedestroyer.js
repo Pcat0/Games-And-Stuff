@@ -16,7 +16,7 @@ stats.style.right= '5px';
 stats.style.bottom= '5px';
 stats.style.position= 'fixed';
 var updateStats = function(){
-  stats.innerHTM L= 'Gravity: ' + gravity * 2 + '</br>' + 'Tool: ' + tool;
+  stats.innerHTML= 'Gravity: ' + gravity * 2 + '</br>' + 'Tool: ' + tool;
 }
 updateStats();
 s.onload = function(){
