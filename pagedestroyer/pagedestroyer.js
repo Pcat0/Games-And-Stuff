@@ -13,9 +13,9 @@ var boxSize = 30;
 var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
 s.onload = function(){
 LOADJS('keyCodes', false, function() {onkeydown = function(e){
-  if(keyCodes[e.keyCode] === 'h'){tool = 'hammer';boxSize = 30;}
-  if(keyCodes[e.keyCode] === 'b'){tool = 'bomb';boxSize = 60;}
-  if(keyCodes[e.keyCode] === 'g'){gravity = (gravity =! 0) ? 0 : .5;}
+  if(keyCodes[e.keyCode] === 'h'){tool = 'hammer'; boxSize = 30;}
+  if(keyCodes[e.keyCode] === 'b'){tool = 'bomb'; boxSize = 60;}
+  if(keyCodes[e.keyCode] === 'g'){gravity = (gravity === 0) ? .5: 0;}
 }});
 LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, function(){html2canvas(document.body, {onrendered: function(canvas) {
   document.body.innerHTML = "";
@@ -53,8 +53,10 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
             if (tool = 'hammer'){
               items[_i].vSet(6);
             }
+            if (tool = 'bomb'){
+              items[_i].vSet(14);
+            }
           }
-          
         }
       i++;
       }
