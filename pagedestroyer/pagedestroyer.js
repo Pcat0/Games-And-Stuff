@@ -50,10 +50,10 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
             var _i = items.push(new move(all[i])) - 1;
             items[_i].setUp();
             items[_i].r = Math.atan2(box.top - e.y,box.left - e.x) * 180 / Math.PI;
-            if (tool = 'hammer'){
+            if (tool == 'hammer'){
               items[_i].vSet(6);
             }
-            if (tool = 'bomb'){
+            if (tool == 'bomb'){
               items[_i].vSet(14);
             }
           }
