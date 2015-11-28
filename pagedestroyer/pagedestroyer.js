@@ -60,7 +60,8 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
       }
     }
   }
-});});}
+});});
+}
 var move = function(item) {
   this.x = 0;
   this.y = 0;
