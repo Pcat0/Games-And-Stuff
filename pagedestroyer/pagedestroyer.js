@@ -10,7 +10,10 @@ var tool = 'hammer';
 var gravity = .5;
 
 //var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js');document.body.appendChild(s);
-var onload = function(){
+var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
+s.onload = function(){
+LOADJS('keyCodes');
+LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, function(){
 html2canvas(document.body, {onrendered: function(canvas) {
   document.body.innerHTML = "";
   document.body.style.backgroundColor = 'lightgrey';
@@ -56,7 +59,7 @@ html2canvas(document.body, {onrendered: function(canvas) {
     }
   }
 });
-};
+});
 var move = function(item) {
   this.x = 0;
   this.y = 0;
@@ -96,8 +99,4 @@ var move = function(item) {
   };
 };
 
-var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
-s.onload = function(){
-  LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, function(){onLoad()});
-  LOADJS('keyCodes');
-}
+
