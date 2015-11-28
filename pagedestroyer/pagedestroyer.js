@@ -11,11 +11,20 @@ var gravity = .5;
 var boxSize = 30;
 //var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js');document.body.appendChild(s);
 var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
+var stats = document.createElement('div');
+stats.style.right= '5px';
+stats.style.bottom= '5px';
+stats.style.position= 'fixed';
+var updateStats = function(){
+  stats.innerHTM L= 'Gravity: ' + gravity * 2 + '</br>' + 'Tool: ' + tool;
+}
+updateStats();
 s.onload = function(){
 LOADJS('keyCodes', false, function() {onkeydown = function(e){
   if(keyCodes[e.keyCode] === 'h'){tool = 'hammer'; boxSize = 30;}
   if(keyCodes[e.keyCode] === 'b'){tool = 'bomb'; boxSize = 60;}
   if(keyCodes[e.keyCode] === 'g'){gravity = (gravity === 0) ? .5: 0;}
+  updateStats();
 }});
 LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, function(){html2canvas(document.body, {onrendered: function(canvas) {
   document.body.innerHTML = "";
@@ -38,7 +47,8 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
     }
     var all;
     setInterval(function(){items.forEach(function(a){a.tick()})}, 5);
-    alert('Page Destroyer loaded.')
+    alert('Page Destroyer loaded.');
+    document.body.appendChild(stats);
     onclick = function(e) {
     var i = 0;
     var all = document.getElementsByTagName("canvas");
