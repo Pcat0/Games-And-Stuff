@@ -8,13 +8,16 @@ document.body.style.margin = '0px';
 var items = [];
 var tool = 'hammer';
 var gravity = .5;
-
+var boxSize = 30;
 //var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js');document.body.appendChild(s);
 var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
 s.onload = function(){
-LOADJS('keyCodes');
-LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, function(){
-html2canvas(document.body, {onrendered: function(canvas) {
+LOADJS('keyCodes', false, function() {onkeydown = function(e){
+  if(keyCodes[e.keyCode] === 'h'){tool = 'hammer';boxSize = 30;}
+  if(keyCodes[e.keyCode] === 'b'){tool = 'bomb';boxSize = 60;}
+  if(keyCodes[e.keyCode] === 'g'){gravity = (gravity =! 0) ? 0 : .5;}
+}});
+LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, function(){html2canvas(document.body, {onrendered: function(canvas) {
   document.body.innerHTML = "";
   document.body.style.backgroundColor = 'lightgrey';
     while (y < height) {
@@ -33,7 +36,6 @@ html2canvas(document.body, {onrendered: function(canvas) {
       x = 0;
       y += blockY;
     }
-    var boxSize = 30;
     var all;
     setInterval(function(){items.forEach(function(a){a.tick()})}, 5);
     onclick = function(e) {
@@ -58,9 +60,7 @@ html2canvas(document.body, {onrendered: function(canvas) {
       }
     }
   }
-});
-});
-}
+});});}
 var move = function(item) {
   this.x = 0;
   this.y = 0;
