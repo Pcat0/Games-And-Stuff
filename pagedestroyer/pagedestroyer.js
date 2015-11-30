@@ -1,6 +1,8 @@
 var x = 0;
 var y = 0;
 var height = screen.height;
+//onclick = function(e) {document.body.removeChild(document.getElementById(Math.floor(e.pageX/blockX) + ',' + Math.floor(e.pageY/blockY)))}
+
 var width = screen.width;
 var blockX = Math.ceil(width / 50);
 var blockY = Math.ceil(height / 50);
@@ -9,7 +11,6 @@ var items = [];
 var tool = 'hammer';
 var gravity = .5;
 var boxSize = 30;
-//var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js');document.body.appendChild(s);
 var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
 var stats = document.createElement('div');
 stats.style.right= '5px';
