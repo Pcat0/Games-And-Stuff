@@ -1,18 +1,18 @@
 var x = 0;
 var y = 0;
 var height = screen.height;
-//onclick = function(e) {document.body.removeChild(document.getElementById(Math.floor(e.pageX/blockX) + ',' + Math.floor(e.pageY/blockY)))}
-
 var width = screen.width;
 var blockX = Math.ceil(width / 50);
 var blockY = Math.ceil(height / 50);
-document.body.style.margin = '0px';
 var items = [];
+var index = {};
 var tool = 'hammer';
 var gravity = .5;
 var boxSize = 30;
+var target;
 var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
 var stats = document.createElement('div');
+document.body.style.margin = '0px';
 stats.style.right= '5px';
 stats.style.bottom= '5px';
 stats.style.position= 'fixed';
@@ -29,36 +29,45 @@ LOADJS('keyCodes', false, function() {onkeydown = function(e){
 LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, function(){html2canvas(document.body, {onrendered: function(canvas) {
   document.body.innerHTML = "";
   document.body.style.backgroundColor = 'lightgrey';
-    while (y < height) {
-      while (x < width){
+    while ((y + 1) * blockY < height) {
+      while ((x + 1) * blockX < width){
         ctx = canvas.getContext("2d");
         var squ = document.createElement('canvas');
         squ.width = blockX;
         squ.height = blockY;
-        squ.style.top = y + 'px';
-        squ.style.left = x + 'px';
+        squ.style.top = y * blockY + 'px';
+        squ.style.left = x * blockX + 'px';
         squ.style.position = 'absolute';
-        squ.getContext("2d").putImageData(ctx.getImageData(x,y,x+blockX,y+blockY), 0, 0);
+        squ.id = x + ',' + y;
+        squ.getContext("2d").putImageData(ctx.getImageData(x * blockX,y * blockY,(x + 1) * blockX,(y + 1) * blockY), 0, 0);
         document.body.appendChild(squ);
-        x += blockX;
+        x++;
       }
       x = 0;
-      y += blockY;
+      y++;
     }
     var all;
     setInterval(function(){items.forEach(function(a){a.tick()})}, 5);
-    alert('Page Destroyer loaded.');
+    //alert('Page Destroyer loaded.');
     document.body.appendChild(stats);
     onclick = function(e) {
     var i = 0;
     var all = document.getElementsByTagName("canvas");
-      while (i < all.length) {
+    if (tool == 'repair') {
+      var target = items[index[Math.floor(e.pageX/blockX) + ',' + Math.floor(e.pageY/blockY)]];
+      console.log(index[Math.floor(e.pageX/blockX) + ',' + Math.floor(e.pageY/blockY)]);
+      target.r = Math.atan2(target.x - e.pageY,target.y - e.pageX) * 180 / Math.PI;
+      target.vSet((target.r == Math.abs(target.r)) ? -6 : 6);
+    }
+    while (i < all.length && (tool == 'hammer' || tool == 'bomb')) {
       if (typeof all[i] !== 'undefined') {
         var box = all[i].getBoundingClientRect();
         if (box.left < (e.x + boxSize) && (box.left + box.width) > (e.x - boxSize) && box.top < (e.y + boxSize) && (box.top + box.height) > (e.y - boxSize)) {
             //document.body.removeChild(all[i]);
             all[i].style.zIndex = '9001';
             var _i = items.push(new move(all[i])) - 1;
+            index[all[i].id] = _i;
+            items[_i] = new move(all[i]);
             items[_i].setUp();
             items[_i].r = Math.atan2(box.top - e.y,box.left - e.x) * 180 / Math.PI;
             if (tool == 'hammer'){
@@ -113,5 +122,3 @@ var move = function(item) {
     if (this.y > height){this.y = height; this.vy = 0;}
   };
 };
-
-
