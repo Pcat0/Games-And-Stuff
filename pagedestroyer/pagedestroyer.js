@@ -53,7 +53,7 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
     alert('Page Destroyer loaded.');
     document.body.appendChild(stats);
     onmousedown = function(e) {
-      if (repair == 'repair') {
+      if (tool == 'repair') {
         var repair[0] = true;
         var repair[1] = e.pageX;
         var repair[2] = e.pageY;
