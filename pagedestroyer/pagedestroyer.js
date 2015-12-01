@@ -122,3 +122,4 @@ var move = function(item) {
     if (this.y > height){this.y = height; this.vy = 0;}
   };
 };
+}
