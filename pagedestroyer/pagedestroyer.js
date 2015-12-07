@@ -1,4 +1,4 @@
-if (confirm('Page Destroyer is ready to load (this will take a second)') = true){
+if (confirm('Page Destroyer is ready to load (this will take a second)') == true){
 var x = 0;
 var y = 0;
 var height = screen.height;
