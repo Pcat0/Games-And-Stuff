@@ -1,3 +1,4 @@
+if (confirm('Page Destroyer is ready to load (this will take a second)') = true){
 var x = 0;
 var y = 0;
 var height = screen.height;
@@ -128,3 +129,4 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-69409530-2', 'auto');
 ga('send', 'pageview');
+}
