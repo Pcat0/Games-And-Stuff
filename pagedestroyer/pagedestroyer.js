@@ -26,6 +26,7 @@ LOADJS('keyCodes', false, function() {onkeydown = function(e){
   if(keyCodes[e.keyCode] === 'h'){tool = 'hammer'; boxSize = 30;updateStats();}
   if(keyCodes[e.keyCode] === 'b'){tool = 'bomb'; boxSize = 60;updateStats();}
   if(keyCodes[e.keyCode] === 'g'){gravity = (gravity === 0) ? .5: 0;updateStats();}
+  if(keyCodes[e.keyCode] === 'k'){alert('Hotkeys:\n"h" -Select tool hammer.\n"b" -Select tool bomb.\n"g" -Toggle gravity.\n"k" -Hotkeys help.')}
 }});
 LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, function(){html2canvas(document.body, {onrendered: function(canvas) {
   document.body.innerHTML = "";
