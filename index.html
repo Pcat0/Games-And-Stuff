@@ -145,6 +145,9 @@
     </div>
     <button class="toggle-overlay"></button>
     <script>
+      window.onfocus = function () {document.title = "Thank You"; setTimeout(function(){document.title = "Games & Stuff";},1000)}; window.onblur = function () {document.title = "Come Back!";}
+    </script>
+    <script>
       document.querySelector(".toggle-overlay").onclick = 
         () => Array.prototype.indexOf.call(document.querySelector(".head").classList, "fade") != -1
           ? (document.querySelector(".head").classList.toggle("fade"), document.querySelector("iframe").style.top = '10vh',document.querySelector("iframe").style.height = '90vh', setTimeout(
