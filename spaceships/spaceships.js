@@ -70,10 +70,10 @@ var object = function() {
     return this.r;
   };
   this.vSet = function(power) {
-    if (Math.sqrt(Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2) + Math.pow(power*Math.sin(this.r*0.0174533) + this.vy, 2)) < this.data.topSpeed && Math.sqrt(Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2) + Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2)) > 0 - this.data.topSpeed) {
+    //if (Math.sqrt(Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2) + Math.pow(power*Math.sin(this.r*0.0174533) + this.vy, 2)) < this.data.topSpeed && Math.sqrt(Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2) + Math.pow(power*Math.cos(this.r*0.0174533) + this.vx, 2)) > 0 - this.data.topSpeed) {
       this.vx += power*Math.cos(this.r*0.0174533);
       this.vy += power*Math.sin(this.r*0.0174533);
-    }
+    //}
   };
   this.tick = function() {
     this.vx = this.vx- this.data.vLoss;
