@@ -7,5 +7,6 @@ var hacks = function(){
     setInterval(function(){Runner.instance_.tRex.yPos = height},1);
     Runner.instance_.tRex.startJump = function(){}
   }
+  this.immortality = function(){
   this.flight();
 }
