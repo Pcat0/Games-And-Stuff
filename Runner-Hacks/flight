@@ -1,0 +1,6 @@
+height = 93;
+/*Runner.keycodes = {RESTART:{}, JUMP:{}, DUCK:{}}*/;
+Keycodes = {'38':function(){height -= 6},'40':function(){height += 6}};
+document.addEventListener('keydown', function(k){Keycodes[String(k.keyCode)]()});
+setInterval(function(){Runner.instance_.tRex.yPos = height},1);
+Runner.instance_.tRex.startJump = function(){};
