@@ -2,10 +2,70 @@
 <html>
     <head>
       <style>
-        
+        @font-face {
+          font-family: "bau";
+          src: url("//storage.googleapis.com/urbit-extra/bau.woff");
+          font-weight: 400;
+          font-style: normal;
+        }
+        * {
+          font-family: "bau";
+          font-weight: 400;
+          font-style: normal;
+          box-sizing: border-box;
+        }
+        body {
+          background: #eee;
+        }
+        e-card {
+          display: block;
+          float: left;
+          width: 15vw;
+          height: 20vw;
+          border-radius: 2px;
+        }
+        e-card, e-card > img {
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+        e-card::hover {
+          box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        }
+        e-card > img {
+          width: 5vw;
+          height: 5vw;
+          border-radius: 2.5vw;
+          position: absolute;
+          top: 2.5vw;
+          left: 5vw;
+        }
+        e-card > .about {
+          width: 12.5vw;
+          height: 5vw;
+          position: absolute;
+          top: 10vw;
+          left: 1.25vw;
+        }
       </style>
     </head>
     <body>
-      
+      <e-card>
+        <img src="" />
+        <div class="about">
+          Name: Patrick<br />
+          Job: everything<br />
+          Wage: Nothing<br />
+          ~ hey patrick, put a personal message here<br />
+          - hans
+        </div>
+      </e-card>
+      <e-card>
+        <img src="https://lh3.googleusercontent.com/-Lhqj4pR9KmI/VpXTZyMomnI/AAAAAAAAALE/cNALqMqLz8Q/w140-h140-p/1163%2B%25281%2529.png" />
+        <div class="about">
+          Name: Hans<br />
+          Job: Web design prettifier, js nerd, spigot plugin dev<br />
+          Wage: Cookies, if he's lucky<br />
+          ~ It's not the years in your life, it's the life in your years
+        </div>
+      </e-card>
     </body>
 </html>
