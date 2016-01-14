@@ -1,3 +1,4 @@
+var box = document.createElement('span');box.style.border = '1px solid black'; box.style.position='fixed'; box.style.top='0px';box.style.left='0px';box.innerHTML = 'Hacks:</br><input id="flightBox" type="checkbox" style="visibility:visible;">flight Hack</br><input id="immortalityBox" type="checkbox" style="visibility:visible">immortality Hack</br><button style="background: rgb(135, 139, 146);border: 0;border-radius: 2px;box-sizing: border-box;color: #fff;cursor: pointer;float: left;font-size: .875em;height: 36px;margin: 10px;padding: 3px 24px;" onclick="console.log(1)">Load Hacks</button>';document.body.appendChild(box);
 this.flight = function(){
   height = 93;
   /*Runner.keycodes = {RESTART:{}, JUMP:{}, DUCK:{}}*/;
@@ -9,5 +10,4 @@ this.flight = function(){
 this.immortality = function(){
   Runner.instance_.gameOver = function(){}
 }
-
-
+    
