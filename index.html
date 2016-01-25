@@ -172,7 +172,7 @@
             (() => (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.left = '10vw',document.querySelector("iframe").style.width = '90vw')), 200))
           : (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.left = '0vh',document.querySelector("iframe").style.height = '100vh', setTimeout(
             (() => (document.querySelector(".head").classList.toggle("fade"),document.querySelector("iframe").style.top = '0vw',document.querySelector("iframe").style.width = '100vw')), 200));
-      Array.prototype.map.call(document.querySelectorAll(".iframe-dirswap a"),
+      Array.prototype.map.call(document.querySelectorAll(".iframe-dirswap .linkable"),
         e => e.onclick = (() => (document.querySelector("iframe").src = e.href, false)));
     </script>
     <script>
