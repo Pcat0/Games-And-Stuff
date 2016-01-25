@@ -149,6 +149,7 @@
       //fullTitle = 'Games & Stuff';
       //a = 1;i = 1;title = setInterval(function(){document.title = fullTitle.substr(0, i);i += a;a = (i == 1) ? 1: a; a = (i == fullTitle.length) ? -1: a;}, 1000)
       window.onfocus = function() {
+        if (document.title == "Come Back!")
         document.title = "Thank You";
         setTimeout(function() {
           if (document.hasFocus())
