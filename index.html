@@ -118,28 +118,28 @@
       <div class="sidebar">
         <ul class="iframe-dirswap">
           <li>
-            <button class="linkable" href="/home">Home</button>
+            <button class="linkable" value="/home">Home</button>
           </li>
           <li>
-            <button class="linkable" href="/tic-tac-toe">Tic Tac Toe</button>
+            <button class="linkable" value="/tic-tac-toe">Tic Tac Toe</button>
           </li>
           <li>
-            <button class="linkable" href="/cookies">cookie</button>
+            <button class="linkable" value="/cookies">cookie</button>
           </li>
           <li>
-            <button class="linkable" href="/snake">snake</button>
+            <button class="linkable" value="/snake">snake</button>
           </li>
           <li>
-            <button class="linkable" href="/employees">"employees"</button>
+            <button class="linkable" value="/employees">"employees"</button>
           </li>
           <li>
-            <button class="linkable" href="http://chiizi.github.io/post-sys/">chat</button>
+            <button class="linkable" value="http://chiizi.github.io/post-sys/">chat</button>
           </li>
           <li>
             <button class="linkable" href="/spaceships">pvp asteroids</button>
           </li>
           <li>
-            <button class="linkable" href="/Bookmark-Scripts">Bookmarks</button>
+            <button class="linkable" value="/Bookmark-Scripts">Bookmarks</button>
           </li>
         </ul>
       </div>
@@ -172,8 +172,8 @@
             (() => (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.left = '10vw',document.querySelector("iframe").style.width = '90vw')), 200))
           : (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.left = '0vh',document.querySelector("iframe").style.height = '100vh', setTimeout(
             (() => (document.querySelector(".head").classList.toggle("fade"),document.querySelector("iframe").style.top = '0vw',document.querySelector("iframe").style.width = '100vw')), 200));
-      Array.prototype.map.call(document.querySelectorAll(".iframe-dirswap .linkable"),
-        e => e.onclick = (() => (document.querySelector("iframe").src = e.href, false)));
+      Array.prototype.map.call(document.querySelectorAll(".iframe-dirswap button"),
+        e => e.onclick = (() => (document.querySelector("iframe").src = e.value, false)));
     </script>
     <script>
       //google analytics
