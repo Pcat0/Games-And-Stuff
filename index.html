@@ -148,21 +148,15 @@
     <script>
       //fullTitle = 'Games & Stuff';
       //a = 1;i = 1;title = setInterval(function(){document.title = fullTitle.substr(0, i);i += a;a = (i == 1) ? 1: a; a = (i == fullTitle.length) ? -1: a;}, 1000)
-      window.onfocus = function() {
+      window.onfocus = function () {
         document.title = "Thank You";
-        setTimeout(function() {
-          if (document.hasFocus())
+        setTimeout(function(){
+          if (document.hasFocus()){
             document.title = "Games & Stuff";
-        }, 1000)
-      };
-        window.onblur = function() {
-          if (document.activeElement != document.querySelector("iframe"))
-            document.title = "Come Back!";
-        }
-        document.querySelector("iframe").onblur = function() {
-          if (!window.hasFocus()) {
-            document.title = "Come Back!";
           }
+        },1000)};
+        window.onblur = function () {
+          document.title = "Come Back!";
         }
     </script>
     <script>
