@@ -28,6 +28,7 @@
         position: absolute;
         top: 10vh;
         left: 10vw;
+        transition: top 0.2s ease-in, left 0.2s ease-in, width 0.2s ease-in, height 0.2s ease-in;
       }
       .head {
         position: absolute;
@@ -40,7 +41,7 @@
         width: 100vw;
         height: 10vh;
         line-height: 10vh;
-        transition: top 0.2s cubic-bezier(.55,0,.75,.1);
+        transition: top 0.2s ease-in;
       }
       .head.fade {
         top: -10vh;
@@ -73,7 +74,7 @@
         top: 10vh;
         left: 0;
         padding: 5px;
-        transition: left 0.2s cubic-bezier(.55,0,.75,.1);
+        transition: left 0.2s ease-in;
       }
       .sidebar.fade {
         left: -10vw;
@@ -86,7 +87,7 @@
         top: 10vh;
         left: 10vw;
         display: flex;
-        transition: opacity 0.2s cubic-bezier(.55,0,.75,.1);
+        transition: opacity 0.2s ease-in;
       }
       .overlay.fade {
         opacity: 0;
@@ -160,11 +161,11 @@
     </script>
     <script>
       document.querySelector(".toggle-overlay").onclick = 
-        () => Array.prototype.indexOf.call(document.querySelector(".head").classList, "fade") != -1
+        () => (Array.prototype.indexOf.call(document.querySelector(".head").classList, "fade") +1)
           ? (document.querySelector(".head").classList.toggle("fade"), document.querySelector("iframe").style.top = '10vh',document.querySelector("iframe").style.height = '90vh', setTimeout(
             (() => (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.left = '10vw',document.querySelector("iframe").style.width = '90vw')), 200))
-          : (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.top = '0vh',document.querySelector("iframe").style.height = '100vh', setTimeout(
-            (() => (document.querySelector(".head").classList.toggle("fade"),document.querySelector("iframe").style.left = '0vw',document.querySelector("iframe").style.width = '100vw')), 200));
+          : (document.querySelector(".sidebar").classList.toggle("fade"),document.querySelector("iframe").style.left = '0vh',document.querySelector("iframe").style.height = '100vh', setTimeout(
+            (() => (document.querySelector(".head").classList.toggle("fade"),document.querySelector("iframe").style.top = '0vw',document.querySelector("iframe").style.width = '100vw')), 200));
       Array.prototype.map.call(document.querySelectorAll(".iframe-dirswap a"),
         e => e.onclick = (() => (document.querySelector("iframe").src = e.href, false)));
     </script>
