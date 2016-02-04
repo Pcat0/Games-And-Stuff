@@ -1,3 +1,4 @@
+var entitys =  [];
 var object = function() {
   this.data = {
     'icon': undefined,
@@ -6,10 +7,10 @@ var object = function() {
     'vLoss': 0,
     'rOffset': 0,
     'maxAge': undefined,
-    'maxHelth': undefined,
+    'maxHealth': undefined,
     'text': undefined,
-    'topSpeed': undefined, 
-    'oncollision': undefined
+    'oncollision': undefined,
+    'tick': undefined
   };
   this.x = 0;
   this.y = 0;
@@ -17,7 +18,7 @@ var object = function() {
   this.vx = 0;
   this.vy = 0;
   this.age = 0;
-  this.helth = 0;
+  this.health = 0;
   this.draw = function(x, y) {
     this.x = x;
     this.y = y;
@@ -29,10 +30,10 @@ var object = function() {
     this.sprite.style.left = this.x + 'px';
     document.body.appendChild(this.sprite);
     this.sprite.innerHTML = '<img src="' + ((typeof this.data.icon == "object") ? this.data.icon[0] : this.data.icon) + '" style="height: '+this.data.sizeY+'px; width: '+this.data.sizeX+'px; transform: rotate('+this.data.rOffset+'deg);">'
-    if (this.data.text != undefined){
+    if (typeof this.data.text != undefined){
       this.sprite.innerHTML = this.sprite.innerHTML + '</br>'
       this.text = document.createElement("div");
-      this.text.innerHTML = this.data.text;
+      //this.text.innerHTML = this.data.text;
       this.sprite.appendChild(this.text);
     }
   };
@@ -64,23 +65,18 @@ var object = function() {
     this.sprite.children[0].src = this.data.icon[iconIndex];
   }
   this.tick = function() {
+    this.age++;
     this.vx = this.vx- this.data.vLoss;
     this.vy = this.vy- this.data.vLoss;
     this.move(this.vx, this.vy, true);
-    if (this.age%50 == 0) {
-      this.helth = (this.helth > 0) ? (this.helth - .1): this.helth;
-      this.helth = (this.helth < 0) ? 0: this.helth;
+    if (typeof this.data.text != 'undefined'){
+      var text = this.sprite.children.item(2).innerHTML;
+      text = text.replace("{helth}",this.health);
+      text = text.replace("{helthPercent}",((this.data.maxHelth - this.helth)/this.data.maxHelth * 100).toFixed(2));
+      text = text.replace("{maxHealth}",this.data.maxHealth);
+      this.sprite.children.item(2).innerHTML = text;
     }
-    //console.log(this.age);
-    this.age++;
-    if (this.data.text == 'helth'){
-    	this.sprite.children.item(2).innerHTML = +((this.data.maxHelth - this.helth)/this.data.maxHelth * 100).toFixed(2)  + "%"
-    }
-    if (this.helth >= this.data.maxHelth && this.data.maxHelth != undefined){
-    	return true;
-    }
-    if (this.age >= this.data.maxAge && this.data.maxAge != undefined){
-    	return true;
-    }
+    this.data.tick;
+    //this.sprite.children.item(2).innerHTML = +((this.data.maxHelth - this.helth)/this.data.maxHelth * 100).toFixed(2)  + "%"
   };
 };
