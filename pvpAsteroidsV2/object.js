@@ -21,7 +21,6 @@ var object = function() {
   this.draw = function(x, y) {
     this.x = x;
     this.y = y;
-    this.r = r;
     this.sprite = document.createElement("div");
     this.sprite.style.width = this.data.sizeX;
     this.sprite.style.height = this.data.sizeY;
