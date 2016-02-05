@@ -76,7 +76,7 @@ var object = function() {
       text = text.replace("{maxHealth}",this.data.maxHealth);
       this.sprite.children.item(2).innerHTML = text;
     }
-    if(typeof this.data.icon != 'undefined'){this.data.tick();}
+    if(typeof this.data.tick != 'undefined'){this.data.tick();}
   };
 };
 setInterval(()=>entitys.forEach((a) =>a.tick()),1)
