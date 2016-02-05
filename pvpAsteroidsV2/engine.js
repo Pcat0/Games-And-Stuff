@@ -1,4 +1,5 @@
-var entitys =  [];
+var entitys = [];
+var tick = {};
 var object = function() {
   this.data = {
     'icon': undefined,
@@ -79,4 +80,4 @@ var object = function() {
     if(typeof this.data.tick != 'undefined'){this.data.tick();}
   };
 };
-setInterval(()=>entitys.forEach((a) =>a.tick()),1)
+setInterval(()=>{entitys.forEach((a) => a.tick()), tick.forEach((a) => a())},1)
