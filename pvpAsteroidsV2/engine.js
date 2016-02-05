@@ -1,5 +1,5 @@
 var entitys = [];
-var tick = {};
+var tick = [];
 var object = function() {
   this.data = {
     'icon': undefined,
