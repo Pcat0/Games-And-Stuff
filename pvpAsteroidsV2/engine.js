@@ -72,7 +72,7 @@ var object = function() {
     if (typeof this.data.text != 'undefined'){
       var text = this.sprite.children.item(2).innerHTML;
       text = text.replace("{helth}",this.health);
-      text = text.replace("{helthPercent}",((this.data.maxHelth - this.helth)/this.data.maxHelth * 100).toFixed(2));
+      text = text.replace("{helthPercent}",((this.data.maxHealth - this.health)/this.data.maxHealth * 100).toFixed(2));
       text = text.replace("{maxHealth}",this.data.maxHealth);
       this.sprite.children.item(2).innerHTML = text;
     }
