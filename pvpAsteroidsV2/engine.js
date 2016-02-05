@@ -33,7 +33,7 @@ var object = function() {
     if (typeof this.data.text != undefined){
       this.sprite.innerHTML = this.sprite.innerHTML + '</br>'
       this.text = document.createElement("div");
-      //this.text.innerHTML = this.data.text;
+      this.text.innerHTML = this.data.text;
       this.sprite.appendChild(this.text);
     }
   };
