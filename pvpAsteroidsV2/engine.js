@@ -76,7 +76,7 @@ var object = function() {
       text = text.replace("{maxHealth}",this.data.maxHealth);
       this.sprite.children.item(2).innerHTML = text;
     }
-    this.data.tick;
-    //this.sprite.children.item(2).innerHTML = +((this.data.maxHelth - this.helth)/this.data.maxHelth * 100).toFixed(2)  + "%"
+    if(typeof this.data.icon != 'undefined'){this.data.tick();}
   };
 };
+entitys.forEach(function(a){a.tick()});
