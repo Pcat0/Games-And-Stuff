@@ -1,5 +1,5 @@
 var entitys = [];
-var tick = [];
+var tick = []; // {'funct': function(){}, 'interval': int}
 var object = function() {
   this.data = {
     'icon': undefined,
@@ -80,4 +80,5 @@ var object = function() {
     if(typeof this.data.tick != 'undefined'){this.data.tick();}
   };
 };
-setInterval(()=>{entitys.forEach((a) => a.tick()), tick.forEach((a) => a())},1)
+var age = 0;
+setInterval(()=>{entitys.forEach((a) => a.tick()), tick.forEach((a) => if(agem % a.interval == 0){a.funct()}, age++;)},1)
