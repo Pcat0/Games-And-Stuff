@@ -79,4 +79,4 @@ var object = function() {
     if(typeof this.data.icon != 'undefined'){this.data.tick();}
   };
 };
-setInterval()(()=>entitys.forEach((a) =>a.tick()),1)
+setInterval(()=>entitys.forEach((a) =>a.tick()),1)
