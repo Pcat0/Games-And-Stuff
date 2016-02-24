@@ -1,4 +1,4 @@
-var a = prompt('"crtl"+"c" to copy',format(prompt('Text to format\ninf=∞\n+/-=±\n^i=ⁱ\nroot(i)=ⁱ√'),'Text'));
+var a = prompt('"crtl"+"c" to copy',format(prompt('Text to format\ninf=∞\n+/-=±\n^i=ⁱ\nroot(i)=ⁱ√\nsq=√'),'Text'));
 function format(str){
     var ex = ['⁰','²','³','⁴','⁵','⁶','⁷','⁸','⁹'];
     (str.match(/\^([0-9]+)/g)||[]).forEach(function(a,b,c){
