@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      iframe{position:absolute; width:100%; top:0px; height: 100px;}
+      #sizer{position:absolute; width:100%; top: 100px; height: 20px; background-color:#aaaaaa;}
+      textarea{position:absolute; width:100%; top: 120px; bottom: 0px; resize: none;}
+    </style>
+  </head>
+    <body>
+        <iframe src=""></iframe>
+        <div id='sizer'></div>
+        <textarea autofocus onchange="document.getElementsByTagName('iframe')[0].src='data:text/html;base64,'+btoa(this.value)"></textarea>
+        <script>
+var mouse = {x:0, y:0};
+var flag = false;
+setInterval(function(){
+  if (flag) {
+    document.getElementsByTagName('iframe')[0].style.height = mouse.y - 10 + 'px';
+    document.getElementById('sizer').style.top = mouse.y - 10 + 'px';
+    document.getElementById('sizer').style.height = mouse.y + 10 + 'px';
+    document.getElementsByTagName('textarea')[0].style.top = mouse.y +  10 + 'px';
+  }
+}, 1);
+document.getElementById('sizer').onmousedown = (e) => flag = true;
+document.getElementById('sizer').onmouseup = (e) => flag = false;
+document.onmousemove = (e) => mouse = {x:e.pageX,y:e.pageY};
+        </script>
+    </body>
+</html>
