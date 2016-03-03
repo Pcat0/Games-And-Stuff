@@ -7,13 +7,13 @@
       iframe{position:absolute; width:100%; top:0px; height: 100px; background-color:#ffffff;}
       #cover{position:absolute; width:100%; top:0px; height: 0px;}
       #sizer{position:absolute; width:100%; top: 100px; height: 20px; background-color:#aaaaaa;}
-      textarea{position:absolute; width:100%; top: 0px; bottom: 0px; resize: none;}
-      .menu{background-color:green; height:110px; width:100px; position: absolute; left:1px; transition: 1s; top: -91px; border: 1px solid black; font-family: sans-serif;}
+      textarea{position:absolute; width:100%; top: 0px; bottom: 0px; min-height: 0px; resize: none;}
+      .menu{height:140px; width:100px; position: absolute; left:1px; transition: 1s; top: -121px; border: 1px solid black; font-family: sans-serif;}
       .menu:hover{top:0px;}
-      .button,.button-on{width:100%;height:30px; background-color:#aaaaaa; border-style: hidden; transition: .5s;}
+      .button,.button-on{background-color:#aaaaaa; opacity: 1; width:100%;height:30px; border-style: hidden; transition: .5s;}
       .button:hover,.button-on{background-color:#dddddd;}
       .button:active,.button-on{border-style: inset}
-      label{position: absolute; background-color:#4da6ff; text-align:center; bottom: 0px; width:100%; height:20px;}
+      label{background-color:#4da6ff; opacity: 0.4; color: black; position: absolute; text-align:center; bottom: 0px; width:100%; height:20px;}
     </style>
   </head>
     <body>
@@ -24,6 +24,7 @@
         <div class='menu'>
           <button id='B0' class='button' onclick="window.open('data:text/html;base64,'+btoa(document.getElementsByTagName('textarea')[0].value))">Go</button>
           <button id='B1' class='button' onclick="this.className = (this.className == 'button')? 'button-on': 'button'">Preview</button>
+          <button id='B2' class='button' onclick="this.className = (this.className == 'button')? 'button-on': 'button'">Color Code</button>
           <button id='B2' class='button' onclick="this.className = (this.className == 'button')? 'button-on': 'button'">Minify</button>
           <label>Menu</label>
         </div>
@@ -36,25 +37,25 @@
               document.getElementsByTagName('iframe')[0].style.height = mouse.y - 10 + 'px';
               document.getElementById('cover').style.height = mouse.y - 10 + 'px';
               document.getElementById('sizer').style.top = mouse.y - 10 + 'px';
-              document.getElementById('sizer').style.height = mouse.y + 10 + 'px';
               document.getElementsByTagName('textarea')[0].style.top = mouse.y +  10 + 'px';
             }
           }, 1);
           document.getElementById('B1').addEventListener("click",function(){
-              //document.getElementsByTagName('textarea')[0].onkeydown = (perview)? function(){} : (e) => document.getElementsByTagName('iframe')[0].src='data:text/html;base64,'+btoa(document.getElementsByTagName('textarea')[0].value);
             if(preview){
               document.getElementsByTagName('textarea')[0].style.top = 0 + 'px';
-              document.getElementsByTagName('textarea')[0].onkeydown = function(){};
             }else{
               document.getElementsByTagName('textarea')[0].style.top = parseInt(document.getElementById('sizer').style.top || '100') + 20 + 'px'; 
-              document.getElementsByTagName('textarea')[0].onkeydown = (e) => document.getElementsByTagName('iframe')[0].src='data:text/html;base64,'+btoa(document.getElementsByTagName('textarea')[0].value);
             }
             preview = !preview;
           });
           document.getElementById('sizer').onmousedown = (e) => flag = true;
           document.getElementById('sizer').onmouseup = (e) => {flag = false; document.getElementById('cover').style.height = 0 + 'px';}
-          //document.getElementsByTagName('textarea')[0].onkeydown = (e) => document.getElementsByTagName('iframe')[0].src='data:text/html;base64,'+btoa(document.getElementsByTagName('textarea')[0].value);
           document.onmousemove = (e) => mouse = {x:e.pageX,y:e.pageY};
+          document.getElementsByTagName('textarea')[0].onkeydown = function(){
+            if(preview){
+              document.getElementsByTagName('iframe')[0].src='data:text/html;base64,'+btoa(document.getElementsByTagName('textarea')[0].value);
+            }
+          }
         </script>
     </body>
 </html>
