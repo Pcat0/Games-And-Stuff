@@ -4,6 +4,7 @@
   </head>
   <body>
   <div id='console' style='background-color:rgba(60,60,60,.1); position:fixed; width: 500px; height: 160px; left:50px; top:50px;'>
+     <div id='mover' style='position: absolute; width:10px; height:10px; resize:none; top:0px; background-color:gray'></div>
      <div id='log'>
        <span class='log'></span>
        </br><span class='log'></span>
@@ -37,10 +38,10 @@
       }
       return true;
     }
-    document.getElementById('console').onmousedown = function(e){
-       drag.int = setInterval(function(){document.getElementById('console').style.top = mouse.y+'px';document.getElementById('console').style.left = mouse.x+'px';},1);
+    document.getElementById('mover').onmousedown = function(e){
+       drag.int = setInterval(function(){document.getElementById('console').style.top = mouse.y-5+'px';document.getElementById('console').style.left = mouse.x-5+'px';},1);
     }
-    document.getElementById('console').onmouseup = (e)=> clearInterval(drag.int);
+    document.onmouseup = (e) => clearInterval(drag.int);
     </script>
   </body>
 </html>
