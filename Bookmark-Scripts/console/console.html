@@ -15,7 +15,7 @@
      <textarea id='input' placeholder='Ctrl + Enter to submit' style='position: absolute; width:494px; resize:none; bottom:0px;'></textarea>
   </div>
   <script>
-    var drage={int:0, x:0, y:0,};
+    var drag={int:0, x:0, y:0,};
     var mouse = {};
     console.log = function(text){
       var log = document.getElementById('log');
@@ -29,8 +29,6 @@
       if (e.keyCode === 13 && e.ctrlKey) {
         try{
           console.log(document.getElementById('input').value);
-
-
           console.log('>>'+eval(document.getElementById('input').value));
         }catch(err){
           console.log('ERR:'+err.message);
@@ -40,8 +38,9 @@
       return true;
     }
     document.getElementById('console').onmousedown = function(e){
-       setInterval(function(){document.getElementById('console').style.top = mouse.y+'px';document.getElementById('console').style.top = mouse.y+'px';},1);
+       drag.int = setInterval(function(){document.getElementById('console').style.top = mouse.y+'px';document.getElementById('console').style.left = mouse.x+'px';},1);
     }
+    document.getElementById('console').onmouseup = (e)=> clearInterval(drag.int);
     </script>
   </body>
 </html>
