@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+  <div id='console' style='background-color:rgba(60,60,60,.1); position:fixed; width: 500px; height: 160px; left:50px; top:50px;'>
+     <div id='log'>
+       <span class='log'></span>
+       </br><span class='log'></span>
+       </br><span class='log'></span>
+       </br><span class='log'></span>
+       </br><span class='log'></span>
+       </br><span class='log'></span>
+     </div>
+     <textarea id='input' placeholder='Ctrl + Enter to submit' style='position: absolute; width:494px; resize:none; bottom:0px;'></textarea>
+  </div>
+  <script>
+    var drage={int:0, x:0, y:0,};
+    var mouse = {};
+    console.log = function(text){
+      var log = document.getElementById('log');
+      log.removeChild(log.children[0]);
+      log.removeChild(log.children[0]);
+      log.innerHTML+="</br><span class='log'>"+text+"</span>";
+    }
+    document.onmousemove = (e) => mouse = {x:e.pageX,y:e.pageY};
+    document.getElementById('input').onkeyup = function(e){
+      e = e || event;
+      if (e.keyCode === 13 && e.ctrlKey) {
+        try{
+          console.log(document.getElementById('input').value);
+
+
+          console.log('>>'+eval(document.getElementById('input').value));
+        }catch(err){
+          console.log('ERR:'+err.message);
+        }
+        document.getElementById('input').value = '';
+      }
+      return true;
+    }
+    document.getElementById('console').onmousedown = function(e){
+       setInterval(function(){document.getElementById('console').style.top = mouse.y+'px';document.getElementById('console').style.top = mouse.y+'px';},1);
+    }
+    </script>
+  </body>
+</html>
+        
