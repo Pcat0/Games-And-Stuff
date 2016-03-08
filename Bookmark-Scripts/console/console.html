@@ -29,8 +29,8 @@
       e = e || event;
       if (e.keyCode === 13 && e.ctrlKey) {
         try{
-          console.log(document.getElementById('input').value);
-          console.log('>>'+eval(document.getElementById('input').value));
+          //console.log(document.getElementById('input').value);
+          console.log('>>'+(1, eval)(document.getElementById('input').value));
         }catch(err){
           console.log('ERR:'+err.message);
         }
@@ -45,4 +45,3 @@
     </script>
   </body>
 </html>
-        
