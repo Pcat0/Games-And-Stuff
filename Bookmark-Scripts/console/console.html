@@ -3,17 +3,10 @@
   <head>
   </head>
   <body>
-  <div id='console' style='background-color:rgba(60,60,60,.1); position:fixed; width: 500px; height: 160px; left:50px; top:50px;'>
+  <div id='console' style='background-color:rgba(60,60,60,.1); position:fixed; width: 500px; height: 160px; left:50px; top:50px; resize: both; overflow: auto;'>
      <div id='mover' style='position: absolute; width:10px; height:10px; resize:none; top:0px; background-color:gray;cursor:move;'></div>
-     <div id='log'>
-       <span class='log'></span>
-       </br><span class='log'></span>
-       </br><span class='log'></span>
-       </br><span class='log'></span>
-       </br><span class='log'></span>
-       </br><span class='log'></span>
-     </div>
-     <textarea id='input' placeholder='Ctrl + Enter to submit' style='position: absolute; width:494px; resize:none; bottom:0px;'></textarea>
+     <div id='log' style='display:flex; flex-direction:column-reverse;height:80%'></div>
+     <textarea id='input' placeholder='Ctrl + Enter to submit' style='position: absolute; width:98%; padding: 0px; margin:0px; resize:none; bottom:0px; height:20%'></textarea>
   </div>
   <script>
     var console = {input:[], index:-1};
@@ -21,9 +14,7 @@
     var mouse = {};
     console.log = function(text){
       var log = document.getElementById('log');
-      log.removeChild(log.children[0]);
-      log.removeChild(log.children[0]);
-      log.innerHTML+="</br><span class='log'>"+text+"</span>";
+      log.innerHTML="<span class='log'>"+text+"</span>" + log.innerHTML;
     }
     document.onmousemove = (e) => mouse = {x:e.pageX,y:e.pageY};
     document.getElementById('input').onkeyup = function(e){
@@ -40,7 +31,7 @@
         console.index = -1;
         console.input.unshift(document.getElementById('input').value);
         try{
-          //console.log(document.getElementById('input').value);
+          console.log(document.getElementById('input').value);
           console.log('>>'+(1, eval)(document.getElementById('input').value));
         }catch(err){
           console.log('ERR:'+err.message);
