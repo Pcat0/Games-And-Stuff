@@ -16,6 +16,7 @@
      <textarea id='input' placeholder='Ctrl + Enter to submit' style='position: absolute; width:494px; resize:none; bottom:0px;'></textarea>
   </div>
   <script>
+    var console = {input:[], index:-1};
     var drag={int:0, x:0, y:0,};
     var mouse = {};
     console.log = function(text){
@@ -27,7 +28,17 @@
     document.onmousemove = (e) => mouse = {x:e.pageX,y:e.pageY};
     document.getElementById('input').onkeyup = function(e){
       e = e || event;
+      if (e.keyCode === 38 && e.ctrlKey) {
+        console.index = (console.index + 1 <= console.input.length-1)?console.index + 1: console.index; 
+        document.getElementById('input').value = console.input[console.index];
+      }
+      if (e.keyCode === 40 && e.ctrlKey) {
+        console.index = (console.index - 1 >= -1)?console.index - 1: console.index; 
+        document.getElementById('input').value = (console.index != -1)? console.input[console.index]: '';
+      }
       if (e.keyCode === 13 && e.ctrlKey) {
+        console.index = -1;
+        console.input.unshift(document.getElementById('input').value);
         try{
           //console.log(document.getElementById('input').value);
           console.log('>>'+(1, eval)(document.getElementById('input').value));
