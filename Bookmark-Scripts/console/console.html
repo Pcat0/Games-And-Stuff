@@ -13,9 +13,13 @@
     var console = {input:[], index:-1};
     var drag={int:0, x:0, y:0,};
     var mouse = {};
+    var sanitize = function(str){
+      str=str.replace(/</g,'&#60');str=str.replace(/>/g,'&#62');
+      return str;
+    };
     console.log = function(text){
       var log = document.getElementById('log');
-      log.innerHTML="<span class='log'>"+text+"</span>" + log.innerHTML;
+      log.innerHTML="<span class='log'>"+sanitize(text)+"</span>" + log.innerHTML;
     };
     document.onmousemove = (e) => mouse = {x:e.pageX,y:e.pageY};
     document.getElementById('input').onkeyup = function(e){
