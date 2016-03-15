@@ -8,7 +8,7 @@ var blockY = Math.ceil(height / 50);
 var items = [];
 var index = {};
 var tool = 'hammer';
-var gravity = .5;
+var gravity = 3;
 var boxSize = 30;
 var target;
 var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
@@ -43,8 +43,6 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
         squ.id = x + ',' + y;
         squ.getContext("2d").putImageData(ctx.getImageData(x * blockX,y * blockY,(x + 1) * blockX,(y + 1) * blockY), 0, 0);
         document.body.appendChild(squ);
-        var _i = items.push(new move(squ)) - 1;
-        items[_i].setUp();
         x++;
       }
       x = 0;
