@@ -11,7 +11,6 @@ var tool = 'hammer';
 var gravity = .5;
 var boxSize = 30;
 var target;
-var place = false;
 var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
 var stats = document.createElement('div');
 document.body.style.margin = '0px';
@@ -101,7 +100,7 @@ var move = function(item) {
   };
   this.tick = function() {
     this.vx = this.vx- this.data.vLoss;
-    this.vy = this.vy- this.data.vLoss + (place)? gravity: 0;
+    this.vy = this.vy- this.data.vLoss + (this.gravity)? gravity: 0;
     this.move(this.vx, this.vy, true);
   };
   this.vSet = function(power) {
