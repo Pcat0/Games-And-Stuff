@@ -73,10 +73,10 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
             items[_i].setUp();
             items[_i].r = Math.atan2(box.top - e.y,box.left - e.x) * 180 / Math.PI;
             if (tool == 'hammer'){
-              items[_i].vSet(Math.floor(3 * (Math.random()*5)));
+              items[_i].vSet(6);
             }
             if (tool == 'bomb'){
-              items[_i].vSet(Math.floor(7 * (Math.random()*5)));
+              items[_i].vSet(Math.floor(7 * (Math.random()+1)));
             }
             
           }
