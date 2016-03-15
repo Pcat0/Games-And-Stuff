@@ -1,4 +1,4 @@
-if (confirm('Page Destroyer is ready to load (this will take a second)') == true){
+if (confirm('Page Destroyer is ready to load (this will take a second) /n I working on it right now so expert some errors') == true){
 var x = 0;
 var y = 0;
 var height = screen.height;
@@ -73,10 +73,10 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
             items[_i].setUp();
             items[_i].r = Math.atan2(box.top - e.y,box.left - e.x) * 180 / Math.PI;
             if (tool == 'hammer'){
-              items[_i].vSet(6);
+              items[_i].vSet(Math.floor(3 * Math.random()));
             }
             if (tool == 'bomb'){
-              items[_i].vSet(14);
+              items[_i].vSet(Math.floor(7 * Math.random()));
             }
             
           }
