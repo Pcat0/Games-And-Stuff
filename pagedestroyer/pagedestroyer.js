@@ -29,6 +29,7 @@ LOADJS('keyCodes', false, function() {onkeydown = function(e){
   if(keyCodes[e.keyCode] === 'k'){alert('Hotkeys:\n"h" -Select tool hammer.\n"b" -Select tool bomb.\n"g" -Toggle gravity.\n"k" -Hotkeys help.')}
 }});
 LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, function(){html2canvas(document.body, {onrendered: function(canvas) {
+  setInterval(function(){items.forEach(function(a){a.tick()})}, 5);
   document.body.innerHTML = "";
   document.body.style.backgroundColor = 'lightgrey';
     while ((y + 1) * blockY < height) {
@@ -51,7 +52,7 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
       y++;
     }
     var all;
-    setInterval(function(){items.forEach(function(a){a.tick()})}, 5);
+    //setInterval(function(){items.forEach(function(a){a.tick()})}, 5);
     //alert('Page Destroyer loaded.');
     document.body.appendChild(stats);
     onclick = function(e) {
