@@ -42,8 +42,8 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
         squ.style.position = 'absolute';
         squ.id = x + ',' + y;
         squ.getContext("2d").putImageData(ctx.getImageData(x * blockX,y * blockY,(x + 1) * blockX,(y + 1) * blockY), 0, 0);
-        //var _i = items.push(new move(squ)) - 1;
-        //items[_i].setUp();
+        var _i = items.push(new move(squ)) - 1;
+        items[_i].setUp();
         //squ.index = _i;
         document.body.appendChild(squ);
         x++;
