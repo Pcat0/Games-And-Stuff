@@ -69,8 +69,9 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
             all[i].style.zIndex = '9001';
             var _i = items.push(new move(all[i])) - 1;
             index[all[i].id] = _i;
-            items[_i] = new move(all[i]);
+            //items[_i] = new move(all[i]);
             items[_i].setUp();
+            items[_i].gravity = true;
             items[_i].r = Math.atan2(box.top - e.y,box.left - e.x) * 180 / Math.PI;
             if (tool == 'hammer'){
               items[_i].vSet(6);
@@ -92,12 +93,13 @@ var move = function(item) {
   this.r = 0;
   this.vx = 0;
   this.vy = 0;
+  this.gravity = false;
   this.data = {
     'vLoss': 0
   };
   this.tick = function() {
     this.vx = this.vx- this.data.vLoss;
-    this.vy = this.vy- this.data.vLoss + gravity;
+    this.vy = this.vy- this.data.vLoss + (this.gravity) ? gravity : 0;
     this.move(this.vx, this.vy, true);
   };
   this.vSet = function(power) {
