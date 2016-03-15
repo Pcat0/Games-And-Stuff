@@ -43,6 +43,8 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
         squ.id = x + ',' + y;
         squ.getContext("2d").putImageData(ctx.getImageData(x * blockX,y * blockY,(x + 1) * blockX,(y + 1) * blockY), 0, 0);
         document.body.appendChild(squ);
+        var _i = items.push(new move(squ)) - 1;
+        items[_i].setUp();
         x++;
       }
       x = 0;
@@ -67,10 +69,9 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
           if (box.left < (e.x + boxSize) && (box.left + box.width) > (e.x - boxSize) && box.top < (e.y + boxSize) && (box.top + box.height) > (e.y - boxSize)) {
             //document.body.removeChild(all[i]);
             all[i].style.zIndex = '9001';
-            var _i = items.push(new move(all[i])) - 1;
-            //index[all[i].id] = _i;
+            /*var _i = items.push(new move(all[i])) - 1;
             //items[_i] = new move(all[i]);
-            items[_i].setUp();
+            items[_i].setUp();*/
             items[_i].r = Math.atan2(box.top - e.y,box.left - e.x) * 180 / Math.PI;
             if (tool == 'hammer'){
               items[_i].vSet(6);
