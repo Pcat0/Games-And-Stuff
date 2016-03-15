@@ -52,7 +52,7 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
     }
     var all;
     setInterval(function(){items.forEach(function(a){a.tick()})}, 5);
-    alert('Page Destroyer loaded.');
+    //alert('Page Destroyer loaded.');
     document.body.appendChild(stats);
     onclick = function(e) {
       var i = 0;
