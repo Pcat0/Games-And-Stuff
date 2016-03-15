@@ -103,7 +103,7 @@ var move = function(item) {
   };
   this.tick = function() {
     this.vx = this.vx;
-    this.vy = this.vy + ((this.gravity)? gravity : 0);
+    this.vy += ((this.gravity)? gravity : 0);
     this.move(this.vx, this.vy, true);
   };
   this.vSet = function(power) {
