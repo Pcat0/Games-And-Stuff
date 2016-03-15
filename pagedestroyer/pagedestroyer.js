@@ -53,18 +53,18 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
     alert('Page Destroyer loaded.');
     document.body.appendChild(stats);
     onclick = function(e) {
-    var i = 0;
-    var all = document.getElementsByTagName("canvas");
-    if (tool == 'repair') {
-      var target = items[index[Math.floor(e.pageX/blockX) + ',' + Math.floor(e.pageY/blockY)]];
-      console.log(index[Math.floor(e.pageX/blockX) + ',' + Math.floor(e.pageY/blockY)]);
-      target.r = Math.atan2(target.x - e.pageY,target.y - e.pageX) * 180 / Math.PI;
-      target.vSet((target.r == Math.abs(target.r)) ? -6 : 6);
-    }
-    while (i < all.length && (tool == 'hammer' || tool == 'bomb')) {
-      if (typeof all[i] !== 'undefined') {
-        var box = all[i].getBoundingClientRect();
-        if (box.left < (e.x + boxSize) && (box.left + box.width) > (e.x - boxSize) && box.top < (e.y + boxSize) && (box.top + box.height) > (e.y - boxSize)) {
+      var i = 0;
+      var all = document.getElementsByTagName("canvas");
+      if (tool == 'repair') {
+        var target = items[index[Math.floor(e.pageX/blockX) + ',' + Math.floor(e.pageY/blockY)]];
+        console.log(index[Math.floor(e.pageX/blockX) + ',' + Math.floor(e.pageY/blockY)]);
+        target.r = Math.atan2(target.x - e.pageY,target.y - e.pageX) * 180 / Math.PI;
+        target.vSet((target.r == Math.abs(target.r)) ? -6 : 6);
+      }
+      while (i < all.length && (tool == 'hammer' || tool == 'bomb')) {
+        if (typeof all[i] !== 'undefined') {
+          var box = all[i].getBoundingClientRect();
+          if (box.left < (e.x + boxSize) && (box.left + box.width) > (e.x - boxSize) && box.top < (e.y + boxSize) && (box.top + box.height) > (e.y - boxSize)) {
             //document.body.removeChild(all[i]);
             all[i].style.zIndex = '9001';
             var _i = items.push(new move(all[i])) - 1;
@@ -78,6 +78,7 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
             if (tool == 'bomb'){
               items[_i].vSet(14);
             }
+            
           }
         }
       i++;
