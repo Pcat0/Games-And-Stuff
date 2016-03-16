@@ -60,8 +60,8 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
       var i = 0;
       var all = document.getElementsByTagName("canvas");
       if (tool == 'repair') {
-        target = Math.floor(e.x/blockX)+','+Math.floor(e.y/blockY)
-        console.log(typeof document.getElementById(target));
+        target = Math.floor(e.clientX/blockX)+','+Math.floor(e.clientY/blockY)
+        //document.getElementById(target)
         document.body.removeChild(document.getElementById(target));
       }
       while (i < all.length && (tool == 'hammer' || tool == 'bomb')) {
