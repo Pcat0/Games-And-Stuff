@@ -7,9 +7,10 @@ var blockX = Math.ceil(width / 50);
 var blockY = Math.ceil(height / 50);
 var items = [];
 var index = {};
-var tool = 'hammer';
+var tool = 'repair';
 var gravity = .75;
 var boxSize = 30;
+var target;
 var target;
 var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
 var stats = document.createElement('div');
@@ -59,7 +60,7 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
       var i = 0;
       var all = document.getElementsByTagName("canvas");
       if (tool == 'repair') {
-        var target = Math.floor(e.x/blockX)+','+Math.floor(e.y/blockY)
+        target = Math.floor(e.x/blockX)+','+Math.floor(e.y/blockY)
         console.log(typeof document.getElementById(target));
         document.body.removeChild(document.getElementById(target));
       }
