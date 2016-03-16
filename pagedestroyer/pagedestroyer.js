@@ -60,7 +60,7 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
       var i = 0;
       var all = document.getElementsByTagName("canvas");
       if (tool == 'repair') {
-        target = Math.floor(e.clientX/blockX)+','+Math.floor(e.clientY/blockY)
+        target = Math.floor(e.screenX/blockX)+','+Math.floor(e.screenY/blockY)
         //document.getElementById(target)
         document.body.removeChild(document.getElementById(target));
       }
