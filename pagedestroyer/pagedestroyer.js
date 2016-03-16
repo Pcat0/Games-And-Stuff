@@ -59,8 +59,8 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
       var i = 0;
       var all = document.getElementsByTagName("canvas");
       if (tool == 'repair') {
-        console.log(Math.floor(e.x/blockX)+' '+Math.floor(e.y/blockY));
-        console.log(document.getElementById(Math.floor((e.x/blockX)+','+Math.floor(e.y/blockY))));
+        console.log(Math.floor(e.x/blockX)+','+Math.floor(e.y/blockY));
+        console.log(document.getElementById(Math.floor(e.x/blockX)+','+Math.floor(e.y/blockY)));
         //document.body.removeChild(document.getElementById(Math.floor((e.x/blockX)+','+Math.floor(e.y/blockY))));
       }
       while (i < all.length && (tool == 'hammer' || tool == 'bomb')) {
