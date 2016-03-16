@@ -8,7 +8,7 @@ var blockY = Math.ceil(height / 50);
 var items = [];
 var index = {};
 var tool = 'hammer';
-var gravity = .5;
+var gravity = .75;
 var boxSize = 30;
 var target;
 var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
@@ -25,7 +25,7 @@ s.onload = function(){
 LOADJS('keyCodes', false, function() {onkeydown = function(e){
   if(keyCodes[e.keyCode] === 'h'){tool = 'hammer'; boxSize = 30;updateStats();}
   if(keyCodes[e.keyCode] === 'b'){tool = 'bomb'; boxSize = 60;updateStats();}
-  if(keyCodes[e.keyCode] === 'g'){gravity = (gravity === 0) ? .5: 0;updateStats();}
+  if(keyCodes[e.keyCode] === 'g'){gravity = (gravity === 0) ? .75: 0;updateStats();}
   if(keyCodes[e.keyCode] === 'k'){alert('Hotkeys:\n"h" -Select tool hammer.\n"b" -Select tool bomb.\n"g" -Toggle gravity.\n"k" -Hotkeys help.')}
 }});
 LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, function(){html2canvas(document.body, {onrendered: function(canvas) {
@@ -59,7 +59,7 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
       var i = 0;
       var all = document.getElementsByTagName("canvas");
       if (tool == 'repair') {
-        
+        console.log(Math.floor(e.x/blockX)+' '+Math.floor(e.y/blockY));
       }
       while (i < all.length && (tool == 'hammer' || tool == 'bomb')) {
         if (typeof all[i] !== 'undefined') {
