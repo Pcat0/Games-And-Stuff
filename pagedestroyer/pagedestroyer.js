@@ -8,7 +8,7 @@ var blockY = Math.ceil(height / 50);
 var items = [];
 var index = {};
 var tool = 'hammer';
-var gravity = 5;
+var gravity = .5;
 var boxSize = 30;
 var target;
 var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
@@ -25,7 +25,7 @@ s.onload = function(){
 LOADJS('keyCodes', false, function() {onkeydown = function(e){
   if(keyCodes[e.keyCode] === 'h'){tool = 'hammer'; boxSize = 30;updateStats();}
   if(keyCodes[e.keyCode] === 'b'){tool = 'bomb'; boxSize = 60;updateStats();}
-  if(keyCodes[e.keyCode] === 'g'){gravity = (gravity === 0) ? 5: 0;updateStats();}
+  if(keyCodes[e.keyCode] === 'g'){gravity = (gravity === 0) ? .5: 0;updateStats();}
   if(keyCodes[e.keyCode] === 'k'){alert('Hotkeys:\n"h" -Select tool hammer.\n"b" -Select tool bomb.\n"g" -Toggle gravity.\n"k" -Hotkeys help.')}
 }});
 LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, function(){html2canvas(document.body, {onrendered: function(canvas) {
@@ -59,25 +59,18 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
       var i = 0;
       var all = document.getElementsByTagName("canvas");
       if (tool == 'repair') {
-        var target = items[index[Math.floor(e.pageX/blockX) + ',' + Math.floor(e.pageY/blockY)]];
-        console.log(index[Math.floor(e.pageX/blockX) + ',' + Math.floor(e.pageY/blockY)]);
-        target.r = Math.atan2(target.x - e.pageY,target.y - e.pageX) * 180 / Math.PI;
-        target.vSet((target.r == Math.abs(target.r)) ? -6 : 6);
+        
       }
       while (i < all.length && (tool == 'hammer' || tool == 'bomb')) {
         if (typeof all[i] !== 'undefined') {
           var box = all[i].getBoundingClientRect();
           if (box.left < (e.x + boxSize) && (box.left + box.width) > (e.x - boxSize) && box.top < (e.y + boxSize) && (box.top + box.height) > (e.y - boxSize)) {
-            //document.body.removeChild(all[i]);
             all[i].style.zIndex = '9001';
-            /*var _i = items.push(new move(all[i])) - 1;
-            //items[_i] = new move(all[i]);
-            items[_i].setUp();*/
             var _i = all[i].dataset.index;
             items[_i].gravity = true;
             items[_i].r = Math.atan2(box.top - e.y,box.left - e.x) * 180 / Math.PI;
             if (tool == 'hammer'){
-              //items[_i].vSet(6);
+              items[_i].vSet(6);
             }
             if (tool == 'bomb'){
               items[_i].vSet(Math.floor(7 * (Math.random()+1)));
