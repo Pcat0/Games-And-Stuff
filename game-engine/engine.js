@@ -12,7 +12,7 @@ var Point = function(x,y,z){
 };
 var Vector = function(x,y,z){
 	this.tuple = [x,y,z];
-	this.AddVectorToVector = function(v){return newCall(Vector, this.tuple.addArray(v.tuple))};
-	this.SubtractVectorFromVector = function(v){return newCall(Vector, this.tuple.subtractArray(v.tuple))};
+	this.addVectorToVector = function(v){return newCall(Vector, this.tuple.addArray(v.tuple))};
+	this.subtractVectorFromVector = function(v){return newCall(Vector, this.tuple.subtractArray(v.tuple))};
 	
 };
