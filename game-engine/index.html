@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      canvas{width:750px; border-style: solid;}
+    </style>
+  </head>
+  <body>
+    <canvas id='canvas'></canvas>
+    <script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0,0,150,75);
+var Point = function(x,y,z){
+  this.tuple = [x,y,z];
+  this.AddVectorToPoint=function(vector){for(var i=0; i< this.tuple.length; i++){this.tuple[i]+=vector.tuple[i]}return };
+  this.SubtractVectorFromPoint=function(vector){for(var i=0; i< this.tuple.length; i++){this.tuple[i]+=vector.tuple[i]}};
+};
+    </script>
+  </body>
+</html>
+        
