@@ -397,6 +397,7 @@ p {
     </style>
   </head>
   <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <section class="strips">
   <article class="strips__strip">
     <div class="strip__content">
@@ -450,7 +451,7 @@ p {
   <i class="fa fa-close strip__close"></i>
 </section>
 <script>
-    var Expand = (function() {
+  var Expand = (function() {
   var tile = $('.strips__strip');
   var tileLink = $('.strips__strip > .strip__content');
   var tileText = tileLink.find('.strip__inner-text');
