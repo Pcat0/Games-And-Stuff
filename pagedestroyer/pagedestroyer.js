@@ -11,7 +11,45 @@ var tool = 'repair';
 var gravity = .75;
 var boxSize = 30;
 var target;
-var target;
+var move = function(item) {
+  this.x = 0;
+  this.y = 0;
+  this.r = 0;
+  this.vx = 0;
+  this.vy = 0;
+  this.gravity = false;
+  this.data = {
+    'vLoss': 0
+  };
+  this.tick = function() {
+    //this.vx = this.vx;
+    this.vy += ((this.gravity)? gravity : 0);
+    this.move(this.vx, this.vy, true);
+  };
+  this.vSet = function(power) {
+    this.vx += power*Math.cos(this.r*0.0174533);
+    this.vy += power*Math.sin(this.r*0.0174533);
+   };
+   this.rotate = function(r, type) {
+    this.r = (type) ? (this.r + r): r;
+    item.style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
+    return this.r;
+   };
+   this.setUp = function(){
+     this.x = parseInt(item.style.left.split('p')[0]);
+     this.y = parseInt(item.style.top.split('p')[0]);
+   };
+   this.move = function(x, y, type) {
+    this.x = (type) ? (this.x + x): x;
+    this.y = (type) ? (this.y + y): y;
+    item.style.top = this.y + 'px';
+    item.style.left = this.x + 'px';
+    if (this.x < 0){this.x = 0; this.vx = 0;}
+    if (this.y < 0){this.y = 0; this.vy = 0;}
+    if (this.x > width){this.x = width; this.vx = 0;}
+    if (this.y > height){this.y = height; this.vy = 0;}
+  };
+};
 var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
 var stats = document.createElement('div');
 document.body.style.margin = '0px';
@@ -87,45 +125,7 @@ LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'
   }
 });});
 }
-var move = function(item) {
-  this.x = 0;
-  this.y = 0;
-  this.r = 0;
-  this.vx = 0;
-  this.vy = 0;
-  this.gravity = false;
-  this.data = {
-    'vLoss': 0
-  };
-  this.tick = function() {
-    //this.vx = this.vx;
-    this.vy += ((this.gravity)? gravity : 0);
-    this.move(this.vx, this.vy, true);
-  };
-  this.vSet = function(power) {
-    this.vx += power*Math.cos(this.r*0.0174533);
-    this.vy += power*Math.sin(this.r*0.0174533);
-   };
-   this.rotate = function(r, type) {
-    this.r = (type) ? (this.r + r): r;
-    item.style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
-    return this.r;
-   };
-   this.setUp = function(){
-     this.x = parseInt(item.style.left.split('p')[0]);
-     this.y = parseInt(item.style.top.split('p')[0]);
-   };
-   this.move = function(x, y, type) {
-    this.x = (type) ? (this.x + x): x;
-    this.y = (type) ? (this.y + y): y;
-    item.style.top = this.y + 'px';
-    item.style.left = this.x + 'px';
-    if (this.x < 0){this.x = 0; this.vx = 0;}
-    if (this.y < 0){this.y = 0; this.vy = 0;}
-    if (this.x > width){this.x = width; this.vx = 0;}
-    if (this.y > height){this.y = height; this.vy = 0;}
-  };
-};
+
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
