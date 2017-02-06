@@ -1,3 +1,4 @@
+//
 if (confirm('Page Destroyer is ready to load (this will take a second) \n I working on it right now so expert some errors') == true){
 var x = 0;
 var y = 0;
