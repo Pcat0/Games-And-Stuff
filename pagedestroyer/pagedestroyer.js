@@ -1,30 +1,63 @@
-if (confirm('Page Destroyer is ready to load (this will take a second) \n I working on it right now so expert some errors') == true){
-var x = 0;
-var y = 0;
-var height = screen.height;
-var width = screen.width;
-var blockX = Math.ceil(width / 50);
-var blockY = Math.ceil(height / 50);
+var boxsize = {x:Math.ceil(screen.width/ 50), y:Math.ceil(screen.height/ 50)};
 var items = [];
-var index = {};
-var tool = 'repair';
 var gravity = .75;
-var boxSize = 30;
-var target;
+var tool = 'hammer';
+var tools = {
+  hammer:function(e){
+    var i = 0;
+    var all = document.getElementsByTagName("canvas");
+    while (i < all.length) {
+      if (typeof all[i] !== 'undefined') {
+        var box = all[i].getBoundingClientRect();
+        if (box.left<e.x+15 && box.left+box.width>e.x-15 && box.top<e.y+15 && box.top+box.height>e.y-15) {
+          all[i].style.zIndex = '9001';
+          var _i = all[i].dataset.index;
+          items[_i].frozen = false;
+          items[_i].r = Math.atan2(box.top - e.y, box.left - e.x)*180/Math.PI;
+          items[_i].vSet(6);
+        }
+      }
+      i++;
+    }
+  },
+  bomb:function(e){
+    var i = 0;
+    var all = document.getElementsByTagName("canvas");
+    while (i < all.length) {
+      if (typeof all[i] !== 'undefined') {
+        var box = all[i].getBoundingClientRect();
+        if (box.left<e.x+30 && box.left+box.width>e.x-30 && box.top<e.y+30 && box.top+box.height>e.y-30) {
+          all[i].style.zIndex = '9001';
+          var _i = all[i].dataset.index;
+          items[_i].frozen = false;
+          items[_i].r = Math.atan2(box.top - e.y, box.left - e.x)*180/Math.PI;
+          items[_i].vSet(Math.floor(7 * (Math.random() + 1)));
+        }
+      }
+      i++;
+    }
+  }
+}
+var boxSize_ = 15;
 var move = function(item) {
   this.x = 0;
   this.y = 0;
   this.r = 0;
   this.vx = 0;
   this.vy = 0;
-  this.gravity = false;
+  this.frozen = true;
   this.data = {
     'vLoss': 0
   };
   this.tick = function() {
     //this.vx = this.vx;
-    this.vy += ((this.gravity)? gravity : 0);
-    this.move(this.vx, this.vy, true);
+    this.vy += gravity;
+    if(this.frozen){
+      this.vy = 0;
+      this.vx = 0;
+    }else{
+      this.move(this.vx, this.vy, true);
+    }
   };
   this.vSet = function(power) {
     this.vx += power*Math.cos(this.r*0.0174533);
@@ -46,90 +79,60 @@ var move = function(item) {
     item.style.left = this.x + 'px';
     if (this.x < 0){this.x = 0; this.vx = 0;}
     if (this.y < 0){this.y = 0; this.vy = 0;}
-    if (this.x > width){this.x = width; this.vx = 0;}
-    if (this.y > height){this.y = height; this.vy = 0;}
+    if (this.x > screen.width){this.x = screen.width; this.vx = 0;}
+    if (this.y > screen.height){this.y = screen.height; this.vy = 0;}
   };
 };
-var s=document.createElement('script');s.setAttribute("type","text/javascript");s.setAttribute("src", 'https://Pcat0.github.io/utilities/scriptLoader.js');document.body.appendChild(s);
-var stats = document.createElement('div');
-document.body.style.margin = '0px';
-stats.style.right= '5px';
-stats.style.bottom= '5px';
-stats.style.position= 'fixed';
-var updateStats = function(){
-  stats.innerHTML= 'Gravity: ' + ((gravity === 0) ? 'off': 'on') + '</br>' + 'Tool: ' + tool;
-}
-updateStats();
-s.onload = function(){
-LOADJS('keyCodes', false, function() {onkeydown = function(e){
-  if(keyCodes[e.keyCode] === 'h'){tool = 'hammer'; boxSize = 30;updateStats();}
-  if(keyCodes[e.keyCode] === 'b'){tool = 'bomb'; boxSize = 60;updateStats();}
-  if(keyCodes[e.keyCode] === 'g'){gravity = (gravity === 0) ? .75: 0;updateStats();}
-  if(keyCodes[e.keyCode] === 'k'){alert('Hotkeys:\n"h" -Select tool hammer.\n"b" -Select tool bomb.\n"g" -Toggle gravity.\n"k" -Hotkeys help.')}
-}});
-LOADJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js', true, function(){html2canvas(document.body, {onrendered: function(canvas) {
+function startUp(canvas){
+  var ctx = canvas.getContext("2d");
   document.body.innerHTML = "";
   document.body.style.backgroundColor = 'lightgrey';
-    while ((y + 1) * blockY < height) {
-      while ((x + 1) * blockX < width){
-        ctx = canvas.getContext("2d");
-        var squ = document.createElement('canvas');
-        squ.width = blockX;
-        squ.height = blockY;
-        squ.style.top = y * blockY + 'px';
-        squ.style.left = x * blockX + 'px';
-        squ.style.position = 'absolute';
-        squ.id = x + ',' + y;
-        squ.getContext("2d").putImageData(ctx.getImageData(x * blockX,y * blockY,(x + 1) * blockX,(y + 1) * blockY), 0, 0);
-        var _i = items.push(new move(squ)) - 1;
-        items[_i].setUp();
-        squ.dataset.index = _i;
-        document.body.appendChild(squ);
-        x++;
-      }
-      x = 0;
-      y++;
-    }
-    var all;
-    setInterval(function(){items.forEach(function(a){a.tick()})}, 1);
-    //alert('Page Destroyer loaded.');
-    document.body.appendChild(stats);
-    onclick = function(e) {
-      var i = 0;
-      var all = document.getElementsByTagName("canvas");
-      if (tool == 'repair') {
-        target = Math.floor(e.screenX/blockX)+','+Math.floor(e.screenY/blockY)
-        //document.getElementById(target)
-        document.body.removeChild(document.getElementById(target));
-      }
-      while (i < all.length && (tool == 'hammer' || tool == 'bomb')) {
-        if (typeof all[i] !== 'undefined') {
-          var box = all[i].getBoundingClientRect();
-          if (box.left < (e.x + boxSize) && (box.left + box.width) > (e.x - boxSize) && box.top < (e.y + boxSize) && (box.top + box.height) > (e.y - boxSize)) {
-            all[i].style.zIndex = '9001';
-            var _i = all[i].dataset.index;
-            items[_i].gravity = true;
-            items[_i].r = Math.atan2(box.top - e.y,box.left - e.x) * 180 / Math.PI;
-            if (tool == 'hammer'){
-              items[_i].vSet(6);
-            }
-            if (tool == 'bomb'){
-              items[_i].vSet(Math.floor(7 * (Math.random()+1)));
-            }
-            
-          }
-        }
-      i++;
-      }
+  for(var y=0; (y+1)*boxsize.y<=screen.height; y++){
+    for(var x=0; (x+1)*boxsize.x<=screen.width; x++){
+      //console.log(x+','+y);
+      var squ = document.createElement('canvas');
+      squ.width = boxsize.x;
+      squ.height = boxsize.y;
+      squ.style.top = y * boxsize.y + 'px';
+      squ.style.left = x * boxsize.x + 'px';
+      squ.style.position = 'absolute';
+      squ.id = x+','+y;
+      squ.getContext("2d").putImageData(ctx.getImageData(x*boxsize.x, y*boxsize.y, (x+1)*boxsize.x, (y+1)*boxsize.y), 0, 0);
+      var _i = items.push(new move(squ)) - 1;
+      items[_i].setUp();
+      squ.dataset.index = _i;
+      document.body.appendChild(squ);
     }
   }
-});});
+  setInterval(function(){items.forEach(function(a){a.tick()})}, 1);
+  onclick = function(e) {
+    tools[tool](e);
+    /*
+    var i = 0;
+    var all = document.getElementsByTagName("canvas");
+    while (i < all.length && (tool == 'hammer' || tool == 'bomb')) {
+      if (typeof all[i] !== 'undefined') {
+        var box = all[i].getBoundingClientRect();
+        if (box.left < (e.x + boxSize_) && (box.left + box.width) > (e.x - boxSize_) && box.top < (e.y + boxSize_) && (box.top + box.height) > (e.y - boxSize_)) {
+          all[i].style.zIndex = '9001';
+          var _i = all[i].dataset.index;
+          items[_i].frozen = false;
+          items[_i].r = Math.atan2(box.top - e.y, box.left - e.x) * 180 / Math.PI;
+          
+          if (tool == 'hammer') {
+            items[_i].vSet(6);
+          }
+          if (tool == 'bomb') {
+            items[_i].vSet(Math.floor(7 * (Math.random() + 1)));
+          }
+          
+        }
+      }
+      i++;
+    }
+  */
+  }
 }
-
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-69409530-2', 'auto');
-ga('send', 'pageview');
-}
+var s = document.createElement("script");
+s.src = "https://html2canvas.hertzen.com/build/html2canvas.js"; document.body.appendChild(s);
+s.onload=()=>html2canvas(document.body, {onrendered:startUp});
