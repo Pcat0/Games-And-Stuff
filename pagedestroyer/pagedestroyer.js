@@ -1,3 +1,4 @@
+if (confirm('Page Destroyer is ready to load (this will take a second) \n Hey everyone I finaly fixed it')){
 var boxsize = {x:Math.ceil(screen.width/ 50), y:Math.ceil(screen.height/ 50)};
 var items = [];
 var gravity = .75;
@@ -136,3 +137,10 @@ function startUp(canvas){
 var s = document.createElement("script");
 s.src = "https://html2canvas.hertzen.com/build/html2canvas.js"; document.body.appendChild(s);
 s.onload=()=>html2canvas(document.body, {onrendered:startUp});
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-69409530-2', 'auto');
+ga('send', 'pageview');
+}
