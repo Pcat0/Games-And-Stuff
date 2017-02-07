@@ -37,9 +37,24 @@ var tools = {
       i++;
     }
   }
+};
+
+var stats = document.createElement('div');
+document.body.style.margin = '0px';
+stats.style.right= '5px';
+stats.style.bottom= '5px';
+stats.style.position= 'fixed';
+var updateStats = function(){
+  stats.innerHTML= 'Gravity: ' + ((gravity === 0) ? 'off': 'on') + '</br>' + 'Tool: ' + tool;
+}
+
+var keyListener = {
+  98: _=>tool='bomb',
+  103: _=>gravity=gravity?0:.75,
+  104: _=>tool='hammer',
 }
 var boxSize_ = 15;
-var move = function(item) {
+var physicsItem = function(item) {
   this.x = 0;
   this.y = 0;
   this.r = 0;
@@ -48,6 +63,10 @@ var move = function(item) {
   this.frozen = true;
   this.data = {
     'vLoss': 0
+  };
+  this.setUp = function(){
+    this.x = parseInt(item.style.left.split('p')[0]);
+    this.y = parseInt(item.style.top.split('p')[0]);
   };
   this.tick = function() {
     //this.vx = this.vx;
@@ -62,17 +81,13 @@ var move = function(item) {
   this.vSet = function(power) {
     this.vx += power*Math.cos(this.r*0.0174533);
     this.vy += power*Math.sin(this.r*0.0174533);
-   };
-   this.rotate = function(r, type) {
+  };
+  this.rotate = function(r, type) {
     this.r = (type) ? (this.r + r): r;
-    item.style.webkitTransform = "rotate("+(this.r + this.data.rOffset)+"deg)";
+    item.style.webkitTransform = "rotate("+(this.r+this.data.rOffset)+"deg)";
     return this.r;
-   };
-   this.setUp = function(){
-     this.x = parseInt(item.style.left.split('p')[0]);
-     this.y = parseInt(item.style.top.split('p')[0]);
-   };
-   this.move = function(x, y, type) {
+  };
+  this.move = function(x, y, type) {
     this.x = (type) ? (this.x + x): x;
     this.y = (type) ? (this.y + y): y;
     item.style.top = this.y + 'px';
@@ -82,6 +97,7 @@ var move = function(item) {
     if (this.x > screen.width){this.x = screen.width; this.vx = 0;}
     if (this.y > screen.height){this.y = screen.height; this.vy = 0;}
   };
+  //init();
 };
 function startUp(canvas){
   var ctx = canvas.getContext("2d");
@@ -98,39 +114,23 @@ function startUp(canvas){
       squ.style.position = 'absolute';
       squ.id = x+','+y;
       squ.getContext("2d").putImageData(ctx.getImageData(x*boxsize.x, y*boxsize.y, (x+1)*boxsize.x, (y+1)*boxsize.y), 0, 0);
-      var _i = items.push(new move(squ)) - 1;
+      var _i = items.push(new physicsItem(squ)) - 1;
       items[_i].setUp();
       squ.dataset.index = _i;
       document.body.appendChild(squ);
     }
+    
   }
-  setInterval(function(){items.forEach(function(a){a.tick()})}, 1);
+  setInterval(()=>{items.forEach(function(a){a.tick()}); updateStats()}, 1);
+  
+  document.body.appendChild(stats);
+  
   onclick = function(e) {
     tools[tool](e);
-    /*
-    var i = 0;
-    var all = document.getElementsByTagName("canvas");
-    while (i < all.length && (tool == 'hammer' || tool == 'bomb')) {
-      if (typeof all[i] !== 'undefined') {
-        var box = all[i].getBoundingClientRect();
-        if (box.left < (e.x + boxSize_) && (box.left + box.width) > (e.x - boxSize_) && box.top < (e.y + boxSize_) && (box.top + box.height) > (e.y - boxSize_)) {
-          all[i].style.zIndex = '9001';
-          var _i = all[i].dataset.index;
-          items[_i].frozen = false;
-          items[_i].r = Math.atan2(box.top - e.y, box.left - e.x) * 180 / Math.PI;
-          
-          if (tool == 'hammer') {
-            items[_i].vSet(6);
-          }
-          if (tool == 'bomb') {
-            items[_i].vSet(Math.floor(7 * (Math.random() + 1)));
-          }
-          
-        }
-      }
-      i++;
-    }
-  */
+  }
+  onkeypress = function(e){
+    console.log(e.keyCode);
+    keyListener[e.keyCode]();
   }
 }
 var s = document.createElement("script");
