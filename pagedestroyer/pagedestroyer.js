@@ -1,4 +1,4 @@
-if (confirm('Page Destroyer is ready to load (this will take a second) \n Hey everyone I finaly fixed it')){
+if (confirm('Page Destroyer is ready to load (this will take a second) \nHey everyone, I finaly fixed it!')){
 var boxsize = {x:Math.ceil(screen.width/ 50), y:Math.ceil(screen.height/ 50)};
 var items = [];
 var gravity = .75;
