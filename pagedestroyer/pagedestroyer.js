@@ -104,8 +104,8 @@ function startUp(canvas){
   var ctx = canvas.getContext("2d");
   document.body.innerHTML = "";
   document.body.style.backgroundColor = 'lightgrey';
-  for(var y=0; (y+1)*boxsize.y<=canvas.height; y++){
-    for(var x=0; (x+1)*boxsize.x<=canvas.width; x++){
+  for(var y=0; (y+1)*boxsize.y<=screen.height; y++){
+    for(var x=0; (x+1)*boxsize.x<=screen.width; x++){
       //console.log(x+','+y);
       var squ = document.createElement('canvas');
       squ.width = boxsize.x;
